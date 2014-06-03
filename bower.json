@@ -1,0 +1,21 @@
+{
+  "name": "Timeking",
+  "version": "0.0.1",
+  "authors": [
+    "Simon Larsson <simon@reload.dk>"
+  ],
+  "license": "MIT",
+    "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components",
+      "test",
+      "tests"
+    ],
+    "dependencies": {
+    "jquery": "latest",
+    "angular": "latest",
+    "underscore": "latest",
+    "modernizr": "latest",
+  }
+}
