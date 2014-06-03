@@ -16,6 +16,6 @@
     "jquery": "latest",
     "angular": "latest",
     "underscore": "latest",
-    "modernizr": "latest",
+    "modernizr": "latest"
   }
 }
