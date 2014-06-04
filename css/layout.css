@@ -1,0 +1,30 @@
+/* line 5, sass/layout.scss */
+body,
+html {
+  min-height: 100%;
+}
+
+/* line 9, sass/layout.scss */
+.inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* line 16, sass/layout.scss */
+.totals {
+  border-bottom: 1px solid;
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
+}
+
+/* line 23, sass/layout.scss */
+.user-report {
+  text-align: center;
+}
+/* line 25, sass/layout.scss */
+.user-report li {
+  list-style: none none;
+  display: inline-block;
+  margin: 10px;
+}

@@ -11,10 +11,10 @@ module.exports = function (grunt) {
           livereload: false
         },
         files: ['css/sass/*.scss'],
-        tasks: ['compass']
+        tasks: ['compass:dev']
       },
       css: {
-        files: ['css/*.css','css_dev/*.css'],
+        files: ['css/*.css'],
         options: {
           livereload: true
         },
@@ -70,17 +70,29 @@ module.exports = function (grunt) {
     // Compass and SCSS
     compass: {
       options: {
-        httpPath: '',
+        httpPath: '/profiles/scribo/themes/scribe',
         cssDir: 'css',
         sassDir: 'css/sass',
         imagesDir: 'img',
-        javascriptsDir: 'js',
+        javascriptsDir: 'scripts',
         fontsDir: 'css/fonts',
-        assetCacheBuster: 'none',
-        outputStyle: 'expanded',
-        relativeAssets: true,
-        raw: 'line_numbers = :false\n'
+        assetCacheBuster: 'none'
       },
+      dev: {
+        options: {
+          environment: 'development',
+          outputStyle: 'expanded',
+          relativeAssets: true,
+          raw: 'line_numbers = :true\n'
+        }
+      },
+      prod: {
+        options: {
+          environment: 'production',
+          outputStyle: 'compact',
+          force: true,
+        }
+      }
     }
   });
 
@@ -92,7 +104,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('default', [
-    'compass',
+    'compass:dev',
     'coffee',
     'concat',
     //'jshint',

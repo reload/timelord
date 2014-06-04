@@ -1,4 +1,17 @@
-container {
-  max-width: 1300px;
-  margin: auto;
+@import "compass/css3/images";
+@import "vars";
+
+// Users.
+body {
+  background: radial-gradient(white, silver 100%) no-repeat;
+}
+
+.user-report {
+  li {
+    figure {
+      &:after {
+        background: radial-gradient(transparent, black 100px);
+      }
+    }
+  }
 }

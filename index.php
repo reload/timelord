@@ -12,6 +12,8 @@
   <meta name="viewport" content="width=device-width">
   <link rel="shortcut icon" href="favicon.ico">
 
+  <link href="css/reset.css" rel="stylesheet" type="text/css">
+  <link href="css/layout.css" rel="stylesheet" type="text/css">
   <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="TimeKingApp">
@@ -21,19 +23,22 @@
 
   <div ng-controller="TimeKing" class="time-report">
     <div class="totals">
-      <p>{{data.hours_total_registered}} of {{data.hours_until_today}} hours registered in {{data.date_start * 1000 | date : 'MMMM yyyy'}}</p>
-      <p>That's {{data.total_percent}}%!</p>
-      <p>{{data.hest}}</p>
+      <div class="inner">
+        <p>{{data.hours_total_registered}} of {{data.hours_until_today}} hours registered in {{data.date_start * 1000 | date : 'MMMM yyyy'}}</p>
+        <p>That's {{data.total_percent}}%!</p>
+      </div>
     </div>
-    <ul class="user-report">
-    <span class="glyphicon glyphicon-leaf"></span>
-      <li class="user" ng-repeat="user in data.ranking | orderBy:'performance':reverse = true">
-        <figure class="portrait {{user.group}}">
-          <img src="{{user.imageUrl}}" class="img-circle">
-        </figure>
-        <strong>{{user.name}}</strong><span>{{user.performance}}%</span>
-      </li>
-    </ul>
+
+    <div class="user-report">
+      <ul class="inner">
+        <li class="user" ng-click="toggleStats(user)" ng-repeat="user in data.ranking | orderBy:'group'">
+          <figure class="portrait {{user.group}}">
+            <img src="{{user.imageUrl}}">
+          </figure>
+          <strong>{{user.name}}</strong>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <script src="js/vendor.js" type="text/javascript"></script>

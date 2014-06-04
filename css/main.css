@@ -1,1 +1,9 @@
-container { max-width: 1300px; margin: auto; }
+/* line 5, sass/main.scss */
+body {
+  background: radial-gradient(#ffffff, #c0c0c0 100%) no-repeat;
+}
+
+/* line 12, sass/main.scss */
+.user-report li figure:after {
+  background: radial-gradient(transparent, #000000 100px);
+}
