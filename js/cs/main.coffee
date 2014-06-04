@@ -8,7 +8,6 @@ app.controller 'TimeKing', ($scope, $http) ->
         # Get registered percent.
         data.total_percent = Math.round 100*data.hours_total_registered/data.hours_until_today
         # Get user ranking.
-        console.log data
         angular.forEach data.ranking, (user, i) ->
           imageVars = [
             user.user_id_first_part,
@@ -30,6 +29,20 @@ app.controller 'TimeKing', ($scope, $http) ->
   setInterval ()->
     fetchData()
   , 300000
+
+  $scope.userLogin = (user, login) ->
+    config =
+      params :
+        user: user
+    }
+
+    $http.post 'auth.php', null, config
+
+      .success (data, status, headers, config) ->
+        $scope[login] = data
+
+      .error (data, status, headers, config) ->
+        console.log 'Error: ' + status
 
   # User click function.
   $scope.toggleStats = (user) ->

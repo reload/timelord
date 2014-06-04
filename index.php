@@ -24,8 +24,8 @@
   <div ng-controller="TimeKing" class="time-report">
     <div class="totals">
       <div class="inner">
-        <p>{{data.hours_total_registered}} of {{data.hours_until_today}} hours registered in {{data.date_start * 1000 | date : 'MMMM yyyy'}}</p>
-        <p>That's {{data.total_percent}}%!</p>
+        <p>{{ data.hours_total_registered }} of {{ data.hours_until_today }} hours registered in {{ data.date_start * 1000 | date : 'MMMM yyyy' }}</p>
+        <p>That's {{ data.total_percent }}%!</p>
       </div>
     </div>
 
@@ -35,9 +35,32 @@
           <figure class="portrait {{user.group}}">
             <img src="{{user.imageUrl}}">
           </figure>
-          <strong>{{user.name}}</strong>
+          <strong>{{ user.name }}</strong>
         </li>
       </ul>
+    </div>
+
+    <div class="login">
+      <div class="inner">
+        <form name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
+          <ul>
+            <li>
+              <label>
+                <span>Email:</span>
+                <input type="email" name="username" ng-model="user.name" required /><br />
+              </label>
+            </li>
+            <li>
+              <label >
+              <span>Password:</span>
+              <input type="password" name="password" ng-minlength="5" ng-model="user.pass" required />
+            </label>
+            </li>
+          </ul>
+          <button type="submit" ng-disabled="loginForm.$invalid">Submit</button>
+        </form>
+        <div>{{login}}</div>
+      </div>
     </div>
   </div>
 
