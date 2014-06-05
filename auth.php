@@ -6,11 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       "<br />Username = " . $_POST["username"] .
       "<br />Password = " . $_POST["password"];
   }
-  else if (isset($_GET["user"]))
-  {
+
+  else if (isset($_GET["user"])) {
     // AJAX form submission
     $user = json_decode($_GET["user"]);
-
     $result = json_encode(
       array(
         'Login: ' => $user->name,
@@ -18,9 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'Pass encoded: ' => password_hash($user->pass, PASSWORD_DEFAULT),
       )
     );
+    session_start();
+    $_SESSION['harvester_token'] = password_hash($user->pass, PASSWORD_DEFAULT) . '|' . $user->name;
   }
-  else
-  {
+
+  else {
     $result = "Something went wrong.";
   }
 

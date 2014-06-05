@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -22,6 +25,11 @@
   <!--[if lt IE 7]><p class="chromeframe">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
   <div ng-controller="TimeKing" class="time-report">
+    <div class="header">
+      <div class="inner">
+        <h1>Timeking</h1>
+      </div>
+    </div>
     <div class="totals">
       <div class="inner">
         <p>{{ data.hours_total_registered }} of {{ data.hours_until_today }} hours registered in {{ data.date_start * 1000 | date : 'MMMM yyyy' }}</p>
@@ -42,7 +50,8 @@
 
     <div class="login">
       <div class="inner">
-        <form name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
+
+        <form name="loginForm" ng-hide="session" ng-submit="userLogin(user, 'login')" novalidate>
           <ul>
             <li>
               <label>
@@ -59,7 +68,10 @@
           </ul>
           <button type="submit" ng-disabled="loginForm.$invalid">Submit</button>
         </form>
-        <div>{{login}}</div>
+
+        <form name="logoutForm" ng-show="session" ng-submit="userLogout()">
+          <button type="submit">Logout</button>
+        </form>
       </div>
     </div>
   </div>
