@@ -1,17 +1,44 @@
 @import "compass/css3/images";
-@import "vars";
+@import "vars.core";
 
 // Users.
 body {
-  background: radial-gradient(white, silver 100%) no-repeat;
+  background: radial-gradient($bgColor, $bgColor2 100%) no-repeat;
+  color: $fgColor;
 }
 
 .user-report {
-  li {
-    figure {
-      &:after {
-        background: radial-gradient(transparent, black 100px);
-      }
+  figure {
+    img {
+      border-color: $primaryColor;
     }
   }
+}
+
+.user-form {
+  background-color: rgba($fgColor, 0.8);
+  form {
+    padding: 20px 40px;
+    background-color: $fgColor;
+    box-shadow: 0 0 20px rgba(black, 0.4);
+    border: 1px solid $primaryColor;
+    border-radius: 5px;
+  }
+}
+
+.active-user{
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    margin-right: 10px;
+    background-color: $activeUserLight;
+    box-shadow: 0 0 10px rgba($activeUserLight, 0.9);
+  }
+}
+
+.loader {
+  background: radial-gradient($bgColor, $bgColor2 100%) no-repeat;
 }

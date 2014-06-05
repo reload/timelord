@@ -5,6 +5,7 @@
 
   app.controller('TimeKing', function($scope, $http) {
     var fetchData, getSession;
+    $scope.loading = true;
     fetchData = function() {
       return $http.get('feed.php').success(function(data, status, headers, config) {
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_until_today);
@@ -14,7 +15,10 @@
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + imageVars + '/normal.jpg';
           return data.ranking[i].group = data.ranking[i].group.toLowerCase();
         });
-        return $scope.data = data;
+        $scope.data = data;
+        console.log(data);
+        $scope.loading = false;
+        return $scope.loginOpen = false;
       }).error(function(data, status, headers, config) {
         return console.log('Error:' + status);
       });

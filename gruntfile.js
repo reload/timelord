@@ -66,13 +66,10 @@ module.exports = function (grunt) {
         'dest': 'js/vendor.js'
       }
     },
-
     // Compass and SCSS
     compass: {
       options: {
         httpPath: '/profiles/scribo/themes/scribe',
-        cssDir: 'css',
-        sassDir: 'css/sass',
         imagesDir: 'img',
         javascriptsDir: 'scripts',
         fontsDir: 'css/fonts',
@@ -80,17 +77,21 @@ module.exports = function (grunt) {
       },
       dev: {
         options: {
+          cssDir: 'css',
+          sassDir: 'css/sass',
           environment: 'development',
           outputStyle: 'expanded',
           relativeAssets: true,
           raw: 'line_numbers = :true\n'
         }
       },
-      prod: {
+      bootstrap: {
         options: {
-          environment: 'production',
-          outputStyle: 'compact',
-          force: true,
+          cssDir: 'css',
+          sassDir: 'vendor/bootstrap-sass/lib/',
+          environment: 'development',
+          outputStyle: 'expanded',
+          relativeAssets: true,
         }
       }
     }
@@ -104,6 +105,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('default', [
+    'compass:bootstrap',
     'compass:dev',
     'coffee',
     'concat',

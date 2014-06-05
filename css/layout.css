@@ -12,19 +12,64 @@ html {
 }
 
 /* line 16, sass/layout.scss */
+.site-logo {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  vertical-align: bottom;
+}
+/* line 21, sass/layout.scss */
+.site-logo svg#logo {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 27, sass/layout.scss */
+.site-title {
+  display: inline;
+}
+
+/* line 32, sass/layout.scss */
 .totals {
   border-bottom: 1px solid;
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 23, sass/layout.scss */
+/* line 39, sass/layout.scss */
 .user-report {
   text-align: center;
 }
-/* line 25, sass/layout.scss */
+/* line 41, sass/layout.scss */
 .user-report li {
   list-style: none none;
   display: inline-block;
   margin: 10px;
+}
+/* line 46, sass/layout.scss */
+.user-report li img {
+  border: 5px solid;
+}
+
+/* line 53, sass/layout.scss */
+.loader,
+.user-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 65, sass/layout.scss */
+.loader .logo {
+  max-width: 20%;
+}
+/* line 67, sass/layout.scss */
+.loader .logo svg#logo {
+  width: 100%;
+  height: 100%;
 }

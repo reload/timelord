@@ -12,6 +12,22 @@ html {
   padding: 20px;
 }
 
+// Header.
+.site-logo {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  vertical-align: bottom;
+  svg#logo {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.site-title {
+  display: inline;
+}
+
 // Time overview.
 .totals {
   border-bottom: 1px solid;
@@ -26,5 +42,31 @@ html {
     list-style: none none;
     display: inline-block;
     margin: 10px;
+
+    img {
+      border: 5px solid;
+    }
+  }
+}
+
+.loader,
+.user-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  .logo {
+    max-width: 20%;
+    svg#logo {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

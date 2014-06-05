@@ -1,9 +1,49 @@
+/**
+ * Vars to override
+ *
+ * $fgColor
+ * $bgColor
+ * $bgColor2
+ * $primaryColor
+ * $secondaryColor
+ */
 /* line 5, sass/main.scss */
 body {
-  background: radial-gradient(#ffffff, #c0c0c0 100%) no-repeat;
+  background: radial-gradient(#ffffff, #ccc5bd 100%) no-repeat;
+  color: #404040;
 }
 
 /* line 12, sass/main.scss */
-.user-report li figure:after {
-  background: radial-gradient(transparent, #000000 100px);
+.user-report figure img {
+  border-color: #99bf31;
+}
+
+/* line 18, sass/main.scss */
+.user-form {
+  background-color: rgba(64, 64, 64, 0.8);
+}
+/* line 20, sass/main.scss */
+.user-form form {
+  padding: 20px 40px;
+  background-color: #404040;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid #99bf31;
+  border-radius: 5px;
+}
+
+/* line 30, sass/main.scss */
+.active-user:before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  margin-right: 10px;
+  background-color: #00e600;
+  box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
+}
+
+/* line 42, sass/main.scss */
+.loader {
+  background: radial-gradient(#ffffff, #ccc5bd 100%) no-repeat;
 }

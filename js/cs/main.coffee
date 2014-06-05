@@ -2,6 +2,7 @@ app = angular.module 'TimeKingApp', []
 
 app.controller 'TimeKing', ($scope, $http) ->
   # Url to JSON.
+  $scope.loading = true
   fetchData = () ->
     $http.get('feed.php')
       .success (data, status, headers, config) ->
@@ -21,6 +22,9 @@ app.controller 'TimeKing', ($scope, $http) ->
 
           # Output to scope.
         $scope.data = data
+        console.log data
+        $scope.loading = false
+        $scope.loginOpen = false;
 
       .error (data ,status, headers, config) ->
         console.log 'Error:' + status

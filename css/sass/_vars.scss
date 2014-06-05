@@ -1,3 +1,15 @@
+/**
+ * Vars to override
+ *
+ * $fgColor
+ * $bgColor
+ * $bgColor2
+ * $primaryColor
+ * $secondaryColor
+ */
+
 // Colors.
 $drupalBlue: hsl(203, 94%, 38%); // rgb(6, 120, 190)
 $reloadGreen: hsl(76, 59%, 47%); // rgb(152, 190, 49)
+
+$primaryColor: $reloadGreen;
