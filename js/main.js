@@ -27,14 +27,8 @@
       var output;
       output = false;
       return $http.post('session.php').success(function(data) {
-        switch (data) {
-          case 'true':
-            output = true;
-            break;
-          case 'false':
-            output = false;
-        }
-        return $scope.session = output;
+        $scope.session_user = data.harvester_name;
+        return $scope.session = data;
       }).error(function(data, status, headers) {
         return console.log('Error: ' + status);
       });

@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       )
     );
     session_start();
+    $_SESSION['harvester_name'] = $user->name;
     $_SESSION['harvester_token'] = password_hash($user->pass, PASSWORD_DEFAULT) . '|' . $user->name;
   }
 

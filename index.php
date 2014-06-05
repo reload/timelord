@@ -28,6 +28,25 @@
     <div class="header">
       <div class="inner">
         <h1>Timeking</h1>
+
+        <div class="user">
+          <form name="loginForm" ng-hide="session" ng-submit="userLogin(user, 'login')" novalidate>
+            <label>
+              <span>Email:</span>
+              <input type="email" name="username" ng-model="user.name" required /><br />
+            </label>
+            <label >
+              <span>Password:</span>
+              <input type="password" name="password" ng-minlength="4" ng-model="user.pass" required />
+            </label>
+            <button type="submit" ng-disabled="loginForm.$invalid">Submit</button>
+          </form>
+        </div>
+
+        <span ng-show="session" class="active-user">Logged in as: {{ session_user }} </span>
+        <form name="logoutForm" ng-show="session" ng-submit="userLogout()">
+          <button type="submit">Logout</button>
+        </form>
       </div>
     </div>
     <div class="totals">
@@ -46,33 +65,6 @@
           <strong>{{ user.name }}</strong>
         </li>
       </ul>
-    </div>
-
-    <div class="login">
-      <div class="inner">
-
-        <form name="loginForm" ng-hide="session" ng-submit="userLogin(user, 'login')" novalidate>
-          <ul>
-            <li>
-              <label>
-                <span>Email:</span>
-                <input type="email" name="username" ng-model="user.name" required /><br />
-              </label>
-            </li>
-            <li>
-              <label >
-              <span>Password:</span>
-              <input type="password" name="password" ng-minlength="5" ng-model="user.pass" required />
-            </label>
-            </li>
-          </ul>
-          <button type="submit" ng-disabled="loginForm.$invalid">Submit</button>
-        </form>
-
-        <form name="logoutForm" ng-show="session" ng-submit="userLogout()">
-          <button type="submit">Logout</button>
-        </form>
-      </div>
     </div>
   </div>
 

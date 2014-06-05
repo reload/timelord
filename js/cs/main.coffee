@@ -35,10 +35,8 @@ app.controller 'TimeKing', ($scope, $http) ->
     output = false
     $http.post 'session.php'
     .success (data) ->
-      switch data
-        when 'true' then output = true
-        when 'false' then output = false
-      $scope.session = output
+      $scope.session_user = data.harvester_name
+      $scope.session = data
 
     .error (data, status, headers) ->
       console.log 'Error: ' + status
