@@ -4,7 +4,7 @@
   app = angular.module('TimeKingApp', []);
 
   app.controller('TimeKing', function($scope, $http) {
-    var fetchData, getSession;
+    var fetchData, getLoginError, getSession;
     $scope.loading = true;
     fetchData = function() {
       return $http.get('feed.php').success(function(data, status, headers, config) {
@@ -19,7 +19,6 @@
         $scope.loading = false;
         return $scope.loginOpen = false;
       }).error(function(data, status, headers, config) {
-        data.error = 'Error:' + status;
         $scope.data = data;
         $scope.loading = false;
         return console.log('Error:' + status);
@@ -29,6 +28,10 @@
     setInterval(function() {
       return fetchData();
     }, 300000);
+    getLoginError = function() {
+      $scope.errorz = 'NO! WRONG!';
+      return $scope.loginOpen = false;
+    };
     getSession = function() {
       var output;
       output = false;
@@ -51,7 +54,8 @@
         getSession();
         return fetchData();
       }).error(function(data, status, headers, config) {
-        return console.log('Error: ' + status);
+        console.log('Error: ' + status);
+        return getLoginError();
       });
     };
     $scope.userLogout = function() {

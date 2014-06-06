@@ -62,4 +62,5 @@ body {
 /* line 57, sass/main.scss */
 .loader {
   background: radial-gradient(#ffffff, #ccc5bd 100%) no-repeat;
+  background-color: white;
 }

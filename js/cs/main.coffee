@@ -23,10 +23,9 @@ app.controller 'TimeKing', ($scope, $http) ->
           # Output to scope.
         $scope.data = data
         $scope.loading = false
-        $scope.loginOpen = false;
+        $scope.loginOpen = false
 
       .error (data ,status, headers, config) ->
-        data.error = 'Error:' + status
         $scope.data  = data
         $scope.loading = false
         console.log 'Error:' + status
@@ -36,6 +35,10 @@ app.controller 'TimeKing', ($scope, $http) ->
   setInterval ()->
     fetchData()
   , 300000
+
+  getLoginStatus = (msg) ->
+    $scope.loginMessage = msg
+    $scope.loginOpen = false
 
   getSession = () ->
     output = false
@@ -58,10 +61,12 @@ app.controller 'TimeKing', ($scope, $http) ->
 
       .success (data, status, headers, config) ->
         getSession()
-        fetchData();
+        fetchData()
+        getLoginStatus ''
 
       .error (data, status, headers, config) ->
         console.log 'Error: ' + status
+        getLoginStatus'NO! WRONG!'
 
   # User logout.
   $scope.userLogout = () ->

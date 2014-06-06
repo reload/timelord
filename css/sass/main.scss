@@ -56,4 +56,5 @@ body {
 
 .loader {
   background: radial-gradient($bgColor, $bgColor2 100%) no-repeat;
+  background-color: $bgColor;
 }

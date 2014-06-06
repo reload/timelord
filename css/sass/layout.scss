@@ -13,6 +13,11 @@ html {
 }
 
 // Header.
+.header {
+  vertical-align: top;
+  overflow: hidden;
+}
+
 .site-logo {
   display: inline-block;
   height: 40px;
@@ -28,11 +33,30 @@ html {
   display: inline;
 }
 
-// Time overview.
-.totals {
-  border-bottom: 1px solid;
-  margin: 0 0 20px 0;
-  padding: 0 0 20px 0;
+.time-display {
+  display: inline-block;
+  text-align: center;
+  float: right;
+  .month,
+  .percent {
+    font-size: 1.5rem;
+  }
+
+  .values {
+    padding: 10px;
+    font-size: 2rem;
+    line-height: 1;
+
+    span {
+      &.divider {
+        font-size: 0.5em;
+        &:last-child {
+          margin: 5px 0 0 0;
+          display: block;
+        }
+      }
+    }
+  }
 }
 
 // User list.
@@ -56,17 +80,22 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .loader {
   .logo {
     max-width: 20%;
+    margin: 10% auto 0;
     svg#logo {
       width: 100%;
       height: 100%;
     }
+  }
+}
+
+.user-form {
+  form {
+    max-width: 20%;
+    margin: 10% auto 0;
   }
 }

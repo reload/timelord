@@ -32,12 +32,17 @@
             <?php include 'img/reload-logo.svg' ?>
           </figure>
           <h1 class="site-title">Timeking</h1>
-        </div>
-      </div>
-      <div class="totals">
-        <div class="inner">
-          <p>{{ data.hours_total_registered }} of {{ data.hours_until_today }} hours registered in {{ data.date_start * 1000 | date : 'MMMM yyyy' }}</p>
-          <p>That's {{ data.total_percent }}%!</p>
+
+          <div class="time-display">
+          <span class="month">{{ data.date_start * 1000 | date : 'MMMM yyyy' }}</span>
+            <div class="values">
+              <span class="registered">{{ data.hours_total_registered }}</span>
+              <span class="divider">of</span>
+              <span class="total">{{ data.hours_until_today }}</span>
+              <span class="divider">hours logged</span>
+            </div>
+            <span class="percent">{{ data.total_percent }}%</span>
+          </div>
         </div>
       </div>
 
@@ -56,6 +61,7 @@
     <div class="footer">
       <div class="inner">
         <button ng-hide="session" class="btn btn-default" ng-click="loginOpen = !loginOpen">Login</button>
+        <span>{{ errorz }}</span>
         <form class="logout-form form-inline" role="form" name="logoutForm" ng-show="session" ng-submit="userLogout()">
           <button ng-click="loginOpen = !loginOpen" class="btn btn-default" type="submit">Logout</button>
           <span ng-show="session" class="active-user">{{ session_user }} </span>
@@ -78,7 +84,7 @@
       </form>
     </div>
 
-    <div class="loader" ng-show="loading" aria-hidden="true">
+    <div class="loader" ng-animate="animate" ng-show="loading" aria-hidden="true">
       <figure class="logo">
         <?php include 'img/reload-logo.svg' ?>
         <span>Loading...</span>
