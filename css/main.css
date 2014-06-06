@@ -25,13 +25,29 @@ body {
 /* line 20, sass/main.scss */
 .user-form form {
   padding: 20px 40px;
-  background-color: #404040;
+  background-color: rgba(64, 64, 64, 0.9);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   border: 1px solid #99bf31;
   border-radius: 5px;
+  position: relative;
+}
+/* line 28, sass/main.scss */
+.user-form form .login-close {
+  border: none;
+  background: none;
+  -webkit-appearance: none;
+  color: white;
+  position: absolute;
+  bottom: 15px;
+  right: 40px;
+  font-size: 2rem;
+}
+/* line 37, sass/main.scss */
+.user-form form .login-close:hover {
+  text-shadow: 0 0 10px white;
 }
 
-/* line 30, sass/main.scss */
+/* line 45, sass/main.scss */
 .active-user:before {
   content: '';
   display: inline-block;
@@ -43,7 +59,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
 }
 
-/* line 42, sass/main.scss */
+/* line 57, sass/main.scss */
 .loader {
   background: radial-gradient(#ffffff, #ccc5bd 100%) no-repeat;
 }

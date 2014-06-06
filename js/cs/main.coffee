@@ -22,11 +22,13 @@ app.controller 'TimeKing', ($scope, $http) ->
 
           # Output to scope.
         $scope.data = data
-        console.log data
         $scope.loading = false
         $scope.loginOpen = false;
 
       .error (data ,status, headers, config) ->
+        data.error = 'Error:' + status
+        $scope.data  = data
+        $scope.loading = false
         console.log 'Error:' + status
 
   # Trigger and loop fetch function.

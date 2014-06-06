@@ -71,7 +71,7 @@ module.exports = function (grunt) {
       options: {
         httpPath: '/profiles/scribo/themes/scribe',
         imagesDir: 'img',
-        javascriptsDir: 'scripts',
+        javascriptsDir: 'js',
         fontsDir: 'css/fonts',
         assetCacheBuster: 'none'
       },
@@ -82,16 +82,18 @@ module.exports = function (grunt) {
           environment: 'development',
           outputStyle: 'expanded',
           relativeAssets: true,
-          raw: 'line_numbers = :true\n'
+          noLineComments: false
         }
       },
       bootstrap: {
         options: {
           cssDir: 'css',
           sassDir: 'vendor/bootstrap-sass/lib/',
+          fontsDir: 'vendor/bootstrap-sass/fonts/',
           environment: 'development',
-          outputStyle: 'expanded',
+          outputStyle: 'compact',
           relativeAssets: true,
+          noLineComments: true
         }
       }
     }

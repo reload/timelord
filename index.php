@@ -65,6 +65,9 @@
 
     <div class="user-form" ng-show="loginOpen && !session">
       <form class="form-horizonta" role="form" name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
+        <button class="login-close" ng-hide="session" ng-click="loginOpen = !loginOpen" title="Close this.">
+          <span class="glyphicon glyphicon-off"></span>
+        </button>
         <div class="form-group">
           <input class="form-control" type="email" placeholder="Email" name="username" ng-model="user.name" required />
         </div>

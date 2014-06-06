@@ -16,10 +16,12 @@
           return data.ranking[i].group = data.ranking[i].group.toLowerCase();
         });
         $scope.data = data;
-        console.log(data);
         $scope.loading = false;
         return $scope.loginOpen = false;
       }).error(function(data, status, headers, config) {
+        data.error = 'Error:' + status;
+        $scope.data = data;
+        $scope.loading = false;
         return console.log('Error:' + status);
       });
     };

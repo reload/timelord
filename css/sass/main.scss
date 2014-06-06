@@ -19,10 +19,25 @@ body {
   background-color: rgba($fgColor, 0.8);
   form {
     padding: 20px 40px;
-    background-color: $fgColor;
+    background-color: rgba($fgColor, 0.9);
     box-shadow: 0 0 20px rgba(black, 0.4);
     border: 1px solid $primaryColor;
     border-radius: 5px;
+    position: relative;
+
+    .login-close {
+      border: none;
+      background: none;
+      -webkit-appearance: none;
+      color: $bgColor;
+      position: absolute;
+      bottom: 15px;
+      right: 40px;
+      font-size: 2rem;
+      &:hover {
+        text-shadow: 0 0 10px $bgColor;
+      }
+    }
   }
 }
 
