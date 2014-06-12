@@ -60,4 +60,9 @@ Then just simply run ` grunt ` and it will compile and enter watch mode.
 
 If you have the 'Live reload' plugin, you can use it in watch mode.
 
+Badass way
+----------
 
+Clone repo, then run:
+
+` composer install && npm install && bower install && grunt `
