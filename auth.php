@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = json_decode($_GET["user"]);
 
     $name = $user->name;
-    $pass = password_hash($user->pass, PASSWORD_DEFAULT);
-    $pass = '$2y$10$eFPF4lm82FKe.BvJmJMbD.Syf4xBcVUvLZ7uAv1q/VYMV8hWhAhVa';
+    $options = ['salt' => md5('ReloadGotTime')];
+    $pass = password_hash($user->pass, PASSWORD_DEFAULT, $options);
 
     //$url = 'http://harvester.dev/app_dev.php/api/v1/logins.json';
     $url = 'http://harvester.dev/app_dev.php/api/v1/entries.json?group=user';
