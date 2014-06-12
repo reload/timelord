@@ -11,6 +11,7 @@
     "jshint-stylish": "latest",
     "grunt-contrib-coffee": "latest",
     "grunt-contrib-concat": "latest",
+    "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-compass": "latest"
   }

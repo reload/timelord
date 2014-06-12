@@ -53,17 +53,22 @@ module.exports = function (grunt) {
         }
       }
     },
-
+    // Concat.
     concat: {
       scripts: {
         'src': [
-          //'vendor/jquery/dist/jquery.js',
-          //'vendor/underscore/underscore.js',
-          //'vendor/bootstrap/js/*.js',
           //'vendor/modernizr/modernizr.js',
           'vendor/angular/angular.js'
         ],
-        'dest': 'js/vendor.js'
+        'dest': 'vendor/vendor.js'
+      }
+    },
+    // Uglify.
+    uglify: {
+      dev: {
+        files: {
+          'js/vendor.min.js': ['vendor/vendor.js']
+        }
       }
     },
     // Compass and SCSS
@@ -103,6 +108,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
 
@@ -111,6 +117,7 @@ module.exports = function (grunt) {
     'compass:dev',
     'coffee',
     'concat',
+    'uglify',
     //'jshint',
     'watch'
   ]);

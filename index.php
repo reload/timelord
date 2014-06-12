@@ -94,7 +94,7 @@
 
   </div>
 
-  <script src="js/vendor.js" type="text/javascript"></script>
+  <script src="js/vendor.min.js" type="text/javascript"></script>
   <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
