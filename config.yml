@@ -1,3 +1,4 @@
+site_name: "Time king"
 timeking_url: "http://timeking.dev"
 harvester_url: "http://harvester.dev/app_dev.php"
 harvester_api_path: "/api/v1/"

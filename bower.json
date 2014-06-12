@@ -13,9 +13,7 @@
       "tests"
     ],
     "dependencies": {
-    "jquery": "latest",
     "angular": "latest",
-    "underscore": "latest",
     "modernizr": "latest",
     "bootstrap-sass": "latest"
   }

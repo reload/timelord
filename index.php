@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include_once 'inc/config.inc';
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -9,7 +10,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Time king</title>
+  <title><?php print $site_name; ?></title>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width">
@@ -31,7 +32,7 @@
           <figure class="site-logo">
             <?php include 'img/reload-logo.svg' ?>
           </figure>
-          <h1 class="site-title">Timeking</h1>
+          <h1 class="site-title"><?php print $site_name; ?></h1>
 
           <div class="time-display">
           <span class="month">{{ data.date_start * 1000 | date : 'MMMM yyyy' }}</span>

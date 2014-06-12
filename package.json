@@ -8,10 +8,10 @@
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-jshint": "latest",
+    "jshint-stylish": "latest",
     "grunt-contrib-coffee": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-contrib-compass": "latest",
-    "jshint-stylish": "latest"
+    "grunt-contrib-compass": "latest"
   }
 }
