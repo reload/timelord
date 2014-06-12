@@ -4,7 +4,7 @@ app.controller 'TimeKing', ($scope, $http) ->
   # Url to JSON.
   $scope.loading = true
   fetchData = () ->
-    $http.get('feed.php')
+    $http.get('inc/feed.php')
       .success (data, status, headers, config) ->
         # Get registered percent.
         data.total_percent = Math.round 100*data.hours_total_registered/data.hours_until_today
@@ -20,7 +20,7 @@ app.controller 'TimeKing', ($scope, $http) ->
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + imageVars + '/normal.jpg'
           data.ranking[i].group = data.ranking[i].group.toLowerCase()
 
-          # Output to scope.
+        # Output to scope.
         $scope.data = data
         $scope.loading = false
         $scope.loginOpen = false
@@ -36,13 +36,15 @@ app.controller 'TimeKing', ($scope, $http) ->
     fetchData()
   , 300000
 
+  # Set login message.
   getLoginStatus = (msg) ->
     $scope.loginMessage = msg
     $scope.loginOpen = false
 
+  # Check if session is active.
   getSession = () ->
     output = false
-    $http.post 'session.php'
+    $http.post 'inc/session.php'
     .success (data) ->
       $scope.session_user = data.harvester_name
       $scope.session = data
@@ -51,13 +53,14 @@ app.controller 'TimeKing', ($scope, $http) ->
       console.log 'Error: ' + status
 
   getSession()
+
   # User login.
   $scope.userLogin = (user, login) ->
     config =
       params :
         user: user
 
-    $http.post 'auth.php', null, config
+    $http.post 'inc/auth.php', null, config
 
       .success (data, status, headers, config) ->
         getSession()
@@ -66,11 +69,11 @@ app.controller 'TimeKing', ($scope, $http) ->
 
       .error (data, status, headers, config) ->
         console.log 'Error: ' + status
-        getLoginStatus'NO! WRONG!'
+        getLoginStatus 'NO! WRONG!'
 
   # User logout.
   $scope.userLogout = () ->
-    $http.post 'logout.php'
+    $http.post 'inc/logout.php'
 
       .success (data) ->
         getSession()
@@ -81,5 +84,4 @@ app.controller 'TimeKing', ($scope, $http) ->
 
   # User click function.
   $scope.toggleStats = (user) ->
-    console.log $scope
     console.log user

@@ -4,10 +4,10 @@
   app = angular.module('TimeKingApp', []);
 
   app.controller('TimeKing', function($scope, $http) {
-    var fetchData, getLoginError, getSession;
+    var fetchData, getLoginStatus, getSession;
     $scope.loading = true;
     fetchData = function() {
-      return $http.get('feed.php').success(function(data, status, headers, config) {
+      return $http.get('inc/feed.php').success(function(data, status, headers, config) {
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_until_today);
         angular.forEach(data.ranking, function(user, i) {
           var imageVars;
@@ -28,14 +28,14 @@
     setInterval(function() {
       return fetchData();
     }, 300000);
-    getLoginError = function() {
-      $scope.errorz = 'NO! WRONG!';
+    getLoginStatus = function(msg) {
+      $scope.loginMessage = msg;
       return $scope.loginOpen = false;
     };
     getSession = function() {
       var output;
       output = false;
-      return $http.post('session.php').success(function(data) {
+      return $http.post('inc/session.php').success(function(data) {
         $scope.session_user = data.harvester_name;
         return $scope.session = data;
       }).error(function(data, status, headers) {
@@ -50,16 +50,17 @@
           user: user
         }
       };
-      return $http.post('auth.php', null, config).success(function(data, status, headers, config) {
+      return $http.post('inc/auth.php', null, config).success(function(data, status, headers, config) {
         getSession();
-        return fetchData();
+        fetchData();
+        return getLoginStatus('');
       }).error(function(data, status, headers, config) {
         console.log('Error: ' + status);
-        return getLoginError();
+        return getLoginStatus('NO! WRONG!');
       });
     };
     $scope.userLogout = function() {
-      return $http.post('logout.php').success(function(data) {
+      return $http.post('inc/logout.php').success(function(data) {
         getSession();
         return fetchData();
       }).error(function(data, status, headers) {
@@ -67,7 +68,6 @@
       });
     };
     return $scope.toggleStats = function(user) {
-      console.log($scope);
       return console.log(user);
     };
   });

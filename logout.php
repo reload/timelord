@@ -1,4 +1,7 @@
 <?php
-  session_start(); //to ensure you are using same session
-  session_destroy(); //destroy the session
+  // Ensure you are using the same session.
+  session_start();
+
+  // End session.
+  session_destroy();
   exit();

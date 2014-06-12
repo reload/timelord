@@ -61,7 +61,7 @@
     <div class="footer">
       <div class="inner">
         <button ng-hide="session" class="btn btn-default" ng-click="loginOpen = !loginOpen">Login</button>
-        <span>{{ errorz }}</span>
+        <span>{{ loginMessage }}</span>
         <form class="logout-form form-inline" role="form" name="logoutForm" ng-show="session" ng-submit="userLogout()">
           <button ng-click="loginOpen = !loginOpen" class="btn btn-default" type="submit">Logout</button>
           <span ng-show="session" class="active-user">{{ session_user }} </span>

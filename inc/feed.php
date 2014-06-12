@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  include_once __DIR__ . 'config.inc';
+  include_once 'config.inc';
 
   // Feed url.
   $url = $harvester_base . $harvester_api . 'entries.json?group=user';
