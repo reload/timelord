@@ -1,7 +1,7 @@
 (function() {
   var app;
 
-  app = angular.module('TimeKingApp', []);
+  app = angular.module('TimeKingApp', ['angular-loading-bar']);
 
   app.controller('TimeKing', function($scope, $http) {
     var fetchData, getLoginStatus, getSession;

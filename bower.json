@@ -15,6 +15,7 @@
     "dependencies": {
     "angular": "latest",
     "modernizr": "latest",
-    "bootstrap-sass": "latest"
+    "bootstrap-sass": "latest",
+    "angular-loading-bar": "latest"
   }
 }

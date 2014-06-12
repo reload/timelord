@@ -17,6 +17,7 @@
   <link rel="shortcut icon" href="favicon.ico">
 
   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/loadingbar.css" rel="stylesheet" type="text/css">
   <link href="css/layout.css" rel="stylesheet" type="text/css">
   <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>

@@ -1,4 +1,4 @@
-app = angular.module 'TimeKingApp', []
+app = angular.module 'TimeKingApp', ['angular-loading-bar']
 
 app.controller 'TimeKing', ($scope, $http) ->
   # Url to JSON.

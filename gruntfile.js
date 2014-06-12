@@ -58,7 +58,8 @@ module.exports = function (grunt) {
       scripts: {
         'src': [
           //'vendor/modernizr/modernizr.js',
-          'vendor/angular/angular.js'
+          'vendor/angular/angular.js',
+          'vendor/angular-loading-bar/src/loading-bar.js'
         ],
         'dest': 'vendor/vendor.js'
       }
