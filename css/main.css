@@ -14,7 +14,7 @@ body {
 }
 
 /* line 12, sass/main.scss */
-.user-report figure img {
+.user-report li.user img {
   border-color: #99bf31;
 }
 
