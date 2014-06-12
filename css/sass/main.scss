@@ -53,8 +53,3 @@ body {
     box-shadow: 0 0 10px rgba($activeUserLight, 0.9);
   }
 }
-
-.loader {
-  background: radial-gradient($bgColor, $bgColor2 100%) no-repeat;
-  background-color: $bgColor;
-}

@@ -58,9 +58,3 @@ body {
   background-color: #00e600;
   box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
 }
-
-/* line 57, sass/main.scss */
-.loader {
-  background: radial-gradient(#ffffff, #ccc5bd 100%) no-repeat;
-  background-color: white;
-}
