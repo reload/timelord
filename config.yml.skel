@@ -1,0 +1,4 @@
+site_name: "Time king"
+timeking_url: "http://my.timekingho.st"
+harvester_url: "http://my.harvesterho.so"
+harvester_api_path: "/api/v1/"
