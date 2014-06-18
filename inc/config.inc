@@ -1,6 +1,6 @@
 <?php
   // Set document root.
-  $base = dirname(dirname(__FILE__));
+  $base = dirname(__DIR__);
   // Get yaml library.
   require $base . '/vendor/autoload.php';
   use Symfony\Component\Yaml\Yaml;
