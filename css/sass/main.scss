@@ -1,4 +1,4 @@
-@import "compass/css3/images";
+@import "compass/css3";
 @import "vars.core";
 
 // Users.
@@ -28,12 +28,12 @@ body {
     .login-close {
       border: none;
       background: none;
-      -webkit-appearance: none;
       color: $bgColor;
       position: absolute;
       bottom: 15px;
       right: 40px;
       font-size: 2rem;
+      @include appearance(none);
       &:hover {
         text-shadow: 0 0 10px $bgColor;
       }
@@ -47,9 +47,9 @@ body {
     display: inline-block;
     width: 10px;
     height: 10px;
-    border-radius: 100%;
     margin: 0 5px;
     background-color: $activeUserLight;
-    box-shadow: 0 0 10px rgba($activeUserLight, 0.9);
+    @include border-radius(100%);
+    @include box-shadow(0 0 10px rgba($activeUserLight, 0.9));
   }
 }
