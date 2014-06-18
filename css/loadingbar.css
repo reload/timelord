@@ -8,18 +8,18 @@
  * $secondaryColor
  */
 /* Make clicks pass-through */
-/* line 6, sass/loadingbar.scss */
+/* line 8, sass/loadingbar.scss */
 #loading-bar,
 #loading-bar-spinner {
-  pointer-events: none;
   -webkit-pointer-events: none;
-  -webkit-transition: 350ms linear all;
-  -moz-transition: 350ms linear all;
-  -o-transition: 350ms linear all;
-  transition: 350ms linear all;
+  pointer-events: none;
+  -webkit-transition: 350mx linear all;
+  -moz-transition: 350mx linear all;
+  -o-transition: 350mx linear all;
+  transition: 350mx linear all;
 }
 
-/* line 18, sass/loadingbar.scss */
+/* line 17, sass/loadingbar.scss */
 #loading-bar.ng-enter,
 #loading-bar.ng-leave.ng-leave-active,
 #loading-bar-spinner.ng-enter,
@@ -27,7 +27,7 @@
   opacity: 0;
 }
 
-/* line 25, sass/loadingbar.scss */
+/* line 24, sass/loadingbar.scss */
 #loading-bar.ng-enter.ng-enter-active,
 #loading-bar.ng-leave,
 #loading-bar-spinner.ng-enter.ng-enter-active,
@@ -35,12 +35,8 @@
   opacity: 1;
 }
 
-/* line 29, sass/loadingbar.scss */
+/* line 28, sass/loadingbar.scss */
 #loading-bar .bar {
-  -webkit-transition: width 350ms;
-  -moz-transition: width 350ms;
-  -o-transition: width 350ms;
-  transition: width 350ms;
   background: #99bf31;
   position: fixed;
   z-index: 10002;
@@ -48,12 +44,20 @@
   left: 0;
   width: 100%;
   height: 2px;
+  -webkit-transition: width 350ms;
+  -moz-transition: width 350ms;
+  -o-transition: width 350ms;
+  transition: width 350ms;
+  -moz-border-radius-bottomright: 1px;
+  -webkit-border-bottom-right-radius: 1px;
   border-bottom-right-radius: 1px;
+  -moz-border-radius-topright: 1px;
+  -webkit-border-top-right-radius: 1px;
   border-top-right-radius: 1px;
 }
 
 /* Fancy blur effect */
-/* line 47, sass/loadingbar.scss */
+/* line 42, sass/loadingbar.scss */
 #loading-bar .peg {
   position: absolute;
   width: 70px;
@@ -61,16 +65,17 @@
   top: 0;
   height: 2px;
   opacity: .45;
-  -moz-box-shadow: #99bf31 1px 0 6px 1px;
-  -ms-box-shadow: #99bf31 1px 0 6px 1px;
-  -webkit-box-shadow: #99bf31 1px 0 6px 1px;
-  box-shadow: #99bf31 1px 0 6px 1px;
-  -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
   border-radius: 100%;
+  -webkit-box-shadow: #99bf31 1px 0 6px 1px;
+  -moz-box-shadow: #99bf31 1px 0 6px 1px;
+  box-shadow: #99bf31 1px 0 6px 1px;
 }
 
-/* line 63, sass/loadingbar.scss */
+/* line 53, sass/loadingbar.scss */
 #loading-bar-spinner {
   display: block;
   position: fixed;
@@ -79,7 +84,7 @@
   left: 10px;
 }
 
-/* line 71, sass/loadingbar.scss */
+/* line 61, sass/loadingbar.scss */
 #loading-bar-spinner .spinner-icon {
   width: 14px;
   height: 14px;
@@ -95,71 +100,101 @@
 }
 
 @-webkit-keyframes loading-bar-spinner {
-  /* line 88, sass/loadingbar.scss */
+  /* line 74, sass/loadingbar.scss */
   0% {
     -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 89, sass/loadingbar.scss */
+  /* line 75, sass/loadingbar.scss */
   100% {
     -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 
 @-moz-keyframes loading-bar-spinner {
-  /* line 92, sass/loadingbar.scss */
+  /* line 74, sass/loadingbar.scss */
   0% {
+    -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  /* line 93, sass/loadingbar.scss */
-  100% {
-    -moz-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@-o-keyframes loading-bar-spinner {
-  /* line 96, sass/loadingbar.scss */
-  0% {
+    -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 97, sass/loadingbar.scss */
+  /* line 75, sass/loadingbar.scss */
   100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 
 @-ms-keyframes loading-bar-spinner {
-  /* line 100, sass/loadingbar.scss */
+  /* line 74, sass/loadingbar.scss */
   0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 101, sass/loadingbar.scss */
+  /* line 75, sass/loadingbar.scss */
   100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes loading-bar-spinner {
+  /* line 74, sass/loadingbar.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 75, sass/loadingbar.scss */
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 
 @keyframes loading-bar-spinner {
-  /* line 104, sass/loadingbar.scss */
+  /* line 74, sass/loadingbar.scss */
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 105, sass/loadingbar.scss */
+  /* line 75, sass/loadingbar.scss */
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }

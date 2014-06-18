@@ -35,12 +35,14 @@ body {
 .user-form form .login-close {
   border: none;
   background: none;
-  -webkit-appearance: none;
   color: white;
   position: absolute;
   bottom: 15px;
   right: 40px;
   font-size: 2rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 /* line 37, sass/main.scss */
 .user-form form .login-close:hover {
@@ -53,8 +55,14 @@ body {
   display: inline-block;
   width: 10px;
   height: 10px;
-  border-radius: 100%;
   margin: 0 5px;
   background-color: #00e600;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
+  -moz-box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
   box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
 }
