@@ -1,4 +1,4 @@
-Timeking 2
+TimeLord 2
 ==========
 
 Guide is based on OSX. If you run linux you are smart enough to figure it out by yourself.

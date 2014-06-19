@@ -1,6 +1,14 @@
-app = angular.module 'TimeKingApp', ['angular-loading-bar']
+app = angular.module 'TimeLordApp', ['angular-loading-bar', 'ngRoute']
 
-app.controller 'TimeKing', ($scope, $http) ->
+# The router.
+app.config ($routeProvider) ->
+  $routeProvider.when('/', {
+    templateUrl: 'templates/frontpage.html',
+    controller: 'TimeLord'
+  })
+
+# TimeLord controller.
+app.controller 'TimeLord', ($scope, $http) ->
   # Url to JSON.
   $scope.loading = true
   fetchData = () ->
@@ -15,7 +23,6 @@ app.controller 'TimeKing', ($scope, $http) ->
             user.user_id_second_part,
             user.user_id_third_part
           ].join('/')
-
 
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + imageVars + '/normal.jpg'
           data.ranking[i].group = data.ranking[i].group.toLowerCase()

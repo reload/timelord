@@ -60,6 +60,7 @@ module.exports = function (grunt) {
           //'vendor/modernizr/modernizr.js',
           'vendor/angular/angular.js',
           'vendor/angular-loading-bar/src/loading-bar.js',
+          'vendor/angular-route/angular-route.js',
           'vendor/chartjs/Chart.js'
         ],
         'dest': 'vendor/vendor.js'
