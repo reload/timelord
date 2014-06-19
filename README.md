@@ -1,4 +1,4 @@
-TimeLord 2
+TimeLord
 ==========
 
 Guide is based on OSX. If you run linux you are smart enough to figure it out by yourself.
