@@ -1,9 +1,16 @@
 (function() {
   var app;
 
-  app = angular.module('TimeKingApp', ['angular-loading-bar']);
+  app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute']);
 
-  app.controller('TimeKing', function($scope, $http) {
+  app.config(function($routeProvider) {
+    return $routeProvider.when('/', {
+      templateUrl: 'templates/frontpage.html',
+      controller: 'TimeLord'
+    });
+  });
+
+  app.controller('TimeLord', function($scope, $http) {
     var fetchData, getLoginStatus, getSession;
     $scope.loading = true;
     fetchData = function() {

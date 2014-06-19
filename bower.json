@@ -1,5 +1,5 @@
 {
-  "name": "Timeking",
+  "name": "TimeLord",
   "version": "0.0.1",
   "authors": [
     "Simon Larsson <simon@reload.dk>"
@@ -16,6 +16,8 @@
     "angular": "latest",
     "modernizr": "latest",
     "bootstrap-sass": "latest",
-    "angular-loading-bar": "latest"
+    "angular-loading-bar": "latest",
+    "angular-route": "latest",
+    "chartjs": "latest"
   }
 }

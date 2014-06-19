@@ -13,16 +13,28 @@ body {
   color: #404040;
 }
 
-/* line 12, sass/main.scss */
-.user-report li.user img {
+/* line 14, sass/main.scss */
+.user-report li.user .portrait.a-karmahunter img {
+  border-color: gold;
+}
+/* line 18, sass/main.scss */
+.user-report li.user .portrait.b-goalie img {
   border-color: #99bf31;
 }
+/* line 22, sass/main.scss */
+.user-report li.user .portrait.c-karmauser img {
+  border-color: gray;
+}
+/* line 26, sass/main.scss */
+.user-report li.user .portrait.d-slacker img {
+  border-color: red;
+}
 
-/* line 18, sass/main.scss */
+/* line 31, sass/main.scss */
 .user-form {
   background-color: rgba(64, 64, 64, 0.8);
 }
-/* line 20, sass/main.scss */
+/* line 33, sass/main.scss */
 .user-form form {
   padding: 20px 40px;
   background-color: rgba(64, 64, 64, 0.9);
@@ -31,7 +43,7 @@ body {
   border-radius: 5px;
   position: relative;
 }
-/* line 28, sass/main.scss */
+/* line 41, sass/main.scss */
 .user-form form .login-close {
   border: none;
   background: none;
@@ -44,12 +56,12 @@ body {
   -moz-appearance: none;
   appearance: none;
 }
-/* line 37, sass/main.scss */
+/* line 50, sass/main.scss */
 .user-form form .login-close:hover {
   text-shadow: 0 0 10px white;
 }
 
-/* line 45, sass/main.scss */
+/* line 58, sass/main.scss */
 .active-user:before {
   content: '';
   display: inline-block;
