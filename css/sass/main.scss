@@ -9,8 +9,21 @@ body {
 
 .user-report {
   li.user {
-    img {
-      border-color: $primaryColor;
+    // Karma-hunter.
+    .portrait.a-karmahunter {
+      img { border-color: $golden; }
+    }
+    // Goalie.
+    .portrait.b-goalie {
+      img { border-color: $primaryColor; }
+    }
+    // Karma-user.
+    .portrait.c-karmauser {
+      img { border-color: $gray; }
+    }
+    // Slacker.
+    .portrait.d-slacker{
+      img { border-color: $red; }
     }
   }
 }
