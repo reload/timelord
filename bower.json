@@ -16,6 +16,7 @@
     "angular": "latest",
     "modernizr": "latest",
     "bootstrap-sass": "latest",
-    "angular-loading-bar": "latest"
+    "angular-loading-bar": "latest",
+    "chartjs": "latest"
   }
 }
