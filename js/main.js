@@ -106,7 +106,7 @@
     if (options == null) {
       options = null;
     }
-    ctx = document.getElementById(id).getContext(' 2d');
+    ctx = document.getElementById(id).getContext('2d');
     return new Chart(ctx).Doughnut(data, options);
   };
 

@@ -124,5 +124,5 @@ app.controller 'TimeLord', ($scope, $http) ->
 
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->
-  ctx = document.getElementById(id).getContext(' 2d')
+  ctx = document.getElementById(id).getContext('2d')
   new Chart(ctx).Doughnut(data, options)
