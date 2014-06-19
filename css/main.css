@@ -78,3 +78,20 @@ body {
   -moz-box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
   box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
 }
+
+/* line 71, sass/main.scss */
+.user_modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+/* line 80, sass/main.scss */
+.user_modal .content {
+  max-width: 800px;
+  background-color: #fff;
+  display: block;
+}

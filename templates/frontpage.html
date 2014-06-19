@@ -65,4 +65,17 @@
     </figure>
   </div>
 
+  <!-- Modal -->
+  <div class="user_modal animate" ng-show="user_modal">
+    <div class="content">
+      <h2>{{ user.name }}</h2>
+      <ul>
+        <li>
+          <h3>Chart</h3>
+          <canvas id="myChart" width="300" height="300"></canvas>
+        </li>
+      </ul>
+    </div>
+  </div>
+
 </div>
