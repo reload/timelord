@@ -1,5 +1,5 @@
 (function() {
-  var app;
+  var app, doughnut;
 
   app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute']);
 
@@ -75,8 +75,39 @@
       });
     };
     return $scope.toggleStats = function(user) {
-      return console.log(user);
+      var data;
+      console.log(user);
+      $scope.user_modal = true;
+      $scope.user = user;
+      data = [
+        {
+          value: 30,
+          color: "#F7464A"
+        }, {
+          value: 50,
+          color: "#E2EAE9"
+        }, {
+          value: 100,
+          color: "#D4CCC5"
+        }, {
+          value: 40,
+          color: "#949FB1"
+        }, {
+          value: 120,
+          color: "#4D5360"
+        }
+      ];
+      return doughnut('myChart', data);
     };
   });
+
+  doughnut = function(id, data, options) {
+    var ctx;
+    if (options == null) {
+      options = null;
+    }
+    ctx = document.getElementById(id).getContext(' 2d');
+    return new Chart(ctx).Doughnut(data, options);
+  };
 
 }).call(this);
