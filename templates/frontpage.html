@@ -68,7 +68,7 @@
   <!-- Modal -->
   <div class="user_modal animate" ng-show="user_modal">
     <div class="content">
-      <p class="close" ng-click="userModal(False)">Close</p>
+      <i class="glyphicon glyphicon-remove-circle close" ng-click="userModal(False)"></i>
       <!-- Profile -->
       <div class="profile">
         <h2>{{ user.name }}</h2>
@@ -77,8 +77,11 @@
 
       <!-- Chart -->
       <div class="chart">
-        <h3>Chart</h3>
-        <!-- Chart. -->
+        <div class="label-colors">
+          <p class="gold">Overtime</p>
+          <p class="green">Registered time</p>
+          <p class="red">Time behind</p>
+        </div>
         <canvas id="hours-chart" width="225" height="225"></canvas>
       </div>
 

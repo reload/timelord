@@ -7,34 +7,34 @@
  * $primaryColor
  * $secondaryColor
  */
-/* line 5, sass/main.scss */
+/* line 6, sass/main.scss */
 body {
   background: radial-gradient(#ffffff, #ccc5bd 100%) no-repeat;
   color: #404040;
 }
 
-/* line 14, sass/main.scss */
+/* line 15, sass/main.scss */
 .user-report li.user .portrait.a-karmahunter img {
   border-color: gold;
 }
-/* line 18, sass/main.scss */
+/* line 19, sass/main.scss */
 .user-report li.user .portrait.b-goalie img {
   border-color: #99bf31;
 }
-/* line 22, sass/main.scss */
+/* line 23, sass/main.scss */
 .user-report li.user .portrait.c-karmauser img {
   border-color: gray;
 }
-/* line 26, sass/main.scss */
+/* line 27, sass/main.scss */
 .user-report li.user .portrait.d-slacker img {
   border-color: red;
 }
 
-/* line 31, sass/main.scss */
+/* line 32, sass/main.scss */
 .user-form {
   background-color: rgba(64, 64, 64, 0.8);
 }
-/* line 33, sass/main.scss */
+/* line 34, sass/main.scss */
 .user-form form {
   padding: 20px 40px;
   background-color: rgba(64, 64, 64, 0.9);
@@ -43,7 +43,7 @@ body {
   border-radius: 5px;
   position: relative;
 }
-/* line 41, sass/main.scss */
+/* line 42, sass/main.scss */
 .user-form form .login-close {
   border: none;
   background: none;
@@ -56,12 +56,12 @@ body {
   -moz-appearance: none;
   appearance: none;
 }
-/* line 50, sass/main.scss */
+/* line 51, sass/main.scss */
 .user-form form .login-close:hover {
   text-shadow: 0 0 10px white;
 }
 
-/* line 58, sass/main.scss */
+/* line 59, sass/main.scss */
 .active-user:before {
   content: '';
   display: inline-block;
@@ -79,7 +79,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
 }
 
-/* line 71, sass/main.scss */
+/* line 72, sass/main.scss */
 .user_modal {
   position: absolute;
   top: 0;
@@ -89,7 +89,7 @@ body {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.75);
 }
-/* line 80, sass/main.scss */
+/* line 81, sass/main.scss */
 .user_modal .content {
   max-width: 800px;
   position: relative;
@@ -101,40 +101,89 @@ body {
   display: block;
   margin: 25px auto;
 }
-/* line 89, sass/main.scss */
+/* line 91, sass/main.scss */
 .user_modal .content .profile {
   float: left;
+  width: 50%;
 }
-/* line 91, sass/main.scss */
-.user_modal .content .profile img {
-  position: relative;
-}
-/* line 96, sass/main.scss */
-.user_modal .content .chart {
-  float: right;
+@media (max-width: 720px) {
+  /* line 91, sass/main.scss */
+  .user_modal .content .profile {
+    width: 100%;
+  }
 }
 /* line 100, sass/main.scss */
+.user_modal .content .chart {
+  position: relative;
+  float: right;
+  margin-top: 25px;
+  width: 50%;
+}
+@media (max-width: 720px) {
+  /* line 100, sass/main.scss */
+  .user_modal .content .chart {
+    width: 100%;
+  }
+}
+/* line 110, sass/main.scss */
+.user_modal .content .chart .label-colors {
+  border: 1px solid #c9c9c9;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  padding-bottom: 0;
+}
+/* line 118, sass/main.scss */
+.user_modal .content .chart .label-colors p {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 5px;
+}
+/* line 124, sass/main.scss */
+.user_modal .content .chart .label-colors p.gold:before {
+  background: gold;
+}
+/* line 125, sass/main.scss */
+.user_modal .content .chart .label-colors p.green:before {
+  background: #99bf31;
+}
+/* line 126, sass/main.scss */
+.user_modal .content .chart .label-colors p.red:before {
+  background: red;
+}
+/* line 127, sass/main.scss */
+.user_modal .content .chart .label-colors p:before {
+  position: absolute;
+  display: block;
+  content: ' ';
+  left: 0;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
+/* line 142, sass/main.scss */
 .user_modal .content .close {
-  background-color: #fff;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 24px;
   cursor: pointer;
   color: #333;
   padding: 4px;
   display: block;
-  border: 1px solid #333;
   position: absolute;
-  right: 5px;
-  top: 5px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  right: 6px;
+  top: -1px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
+}
+/* line 154, sass/main.scss */
+.user_modal .content .close:hover {
+  color: #0676bc;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
-  text-shadow: none;
-}
-/* line 117, sass/main.scss */
-.user_modal .content .close:hover {
-  background-color: #333;
-  color: #fff;
-  border-color: #fff;
 }
