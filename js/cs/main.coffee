@@ -18,13 +18,7 @@ app.controller 'TimeLord', ($scope, $http) ->
         data.total_percent = Math.round 100*data.hours_total_registered/data.hours_until_today
         # Get user ranking.
         angular.forEach data.ranking, (user, i) ->
-          imageVars = [
-            user.user_id_first_part,
-            user.user_id_second_part,
-            user.user_id_third_part
-          ].join('/')
-
-          data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + imageVars + '/normal.jpg'
+          data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg'
           data.ranking[i].group = data.ranking[i].group.toLowerCase()
 
         # Output to scope.

@@ -17,9 +17,7 @@
       return $http.get('inc/feed.php').success(function(data, status, headers, config) {
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_until_today);
         angular.forEach(data.ranking, function(user, i) {
-          var imageVars;
-          imageVars = [user.user_id_first_part, user.user_id_second_part, user.user_id_third_part].join('/');
-          data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + imageVars + '/normal.jpg';
+          data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg';
           return data.ranking[i].group = data.ranking[i].group.toLowerCase();
         });
         $scope.data = data;
