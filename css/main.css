@@ -92,6 +92,49 @@ body {
 /* line 80, sass/main.scss */
 .user_modal .content {
   max-width: 800px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1px 25px;
   background-color: #fff;
   display: block;
+  margin: 25px auto;
+}
+/* line 89, sass/main.scss */
+.user_modal .content .profile {
+  float: left;
+}
+/* line 91, sass/main.scss */
+.user_modal .content .profile img {
+  position: relative;
+}
+/* line 96, sass/main.scss */
+.user_modal .content .chart {
+  float: right;
+}
+/* line 100, sass/main.scss */
+.user_modal .content .close {
+  background-color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+  padding: 4px;
+  display: block;
+  border: 1px solid #333;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  text-shadow: none;
+}
+/* line 117, sass/main.scss */
+.user_modal .content .close:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #fff;
 }

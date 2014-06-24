@@ -79,7 +79,43 @@ body {
 
   .content {
     max-width: 800px;
+    position: relative;
+    @include box-sizing(border-box);
+    padding: 1px 25px;
     background-color: #fff;
     display: block;
+    margin: 25px auto;
+
+    .profile {
+      float: left;
+    }
+
+    .chart {
+      float: right;
+    }
+
+    .close {
+      background-color: #fff;
+      font-weight: normal;
+      font-size: 14px;
+      cursor: pointer;
+      color: #333;
+      padding: 4px;
+      display: block;
+      border: 1px solid #333;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      @include opacity(1);
+      @include text-shadow(none);
+
+      &:hover {
+        background-color: #333;
+        color: #fff;
+        border-color: #fff;
+      }
+    }
   }
 }
