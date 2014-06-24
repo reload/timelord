@@ -86,35 +86,58 @@ app.controller 'TimeLord', ($scope, $http) ->
   # User click function.
   $scope.toggleStats = (user) ->
     console.log user
+    # Set the user modal as true.
     $scope.user_modal = true
+    # Asign the user object to $scrope and provide extra arguments.
     $scope.user = user
+    $scope.user.registered_hours_percent = Math.round user.hours_registered / user.hours_goal * 100
+    # Show the "illness fields" if there's any sickness to report.
+    if user.extra.illness != false
+      $scope.user.extra.show_illness = true
+      $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child
 
-    data = [
-      {
-        value: 30,
-        color:"#F7464A"
-      },
-      {
-        value : 50,
-        color : "#E2EAE9"
-      },
-      {
-        value : 100,
-        color : "#D4CCC5"
-      },
-      {
-        value : 40,
-        color : "#949FB1"
-      },
-      {
-        value : 120,
-        color : "#4D5360"
+    # Time chart.
+    # -----------
+    # There are 3 possible "charts". If you're in plus/minus or spot on,
+    # so we want to check where the user is and push relevant data.
+    data = []
+    green = '#428F3E'
+    red = '#BE0323'
+    gold = '#FFD700'
+
+    # If the user needs to WORK MOAR!.
+    if user.hours_registered < user.hours_goal
+      data.push {
+        value: user.hours_registered,
+        color: green
       }
-    ]
+      data.push {
+        value: user.hours_goal - user.hours_registered,
+        color: red
+      }
+    # If the user is over the goal. GOOD JAWB!
+    else if user.hours_registered > user.hours_goal
+      data.push {
+        value: user.hours_goal,
+        color: green
+      }
+      data.push {
+        value: user.hours_registered - user.hours_goal,
+        color: gold
+      }
+    # If the amount of registered hours match the goal.
+    else if user.hours_registered == user.hours_goal
+      data.push {
+        value: user.hours_registered,
+        color: green
+      }
 
-    # Execute doughnut chart.
-    doughnut('myChart', data)
+    # Execute the chart.
+    doughnut('hours-chart', data)
 
+  # Close user-modal
+  $scope.userModal = (user_modal) ->
+    $scope.user_modal = user_modal
 
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->

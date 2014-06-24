@@ -72,30 +72,48 @@
         return console.log('Error: ' + status);
       });
     };
-    return $scope.toggleStats = function(user) {
-      var data;
+    $scope.toggleStats = function(user) {
+      var data, gold, green, red;
       console.log(user);
       $scope.user_modal = true;
       $scope.user = user;
-      data = [
-        {
-          value: 30,
-          color: "#F7464A"
-        }, {
-          value: 50,
-          color: "#E2EAE9"
-        }, {
-          value: 100,
-          color: "#D4CCC5"
-        }, {
-          value: 40,
-          color: "#949FB1"
-        }, {
-          value: 120,
-          color: "#4D5360"
-        }
-      ];
-      return doughnut('myChart', data);
+      $scope.user.registered_hours_percent = Math.round(user.hours_registered / user.hours_goal * 100);
+      if (user.extra.illness !== false) {
+        $scope.user.extra.show_illness = true;
+        $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child;
+      }
+      data = [];
+      green = '#428F3E';
+      red = '#BE0323';
+      gold = '#FFD700';
+      if (user.hours_registered < user.hours_goal) {
+        data.push({
+          value: user.hours_registered,
+          color: green
+        });
+        data.push({
+          value: user.hours_goal - user.hours_registered,
+          color: red
+        });
+      } else if (user.hours_registered > user.hours_goal) {
+        data.push({
+          value: user.hours_goal,
+          color: green
+        });
+        data.push({
+          value: user.hours_registered - user.hours_goal,
+          color: gold
+        });
+      } else if (user.hours_registered === user.hours_goal) {
+        data.push({
+          value: user.hours_registered,
+          color: green
+        });
+      }
+      return doughnut('hours-chart', data);
+    };
+    return $scope.userModal = function(user_modal) {
+      return $scope.user_modal = user_modal;
     };
   });
 

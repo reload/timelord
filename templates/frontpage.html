@@ -68,13 +68,53 @@
   <!-- Modal -->
   <div class="user_modal animate" ng-show="user_modal">
     <div class="content">
-      <h2>{{ user.name }}</h2>
-      <ul>
-        <li>
-          <h3>Chart</h3>
-          <canvas id="myChart" width="300" height="300"></canvas>
-        </li>
-      </ul>
+      <p class="close" ng-click="userModal(False)">Close</p>
+      <!-- Profile -->
+      <div class="profile">
+        <h2>{{ user.name }}</h2>
+        <img src="{{ user.imageUrl }}" alt=""/>
+      </div>
+
+      <!-- Chart -->
+      <div class="chart">
+        <h3>Chart</h3>
+        <!-- Chart. -->
+        <canvas id="hours-chart" width="225" height="225"></canvas>
+      </div>
+
+      <!-- Table -->
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+          <tr>
+            <td>Hours to reach</td>
+            <td>{{ user.hours_goal }} hours</td>
+          </tr>
+          <tr>
+            <td>Hours registered</td>
+            <td>{{ user.hours_registered }} hours</td>
+          </tr>
+          <tr>
+            <td>Registered hours in percent</td>
+            <td>{{ user.registered_hours_percent }}%</td>
+          </tr>
+          <tr>
+            <td>Billable hours</td>
+            <td>{{ user.extra.billability.calculated }}%</td>
+          </tr>
+          <tr>
+            <td>Holiday</td>
+            <td>{{ user.extra.holiday }} hours</td>
+          </tr>
+          <tr>
+            <td>Vacation</td>
+            <td>{{ user.extra.vacation }} hours</td>
+          </tr>
+          <tr ng-show="user.extra.show_illness">
+            <td>Illness (child)</td>
+            <td>{{ user.extra.illness.hours }} ({{ user.extra.illness.child }}) hours</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 
