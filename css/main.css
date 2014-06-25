@@ -42,8 +42,9 @@ body {
   border: 1px solid #99bf31;
   border-radius: 5px;
   position: relative;
+  max-width: 400px;
 }
-/* line 42, sass/main.scss */
+/* line 43, sass/main.scss */
 .user-form form .login-close {
   border: none;
   background: none;
@@ -56,12 +57,12 @@ body {
   -moz-appearance: none;
   appearance: none;
 }
-/* line 51, sass/main.scss */
+/* line 52, sass/main.scss */
 .user-form form .login-close:hover {
   text-shadow: 0 0 10px white;
 }
 
-/* line 59, sass/main.scss */
+/* line 60, sass/main.scss */
 .active-user:before {
   content: '';
   display: inline-block;
@@ -79,7 +80,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 230, 0, 0.9);
 }
 
-/* line 72, sass/main.scss */
+/* line 73, sass/main.scss */
 .modal_wrap {
   position: absolute;
   top: 0;
@@ -89,7 +90,7 @@ body {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.75);
 }
-/* line 82, sass/main.scss */
+/* line 83, sass/main.scss */
 .modal_wrap .modal_content {
   background-color: #fff;
   position: relative;
@@ -97,19 +98,19 @@ body {
   max-width: 800px;
 }
 @media (max-width: 850px) {
-  /* line 82, sass/main.scss */
+  /* line 83, sass/main.scss */
   .modal_wrap .modal_content {
     margin: 25px;
   }
 }
-/* line 92, sass/main.scss */
+/* line 93, sass/main.scss */
 .modal_wrap .modal_content .header {
   background-color: #f9f9f9;
   border-bottom: 1px solid #c9c9c9;
   padding: 0 25px;
   width: 100%;
 }
-/* line 100, sass/main.scss */
+/* line 101, sass/main.scss */
 .modal_wrap .modal_content .content {
   padding: 1px 25px;
   display: block;
@@ -117,7 +118,7 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 107, sass/main.scss */
+/* line 108, sass/main.scss */
 .modal_wrap .modal_content .close {
   font-weight: normal;
   position: absolute;
@@ -130,24 +131,24 @@ body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 119, sass/main.scss */
+/* line 120, sass/main.scss */
 .modal_wrap .modal_content .close:hover, .modal_wrap .modal_content .close:focus {
   color: #0676bc;
 }
 
-/* line 130, sass/main.scss */
+/* line 131, sass/main.scss */
 .user_modal .header img {
   float: left;
   width: 55px;
   margin: 10px 0;
 }
-/* line 135, sass/main.scss */
+/* line 136, sass/main.scss */
 .user_modal .header h3 {
   margin-top: 25px;
   margin-left: 20px;
   float: left;
 }
-/* line 145, sass/main.scss */
+/* line 146, sass/main.scss */
 .user_modal .content .percent {
   position: relative;
   float: left;
@@ -155,27 +156,27 @@ body {
   margin-top: 80px;
   text-align: center;
 }
-/* line 152, sass/main.scss */
+/* line 153, sass/main.scss */
 .user_modal .content .percent p {
   display: inline;
   font-weight: bold;
   font-size: 20px;
   border-bottom: 1px solid #c9c9c9;
 }
-/* line 158, sass/main.scss */
+/* line 159, sass/main.scss */
 .user_modal .content .percent h1 {
   font-size: 80px;
   line-height: 1;
   margin-top: 0;
 }
-/* line 166, sass/main.scss */
+/* line 167, sass/main.scss */
 .user_modal .content .chart {
   position: relative;
   margin: 25px auto;
   float: right;
   width: 50%;
 }
-/* line 173, sass/main.scss */
+/* line 174, sass/main.scss */
 .user_modal .content .chart .label-colors {
   border: 1px solid #c9c9c9;
   background-color: #fff;
@@ -185,26 +186,26 @@ body {
   padding: 5px;
   padding-bottom: 0;
 }
-/* line 182, sass/main.scss */
+/* line 183, sass/main.scss */
 .user_modal .content .chart .label-colors p {
   position: relative;
   padding-left: 18px;
   margin-bottom: 5px;
   font-size: 14px;
 }
-/* line 189, sass/main.scss */
+/* line 190, sass/main.scss */
 .user_modal .content .chart .label-colors p.gold:before {
   background: gold;
 }
-/* line 190, sass/main.scss */
+/* line 191, sass/main.scss */
 .user_modal .content .chart .label-colors p.green:before {
   background: #99bf31;
 }
-/* line 191, sass/main.scss */
+/* line 192, sass/main.scss */
 .user_modal .content .chart .label-colors p.red:before {
   background: red;
 }
-/* line 192, sass/main.scss */
+/* line 193, sass/main.scss */
 .user_modal .content .chart .label-colors p:before {
   position: absolute;
   display: block;

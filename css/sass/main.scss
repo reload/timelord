@@ -38,6 +38,7 @@ body {
     border: 1px solid $primaryColor;
     border-radius: 5px;
     position: relative;
+    max-width: 400px;
 
     .login-close {
       border: none;
