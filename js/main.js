@@ -78,9 +78,11 @@
       $scope.user_modal = true;
       $scope.user = user;
       $scope.user.registered_hours_percent = Math.round(user.hours_registered / user.hours_goal * 100);
-      if (user.extra.illness !== false) {
-        $scope.user.extra.show_illness = true;
-        $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child;
+      if (user.extra.length !== 0) {
+        if (user.extra.illness !== false) {
+          $scope.user.extra.show_illness = true;
+          $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child;
+        }
       }
       data = [];
       green = '#428F3E';

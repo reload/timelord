@@ -91,10 +91,12 @@ app.controller 'TimeLord', ($scope, $http) ->
     # Asign the user object to $scrope and provide extra arguments.
     $scope.user = user
     $scope.user.registered_hours_percent = Math.round user.hours_registered / user.hours_goal * 100
-    # Show the "illness fields" if there's any sickness to report.
-    if user.extra.illness != false
-      $scope.user.extra.show_illness = true
-      $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child
+    # Check if we have access to the "extra" object.
+    if user.extra.length != 0
+      # Show the "illness fields" if there's any sickness to report.
+      if user.extra.illness != false
+        $scope.user.extra.show_illness = true
+        $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child
 
     # Time chart.
     # -----------
