@@ -43,13 +43,14 @@
     </div>
   </div>
 
+  <!-- Login form -->
   <div class="user-form" ng-show="loginOpen && !session">
-    <form class="form-horizonta" role="form" name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
+    <form class="form-horizontal" role="form" name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
       <button class="login-close" ng-hide="session" ng-click="loginOpen = !loginOpen" title="Close this.">
         <span class="glyphicon glyphicon-off"></span>
       </button>
       <div class="form-group">
-        <input class="form-control" type="email" placeholder="Email" name="username" ng-model="user.name" required />
+        <input class="form-control" type="email" placeholder="Email" name="username" ng-model="user.name" required autofocus />
       </div>
       <div class="form-group">
         <input class="form-control" type="password" placeholder="Password" name="password" ng-minlength="4" ng-model="user.pass" required />
