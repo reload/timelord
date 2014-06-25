@@ -68,8 +68,8 @@ body {
   }
 }
 
-// User modal to display statistics.
-.user_modal {
+// Modal wrap.
+.modal_wrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -78,37 +78,101 @@ body {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.75); // Dark overlay.
 
-  .content {
-    max-width: 800px;
-    position: relative;
-    @include box-sizing(border-box);
-    padding: 1px 25px;
+  // Modal content.
+  .modal_content {
     background-color: #fff;
-    display: block;
+    position: relative;
     margin: 25px auto;
+    max-width: 800px;
+    @include modal {
+      margin: 25px;
+    }
 
-    // The profile container.
-    .profile {
+    // Modal header.
+    .header {
+      background-color: $bootstrap-gray;
+      border-bottom: 1px solid $border-gray;
+      padding: 0 25px;
+      width: 100%;
+    }
+
+    // Modal content.
+    .content {
+      padding: 1px 25px;
+      display: block;
+      @include box-sizing(border-box);
+    }
+
+    // Modal close button.
+    .close {
+      font-weight: normal;
+      position: absolute;
+      cursor: pointer;
+      right: 20px;
+      top: 12px;
+      color: #333;
+      padding: 4px;
+      font-size: 16px;
+      @include opacity(1);
+
+      &:hover,
+      &:focus {
+        color: $drupalBlue;
+      }
+    }
+  }
+}
+
+// User modal to display statistics.
+.user_modal {
+  // Header.
+  .header {
+    img {
+      float: left;
+      width: 55px;
+      margin: 10px 0;
+    }
+    h3 {
+      margin-top: 25px;
+      margin-left: 20px;
+      float: left;
+    }
+  }
+
+  // Content.
+  .content {
+    // Large percent.
+    .percent {
+      position: relative;
       float: left;
       width: 50%;
-      @include medium {
-        width: 100%;
+      margin-top: 80px;
+      text-align: center;
+
+      p {
+        display: inline;
+        font-weight: bold;
+        font-size: 20px;
+        border-bottom: 1px solid $border-gray;
+      }
+      h1 {
+        font-size: 80px;
+        line-height: 1;
+        margin-top: 0;
       }
     }
 
     // Chart.
     .chart {
       position: relative;
+      margin: 25px auto;
       float: right;
-      margin-top: 25px;
       width: 50%;
-      @include medium {
-        width: 100%;
-      }
 
       // Labels.
       .label-colors {
         border: 1px solid $border-gray;
+        background-color: #fff;
         position: absolute;
         top: 0;
         right: 0;
@@ -119,6 +183,7 @@ body {
           position: relative;
           padding-left: 18px;
           margin-bottom: 5px;
+          font-size: 14px;
 
           // Color examples.
           &.gold:before  { background: $portrait-golden; }
@@ -135,25 +200,6 @@ body {
             @include border-radius(50%);
           }
         }
-      }
-    }
-
-    // The "close modal" button.
-    .close {
-      font-weight: normal;
-      font-size: 24px;
-      cursor: pointer;
-      color: #333;
-      padding: 4px;
-      display: block;
-      position: absolute;
-      right: 6px;
-      top: -1px;
-      @include opacity(.4);
-
-      &:hover {
-        color: $drupalBlue;
-        @include opacity(1);
       }
     }
   }

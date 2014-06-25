@@ -80,7 +80,7 @@ body {
 }
 
 /* line 72, sass/main.scss */
-.user_modal {
+.modal_wrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -89,70 +89,122 @@ body {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.75);
 }
-/* line 81, sass/main.scss */
-.user_modal .content {
-  max-width: 800px;
+/* line 82, sass/main.scss */
+.modal_wrap .modal_content {
+  background-color: #fff;
   position: relative;
+  margin: 25px auto;
+  max-width: 800px;
+}
+@media (max-width: 850px) {
+  /* line 82, sass/main.scss */
+  .modal_wrap .modal_content {
+    margin: 25px;
+  }
+}
+/* line 92, sass/main.scss */
+.modal_wrap .modal_content .header {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #c9c9c9;
+  padding: 0 25px;
+  width: 100%;
+}
+/* line 100, sass/main.scss */
+.modal_wrap .modal_content .content {
+  padding: 1px 25px;
+  display: block;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 1px 25px;
-  background-color: #fff;
-  display: block;
-  margin: 25px auto;
 }
-/* line 91, sass/main.scss */
-.user_modal .content .profile {
+/* line 107, sass/main.scss */
+.modal_wrap .modal_content .close {
+  font-weight: normal;
+  position: absolute;
+  cursor: pointer;
+  right: 20px;
+  top: 12px;
+  color: #333;
+  padding: 4px;
+  font-size: 16px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 119, sass/main.scss */
+.modal_wrap .modal_content .close:hover, .modal_wrap .modal_content .close:focus {
+  color: #0676bc;
+}
+
+/* line 130, sass/main.scss */
+.user_modal .header img {
+  float: left;
+  width: 55px;
+  margin: 10px 0;
+}
+/* line 135, sass/main.scss */
+.user_modal .header h3 {
+  margin-top: 25px;
+  margin-left: 20px;
+  float: left;
+}
+/* line 145, sass/main.scss */
+.user_modal .content .percent {
+  position: relative;
   float: left;
   width: 50%;
+  margin-top: 80px;
+  text-align: center;
 }
-@media (max-width: 720px) {
-  /* line 91, sass/main.scss */
-  .user_modal .content .profile {
-    width: 100%;
-  }
+/* line 152, sass/main.scss */
+.user_modal .content .percent p {
+  display: inline;
+  font-weight: bold;
+  font-size: 20px;
+  border-bottom: 1px solid #c9c9c9;
 }
-/* line 100, sass/main.scss */
+/* line 158, sass/main.scss */
+.user_modal .content .percent h1 {
+  font-size: 80px;
+  line-height: 1;
+  margin-top: 0;
+}
+/* line 166, sass/main.scss */
 .user_modal .content .chart {
   position: relative;
+  margin: 25px auto;
   float: right;
-  margin-top: 25px;
   width: 50%;
 }
-@media (max-width: 720px) {
-  /* line 100, sass/main.scss */
-  .user_modal .content .chart {
-    width: 100%;
-  }
-}
-/* line 110, sass/main.scss */
+/* line 173, sass/main.scss */
 .user_modal .content .chart .label-colors {
   border: 1px solid #c9c9c9;
+  background-color: #fff;
   position: absolute;
   top: 0;
   right: 0;
   padding: 5px;
   padding-bottom: 0;
 }
-/* line 118, sass/main.scss */
+/* line 182, sass/main.scss */
 .user_modal .content .chart .label-colors p {
   position: relative;
   padding-left: 18px;
   margin-bottom: 5px;
+  font-size: 14px;
 }
-/* line 124, sass/main.scss */
+/* line 189, sass/main.scss */
 .user_modal .content .chart .label-colors p.gold:before {
   background: gold;
 }
-/* line 125, sass/main.scss */
+/* line 190, sass/main.scss */
 .user_modal .content .chart .label-colors p.green:before {
   background: #99bf31;
 }
-/* line 126, sass/main.scss */
+/* line 191, sass/main.scss */
 .user_modal .content .chart .label-colors p.red:before {
   background: red;
 }
-/* line 127, sass/main.scss */
+/* line 192, sass/main.scss */
 .user_modal .content .chart .label-colors p:before {
   position: absolute;
   display: block;
@@ -166,24 +218,4 @@ body {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
-}
-/* line 142, sass/main.scss */
-.user_modal .content .close {
-  font-weight: normal;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-  padding: 4px;
-  display: block;
-  position: absolute;
-  right: 6px;
-  top: -1px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
-  opacity: 0.4;
-}
-/* line 154, sass/main.scss */
-.user_modal .content .close:hover {
-  color: #0676bc;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
 }
