@@ -61,7 +61,6 @@ module.exports = function (grunt) {
           'vendor/angular/angular.js',
           'vendor/angular-loading-bar/src/loading-bar.js',
           'vendor/angular-route/angular-route.js',
-          'vendor/jquery/dist/jquery.js',
           'vendor/chartjs/Chart.js'
         ],
         'dest': 'vendor/vendor.js'

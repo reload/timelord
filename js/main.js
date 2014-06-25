@@ -15,11 +15,6 @@
     date_arguments = [];
     date_arguments['from'] = '';
     date_arguments['to'] = '';
-    $(".date").on("keyup", ".from, .to", function() {
-      date_arguments['from'] = $(".date .from").val();
-      date_arguments['to'] = $(".date .to").val();
-      return fetchData(date_arguments);
-    });
     $scope.loading = true;
     fetchData = function(url_arguments) {
       var arg_string;

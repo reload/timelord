@@ -15,14 +15,6 @@ app.controller 'TimeLord', ($scope, $http) ->
   date_arguments['from'] = ''
   date_arguments['to'] = ''
 
-  # Register keyup events on date-fields.
-  $(".date").on "keyup", ".from, .to", () ->
-    # Set new dates.
-    date_arguments['from'] = $(".date .from").val()
-    date_arguments['to'] = $(".date .to").val()
-    # Fetch new data.
-    fetchData(date_arguments)
-
   # Url to JSON.
   $scope.loading = true
   fetchData = (url_arguments) ->
