@@ -2,7 +2,8 @@
   "name": "TimeLord",
   "version": "0.0.1",
   "authors": [
-    "Simon Larsson <simon@reload.dk>"
+    "Simon Larsson <simon@reload.dk>",
+    "André Kallehauge <andre@reload.dk>"
   ],
   "license": "MIT",
     "ignore": [
@@ -17,6 +18,7 @@
     "bootstrap-sass": "latest",
     "angular-loading-bar": "latest",
     "angular-route": "latest",
-    "chartjs": "latest"
+    "chartjs": "latest",
+    "jquery": "latest"
   }
 }
