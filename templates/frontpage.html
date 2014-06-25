@@ -20,6 +20,13 @@
       </div>
     </div>
 
+    <!-- Date selector -->
+    <div class="date">
+      <input type="text" class="from"/>
+      <input type="text" class="to"/>
+    </div>
+
+    <!-- User portraits -->
     <div class="user-report">
       <ul class="inner">
         <li class="user" ng-click="toggleStats(user)" ng-repeat="user in data.ranking | orderBy:'group'">

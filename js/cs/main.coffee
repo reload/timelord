@@ -9,10 +9,32 @@ app.config ($routeProvider) ->
 
 # TimeLord controller.
 app.controller 'TimeLord', ($scope, $http) ->
+
+  # Global date variables.
+  date_arguments = []
+  date_arguments['from'] = ''
+  date_arguments['to'] = ''
+
+  # Register keyup events on date-fields.
+  $(".date").on "keyup", ".from, .to", () ->
+    # Set new dates.
+    date_arguments['from'] = $(".date .from").val()
+    date_arguments['to'] = $(".date .to").val()
+    # Fetch new data.
+    fetchData(date_arguments)
+
   # Url to JSON.
   $scope.loading = true
-  fetchData = () ->
-    $http.get('inc/feed.php')
+  fetchData = (url_arguments) ->
+    # Prepare possible feed arguments.
+    arg_string = '';
+    if url_arguments['from']
+      arg_string += '&from=' + url_arguments['from']
+
+    if url_arguments['to']
+      arg_string += '&to=' + url_arguments['to']
+
+    $http.get('inc/feed.php?' + arg_string)
       .success (data, status, headers, config) ->
         # Get registered percent.
         data.total_percent = Math.round 100*data.hours_total_registered/data.hours_until_today
@@ -32,9 +54,9 @@ app.controller 'TimeLord', ($scope, $http) ->
         console.log 'Error:' + status
 
   # Trigger and loop fetch function.
-  fetchData()
+  fetchData(date_arguments)
   setInterval ()->
-    fetchData()
+    fetchData(date_arguments)
   , 300000
 
   # Set login message.

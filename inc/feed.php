@@ -6,6 +6,19 @@
   // Feed url.
   $url = $harvester_base . $harvester_api . 'entries.json?group=user';
 
+  // Conditionals.
+  if (isset($_GET['from'])) {
+    $url .= '&from=' . $_GET['from'];
+  }
+  if (isset($_GET['to'])) {
+    $url .= '&to=' . $_GET['to'];
+  }
+  if (isset($_GET['month'])) {
+    $url .= '&month=' . $_GET['month'];
+  }
+  if (isset($_GET['year'])) {
+    $url .= '&year=' . $_GET['year'];
+  }
   // Add token to URL if logged in.
   if (!empty($_SESSION['harvester_pass'])) {
     $name = $_SESSION['harvester_name'];

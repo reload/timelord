@@ -11,10 +11,26 @@
   });
 
   app.controller('TimeLord', function($scope, $http) {
-    var fetchData, getLoginStatus, getSession;
+    var date_arguments, fetchData, getLoginStatus, getSession;
+    date_arguments = [];
+    date_arguments['from'] = '';
+    date_arguments['to'] = '';
+    $(".date").on("keyup", ".from, .to", function() {
+      date_arguments['from'] = $(".date .from").val();
+      date_arguments['to'] = $(".date .to").val();
+      return fetchData(date_arguments);
+    });
     $scope.loading = true;
-    fetchData = function() {
-      return $http.get('inc/feed.php').success(function(data, status, headers, config) {
+    fetchData = function(url_arguments) {
+      var arg_string;
+      arg_string = '';
+      if (url_arguments['from']) {
+        arg_string += '&from=' + url_arguments['from'];
+      }
+      if (url_arguments['to']) {
+        arg_string += '&to=' + url_arguments['to'];
+      }
+      return $http.get('inc/feed.php?' + arg_string).success(function(data, status, headers, config) {
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_until_today);
         angular.forEach(data.ranking, function(user, i) {
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg';
@@ -29,9 +45,9 @@
         return console.log('Error:' + status);
       });
     };
-    fetchData();
+    fetchData(date_arguments);
     setInterval(function() {
-      return fetchData();
+      return fetchData(date_arguments);
     }, 300000);
     getLoginStatus = function(msg) {
       $scope.loginMessage = msg;
