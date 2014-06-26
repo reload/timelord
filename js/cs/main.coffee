@@ -148,8 +148,13 @@ app.controller 'TimeLord', ($scope, $http) ->
         color: green
       }
 
+    # Chart options.
+    options = {
+      segmentStrokeWidth : 1
+    }
+
     # Execute the chart.
-    doughnut('hours-chart', data)
+    doughnut('hours-chart', data, options)
 
   # Close user-modal
   $scope.userModal = (user_modal) ->

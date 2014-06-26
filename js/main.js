@@ -123,7 +123,10 @@
           color: green
         });
       }
-      return doughnut('hours-chart', data);
+      options = {
+        segmentStrokeWidth: 1
+      };
+      return doughnut('hours-chart', data, options);
     };
     return $scope.userModal = function(user_modal) {
       return $scope.user_modal = user_modal;
