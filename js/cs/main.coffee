@@ -29,7 +29,7 @@ app.controller 'TimeLord', ($scope, $http) ->
     $http.get('inc/feed.php?' + arg_string)
       .success (data, status, headers, config) ->
         # Get registered percent.
-        data.total_percent = Math.round 100*data.hours_total_registered/data.hours_until_today
+        data.total_percent = Math.round 100*data.hours_total_registered/data.hours_in_range
         # Get user ranking.
         angular.forEach data.ranking, (user, i) ->
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg'

@@ -26,7 +26,7 @@
         arg_string += '&to=' + url_arguments['to'];
       }
       return $http.get('inc/feed.php?' + arg_string).success(function(data, status, headers, config) {
-        data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_until_today);
+        data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_in_range);
         angular.forEach(data.ranking, function(user, i) {
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg';
           return data.ranking[i].group = data.ranking[i].group.toLowerCase();
