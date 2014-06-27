@@ -36,35 +36,46 @@ app.controller 'TimeLord', ($scope, $http) ->
   $scope.from = ''
   $scope.to = ''
 
-  # Global date variables.
+  # Set initial date variables (will be overwritten after fetchData request).
   date = new Date()
   $scope.month = $scope.date_options_month[date.getMonth()].value
   $scope.year = date.getFullYear()
 
-  # Define "date/range states" so we only fetch data when needed.
+  # Define "date/range states" so we only fetch data when we have to,
+  # instead of on every value-change.
   from_state = false
   to_state = false
 
+  # Global variables to store "from" and "to" values outside of
+  # the individual function-calls.
+  from = ''
+  to = ''
+
   # On "range" change.
   $scope.rangeChange = (input) ->
+    # Only execute this code, if the "range radio-button" is selected.
     if $scope.type == 'range'
-      # Set default values for the "range" arguments.
+      # Define the range-arguments array.
       range = []
-      range[0] = '&from=' + $scope.from
-      range[1] = '&to=' + $scope.to
+      # If the "from" argument isn't empty.
+      if from != ''
+        range[0] = '&from=' + from
+      # If the "to" argument isn't empty.
+      if to != ''
+        range[1] = '&to=' + to
       # Input: "from".
       if input == 'from'
         # Remove dashes from the input value.
-        $scope.from.replace(/-/g, '')
+        from = $scope.from.replace(/-/g, '')
         # If an entire date is provided.
-        if $scope.from.length == 8
+        if from.length == 8
           # Update the feed argument.
-          range[0] = '&from=' + $scope.from
+          range[0] = '&from=' + from
           # Update the state and fetch new data.
           from_state = true
           fetchData(range)
         # Or if the field is empty.
-        else if $scope.from.length == 0 && from_state == true
+        else if from.length == 0 && from_state == true
           # Clear the input value & feed argument.
           range[0] = ''
           $scope.from = ''
@@ -75,16 +86,16 @@ app.controller 'TimeLord', ($scope, $http) ->
       # Input: "to".
       else if input == 'to'
         # Remove dashes from the input value.
-        $scope.to.replace(/-/g, '')
+        to = $scope.to.replace(/-/g, '')
         # If an entire date is provided.
-        if $scope.to.length == 8
+        if to.length == 8
           # Update the feed argument.
-          range[1] = '&to=' + $scope.to
+          range[1] = '&to=' + to
           # Update state and fetch new data.
           to_state = true
           fetchData(range)
         # Or if the field is empty.
-        else if $scope.to.length == 0 && to_state == true
+        else if to.length == 0 && to_state == true
           # Clear the input value & feed argument.
           $scope.to = ''
           range[1] = ''
@@ -94,6 +105,7 @@ app.controller 'TimeLord', ($scope, $http) ->
 
   # On "month" change.
   $scope.monthChange = () ->
+    # Only execute this code if the "month radio-button" is selected.
     if $scope.type == 'month'
       fetchData([
         '&month=' + $scope.month,

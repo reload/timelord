@@ -11,7 +11,7 @@
   });
 
   app.controller('TimeLord', function($scope, $http) {
-    var date, fetchData, from_state, getLoginStatus, getSession, to_state;
+    var date, fetchData, from, from_state, getLoginStatus, getSession, to, to_state;
     $scope.user_modal = false;
     $scope.range_modal = false;
     $scope.show_month_settings = true;
@@ -62,31 +62,37 @@
     $scope.year = date.getFullYear();
     from_state = false;
     to_state = false;
+    from = '';
+    to = '';
     $scope.rangeChange = function(input) {
       var range;
       if ($scope.type === 'range') {
         range = [];
-        range[0] = '&from=' + $scope.from;
-        range[1] = '&to=' + $scope.to;
+        if (from !== '') {
+          range[0] = '&from=' + from;
+        }
+        if (to !== '') {
+          range[1] = '&to=' + to;
+        }
         if (input === 'from') {
-          $scope.from.replace(/-/g, '');
-          if ($scope.from.length === 8) {
-            range[0] = '&from=' + $scope.from;
+          from = $scope.from.replace(/-/g, '');
+          if (from.length === 8) {
+            range[0] = '&from=' + from;
             from_state = true;
             return fetchData(range);
-          } else if ($scope.from.length === 0 && from_state === true) {
+          } else if (from.length === 0 && from_state === true) {
             range[0] = '';
             $scope.from = '';
             from_state = false;
             return fetchData(range);
           }
         } else if (input === 'to') {
-          $scope.to.replace(/-/g, '');
-          if ($scope.to.length === 8) {
-            range[1] = '&to=' + $scope.to;
+          to = $scope.to.replace(/-/g, '');
+          if (to.length === 8) {
+            range[1] = '&to=' + to;
             to_state = true;
             return fetchData(range);
-          } else if ($scope.to.length === 0 && to_state === true) {
+          } else if (to.length === 0 && to_state === true) {
             $scope.to = '';
             range[1] = '';
             to_state = false;
