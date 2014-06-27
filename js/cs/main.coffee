@@ -287,5 +287,11 @@ app.controller 'TimeLord', ($scope, $http) ->
 
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->
+  # We need to define the width / height on every init since there
+  # is a but with retina displays, where the size double every
+  # time you create a new graph.
+  document.getElementById(id).setAttribute('width', '225px')
+  document.getElementById(id).setAttribute('height', '225px')
+  # Get context and init the chart.
   ctx = document.getElementById(id).getContext('2d')
   new Chart(ctx).Doughnut(data, options)
