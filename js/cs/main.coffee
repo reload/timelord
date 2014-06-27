@@ -12,7 +12,7 @@ app.controller 'TimeLord', ($scope, $http) ->
 
   # Define modal's default states.
   $scope.user_modal = false
-  $scope.range_modal = true
+  $scope.range_modal = false
 
 # Set the choices for the "month selector".
   $scope.date_options_month = [

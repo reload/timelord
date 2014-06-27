@@ -13,7 +13,7 @@
   app.controller('TimeLord', function($scope, $http) {
     var date, fetchData, from_state, getLoginStatus, getSession, to_state;
     $scope.user_modal = false;
-    $scope.range_modal = true;
+    $scope.range_modal = false;
     $scope.date_options_month = [
       {
         value: "jan",
