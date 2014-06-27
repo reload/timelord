@@ -1,12 +1,16 @@
 <div class="time-report">
   <div class="page" ng-hide="loading">
+    <!-- Header -->
     <div class="header">
       <div class="inner">
+        <!-- Site logo -->
         <figure class="site-logo">
           <?php include 'img/reload-logo.svg' ?>
         </figure>
+        <!-- Site title -->
         <h1 class="site-title"><?php print $site_name; ?></h1>
 
+        <!-- Time total -->
         <div class="time-display">
           <span class="month">{{ data.date_start * 1000 | date : 'MMMM yyyy' }}</span>
           <div class="values">
@@ -32,6 +36,7 @@
       </ul>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
       <div class="inner">
         <button ng-hide="session" class="btn btn-default" ng-click="loginOpen = !loginOpen">Login</button>
