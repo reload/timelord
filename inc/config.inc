@@ -11,3 +11,4 @@
   $site_name = $config['site_name'];
   $harvester_base = $config['harvester_url'];
   $harvester_api = $config['harvester_api_path'];
+  $salt_string = $config['salt_string'];

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = json_decode($_GET["user"]);
 
     $name = $user->name;
-    $options = ['salt' => md5('ReloadGotTime')];
+    $options = ['salt' => md5($salt_string)];
     $pass = password_hash($user->pass, PASSWORD_DEFAULT, $options);
 
     /**
