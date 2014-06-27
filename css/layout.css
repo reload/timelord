@@ -91,14 +91,15 @@ html {
 .loader .logo {
   max-width: 20%;
   margin: 10% auto 0;
+  text-align: center;
 }
-/* line 89, sass/layout.scss */
-.loader .logo svg#logo {
+/* line 90, sass/layout.scss */
+.loader .logo img {
   width: 100%;
   height: 100%;
 }
 
-/* line 97, sass/layout.scss */
+/* line 98, sass/layout.scss */
 .user-form form {
   max-width: 20%;
   margin: 10% auto 0;
