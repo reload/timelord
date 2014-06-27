@@ -70,7 +70,7 @@ body {
 }
 
 // Modal wrap.
-.modal_wrap {
+.modal-wrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -80,7 +80,7 @@ body {
   background-color: rgba(0, 0, 0, 0.75); // Dark overlay.
 
   // Modal content.
-  .modal_content {
+  .modal-content {
     background-color: #fff;
     position: relative;
     margin: 25px auto;
@@ -125,7 +125,7 @@ body {
 }
 
 // User modal to display statistics.
-.user_modal {
+.user-modal {
   // Header.
   .header {
     img {
