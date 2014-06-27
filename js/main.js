@@ -14,6 +14,7 @@
     var date, fetchData, from_state, getLoginStatus, getSession, to_state;
     $scope.user_modal = false;
     $scope.range_modal = false;
+    $scope.show_month_settings = true;
     $scope.date_options_month = [
       {
         value: "jan",
@@ -102,9 +103,13 @@
     $scope.typeChange = function() {
       if ($scope.type === 'range') {
         $scope.rangeChange('from');
-        return $scope.rangeChange('to');
+        $scope.rangeChange('to');
+        $scope.show_range_settings = true;
+        return $scope.show_month_settings = false;
       } else if ($scope.type === 'month') {
-        return $scope.monthChange();
+        $scope.monthChange();
+        $scope.show_range_settings = false;
+        return $scope.show_month_settings = true;
       }
     };
     $scope.loading = true;

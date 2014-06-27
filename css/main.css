@@ -109,8 +109,14 @@ body {
   border-bottom: 1px solid #c9c9c9;
   padding: 0 25px;
   width: 100%;
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
 }
-/* line 101, sass/main.scss */
+/* line 103, sass/main.scss */
 .modal-wrap .modal-content .content {
   padding: 1px 25px;
   display: block;
@@ -118,7 +124,7 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 108, sass/main.scss */
+/* line 110, sass/main.scss */
 .modal-wrap .modal-content .close {
   font-weight: normal;
   position: absolute;
@@ -131,24 +137,24 @@ body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 120, sass/main.scss */
+/* line 122, sass/main.scss */
 .modal-wrap .modal-content .close:hover, .modal-wrap .modal-content .close:focus {
   color: #0676bc;
 }
 
-/* line 131, sass/main.scss */
+/* line 133, sass/main.scss */
 .user-modal .header img {
   float: left;
   width: 55px;
   margin: 10px 0;
 }
-/* line 136, sass/main.scss */
+/* line 138, sass/main.scss */
 .user-modal .header h3 {
   margin-top: 25px;
   margin-left: 20px;
   float: left;
 }
-/* line 146, sass/main.scss */
+/* line 148, sass/main.scss */
 .user-modal .content .percent {
   position: relative;
   float: left;
@@ -156,27 +162,27 @@ body {
   margin-top: 80px;
   text-align: center;
 }
-/* line 153, sass/main.scss */
+/* line 155, sass/main.scss */
 .user-modal .content .percent p {
   display: inline;
   font-weight: bold;
   font-size: 20px;
   border-bottom: 1px solid #c9c9c9;
 }
-/* line 159, sass/main.scss */
+/* line 161, sass/main.scss */
 .user-modal .content .percent h1 {
   font-size: 80px;
   line-height: 1;
   margin-top: 0;
 }
-/* line 167, sass/main.scss */
+/* line 169, sass/main.scss */
 .user-modal .content .chart {
   position: relative;
   margin: 25px auto;
   float: right;
   width: 50%;
 }
-/* line 174, sass/main.scss */
+/* line 176, sass/main.scss */
 .user-modal .content .chart .label-colors {
   border: 1px solid #c9c9c9;
   background-color: #fff;
@@ -186,26 +192,26 @@ body {
   padding: 5px;
   padding-bottom: 0;
 }
-/* line 183, sass/main.scss */
+/* line 185, sass/main.scss */
 .user-modal .content .chart .label-colors p {
   position: relative;
   padding-left: 18px;
   margin-bottom: 5px;
   font-size: 14px;
 }
-/* line 190, sass/main.scss */
+/* line 192, sass/main.scss */
 .user-modal .content .chart .label-colors p.gold:before {
   background: gold;
 }
-/* line 191, sass/main.scss */
+/* line 193, sass/main.scss */
 .user-modal .content .chart .label-colors p.green:before {
   background: #99bf31;
 }
-/* line 192, sass/main.scss */
+/* line 194, sass/main.scss */
 .user-modal .content .chart .label-colors p.red:before {
   background: red;
 }
-/* line 193, sass/main.scss */
+/* line 195, sass/main.scss */
 .user-modal .content .chart .label-colors p:before {
   position: absolute;
   display: block;
@@ -221,7 +227,7 @@ body {
   border-radius: 50%;
 }
 
-/* line 209, sass/main.scss */
+/* line 211, sass/main.scss */
 .range-modal-button {
   position: absolute;
   font-size: 24px;
@@ -229,7 +235,26 @@ body {
   left: 5px;
   top: 5px;
 }
-/* line 215, sass/main.scss */
+/* line 217, sass/main.scss */
 .range-modal-button:hover {
   color: #0676bc;
+}
+
+/* line 223, sass/main.scss */
+.range-modal .content {
+  padding-bottom: 40px !important;
+  text-align: center;
+  position: relative;
+}
+/* line 228, sass/main.scss */
+.range-modal .content .radios {
+  width: 100%;
+  display: block;
+  text-align: right;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+/* line 234, sass/main.scss */
+.range-modal .content .radios input:nth-child(2) {
+  margin-right: 8px;
 }

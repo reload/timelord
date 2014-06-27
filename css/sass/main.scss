@@ -95,6 +95,8 @@ body {
       border-bottom: 1px solid $border-gray;
       padding: 0 25px;
       width: 100%;
+      @include border-top-left-radius(5px);
+      @include border-top-right-radius(5px);
     }
 
     // Modal content.
@@ -214,5 +216,24 @@ body {
   top: 5px;
   &:hover {
     color: $drupalBlue;
+  }
+}
+
+.range-modal {
+  .content {
+    padding-bottom: 40px !important;
+    text-align: center;
+    position: relative;
+
+    .radios {
+      width: 100%;
+      display: block;
+      text-align: right;
+      margin-right: 8px;
+      margin-top: 10px;
+      & input:nth-child(2) {
+        margin-right: 8px;
+      }
+    }
   }
 }

@@ -13,8 +13,9 @@ app.controller 'TimeLord', ($scope, $http) ->
   # Define modal's default states.
   $scope.user_modal = false
   $scope.range_modal = false
+  $scope.show_month_settings = true
 
-# Set the choices for the "month selector".
+  # Set the choices for the "month selector".
   $scope.date_options_month = [
     { value: "jan", name: "January" }
     { value: "feb", name: "February" }
@@ -106,10 +107,17 @@ app.controller 'TimeLord', ($scope, $http) ->
       # Execute the "rangeChange" function for both "from" and "to".
       $scope.rangeChange('from')
       $scope.rangeChange('to')
+      # Toggle the state of settings-display.
+      $scope.show_range_settings = true
+      $scope.show_month_settings = false
+
     # If the "month radio" is checked.
     else if $scope.type == 'month'
       # Execute the month
       $scope.monthChange()
+      # Toggle the state of settings-display.
+      $scope.show_range_settings = false
+      $scope.show_month_settings = true
 
   # Url to JSON.
   $scope.loading = true
