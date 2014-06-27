@@ -11,21 +11,112 @@
   });
 
   app.controller('TimeLord', function($scope, $http) {
-    var date_arguments, fetchData, getLoginStatus, getSession;
-    date_arguments = [];
-    date_arguments['from'] = '';
-    date_arguments['to'] = '';
+    var date, fetchData, from_state, getLoginStatus, getSession, to_state;
+    $scope.user_modal = false;
+    $scope.range_modal = true;
+    $scope.date_options_month = [
+      {
+        value: "jan",
+        name: "January"
+      }, {
+        value: "feb",
+        name: "February"
+      }, {
+        value: "mar",
+        name: "March"
+      }, {
+        value: "apr",
+        name: "April"
+      }, {
+        value: "may",
+        name: "May"
+      }, {
+        value: "jun",
+        name: "June"
+      }, {
+        value: "jul",
+        name: "July"
+      }, {
+        value: "aug",
+        name: "August"
+      }, {
+        value: "sep",
+        name: "September"
+      }, {
+        value: "oct",
+        name: "October"
+      }, {
+        value: "nov",
+        name: "November"
+      }, {
+        value: "dec",
+        name: "December"
+      }
+    ];
+    $scope.type = 'month';
+    $scope.from = '';
+    $scope.to = '';
+    date = new Date();
+    $scope.month = $scope.date_options_month[date.getMonth()].value;
+    $scope.year = date.getFullYear();
+    from_state = false;
+    to_state = false;
+    $scope.rangeChange = function(input) {
+      var range;
+      if ($scope.type === 'range') {
+        range = [];
+        range[0] = '&from=' + $scope.from;
+        range[1] = '&to=' + $scope.to;
+        if (input === 'from') {
+          $scope.from.replace(/-/g, '');
+          if ($scope.from.length === 8) {
+            range[0] = '&from=' + $scope.from;
+            from_state = true;
+            return fetchData(range);
+          } else if ($scope.from.length === 0 && from_state === true) {
+            range[0] = '';
+            $scope.from = '';
+            from_state = false;
+            return fetchData(range);
+          }
+        } else if (input === 'to') {
+          $scope.to.replace(/-/g, '');
+          if ($scope.to.length === 8) {
+            range[1] = '&to=' + $scope.to;
+            to_state = true;
+            return fetchData(range);
+          } else if ($scope.to.length === 0 && to_state === true) {
+            $scope.to = '';
+            range[1] = '';
+            to_state = false;
+            return fetchData(range);
+          }
+        }
+      }
+    };
+    $scope.monthChange = function() {
+      if ($scope.type === 'month') {
+        return fetchData(['&month=' + $scope.month, '&year=' + $scope.year]);
+      }
+    };
+    $scope.typeChange = function() {
+      if ($scope.type === 'range') {
+        $scope.rangeChange('from');
+        return $scope.rangeChange('to');
+      } else if ($scope.type === 'month') {
+        return $scope.monthChange();
+      }
+    };
     $scope.loading = true;
-    fetchData = function(url_arguments) {
-      var arg_string;
-      arg_string = '';
-      if (url_arguments['from']) {
-        arg_string += '&from=' + url_arguments['from'];
+    fetchData = function(args) {
+      var url;
+      args = args || null;
+      url = 'inc/feed.php';
+      if (args) {
+        url += '?' + args.join('');
       }
-      if (url_arguments['to']) {
-        arg_string += '&to=' + url_arguments['to'];
-      }
-      return $http.get('inc/feed.php?' + arg_string).success(function(data, status, headers, config) {
+      return $http.get(url).success(function(data, status, headers, config) {
+        var year;
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_in_range);
         angular.forEach(data.ranking, function(user, i) {
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg';
@@ -33,16 +124,37 @@
         });
         $scope.data = data;
         $scope.loading = false;
-        return $scope.loginOpen = false;
+        $scope.loginOpen = false;
+        date = new Date();
+        if (parseInt(data.misc.first_entry.year, 10) === date.getFullYear()) {
+          $scope.date_options_year = [
+            {
+              value: data.misc.first_entry.year,
+              year: data.misc.first_entry.year
+            }
+          ];
+        }
+        if (data.misc.first_entry.year < date.getFullYear()) {
+          year = data.misc.first_entry.year;
+          $scope.date_options_year = [];
+          while (year <= date.getFullYear()) {
+            $scope.date_options_year.push({
+              value: year,
+              year: year
+            });
+            year++;
+          }
+          return $scope.date_options_year.reverse();
+        }
       }).error(function(data, status, headers, config) {
         $scope.data = data;
         $scope.loading = false;
         return console.log('Error:' + status);
       });
     };
-    fetchData(date_arguments);
+    fetchData();
     setInterval(function() {
-      return fetchData(date_arguments);
+      return fetchData();
     }, 300000);
     getLoginStatus = function(msg) {
       $scope.loginMessage = msg;
@@ -84,7 +196,7 @@
       });
     };
     $scope.toggleStats = function(user) {
-      var data, gold, green, red;
+      var data, gold, green, options, red;
       console.log(user);
       $scope.user_modal = true;
       $scope.user = user;
@@ -128,8 +240,13 @@
       };
       return doughnut('hours-chart', data, options);
     };
-    return $scope.userModal = function(user_modal) {
-      return $scope.user_modal = user_modal;
+    return $scope.modalState = function(name, state) {
+      switch (name) {
+        case 'user_modal':
+          return $scope.user_modal = state;
+        case 'range_modal':
+          return $scope.range_modal = state;
+      }
     };
   });
 

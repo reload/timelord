@@ -205,3 +205,14 @@ body {
     }
   }
 }
+
+.range-modal-button {
+  position: absolute;
+  font-size: 24px;
+  cursor: pointer;
+  left: 5px;
+  top: 5px;
+  &:hover {
+    color: $drupalBlue;
+  }
+}

@@ -10,23 +10,119 @@ app.config ($routeProvider) ->
 # TimeLord controller.
 app.controller 'TimeLord', ($scope, $http) ->
 
+  # Define modal's default states.
+  $scope.user_modal = false
+  $scope.range_modal = true
+
+# Set the choices for the "month selector".
+  $scope.date_options_month = [
+    { value: "jan", name: "January" }
+    { value: "feb", name: "February" }
+    { value: "mar", name: "March" }
+    { value: "apr", name: "April" }
+    { value: "may", name: "May" }
+    { value: "jun", name: "June" }
+    { value: "jul", name: "July" }
+    { value: "aug", name: "August" }
+    { value: "sep", name: "September" }
+    { value: "oct", name: "October" }
+    { value: "nov", name: "November" }
+    { value: "dec", name: "December" }
+  ]
+
+  # Define input models.
+  $scope.type = 'month'
+  $scope.from = ''
+  $scope.to = ''
+
   # Global date variables.
-  date_arguments = []
-  date_arguments['from'] = ''
-  date_arguments['to'] = ''
+  date = new Date()
+  $scope.month = $scope.date_options_month[date.getMonth()].value
+  $scope.year = date.getFullYear()
+
+  # Define "date/range states" so we only fetch data when needed.
+  from_state = false
+  to_state = false
+
+  # On "range" change.
+  $scope.rangeChange = (input) ->
+    if $scope.type == 'range'
+      # Set default values for the "range" arguments.
+      range = []
+      range[0] = '&from=' + $scope.from
+      range[1] = '&to=' + $scope.to
+      # Input: "from".
+      if input == 'from'
+        # Remove dashes from the input value.
+        $scope.from.replace(/-/g, '')
+        # If an entire date is provided.
+        if $scope.from.length == 8
+          # Update the feed argument.
+          range[0] = '&from=' + $scope.from
+          # Update the state and fetch new data.
+          from_state = true
+          fetchData(range)
+        # Or if the field is empty.
+        else if $scope.from.length == 0 && from_state == true
+          # Clear the input value & feed argument.
+          range[0] = ''
+          $scope.from = ''
+          # Update state and fetch new data.
+          from_state = false
+          fetchData(range)
+
+      # Input: "to".
+      else if input == 'to'
+        # Remove dashes from the input value.
+        $scope.to.replace(/-/g, '')
+        # If an entire date is provided.
+        if $scope.to.length == 8
+          # Update the feed argument.
+          range[1] = '&to=' + $scope.to
+          # Update state and fetch new data.
+          to_state = true
+          fetchData(range)
+        # Or if the field is empty.
+        else if $scope.to.length == 0 && to_state == true
+          # Clear the input value & feed argument.
+          $scope.to = ''
+          range[1] = ''
+          # Update state and fetch new data.
+          to_state = false
+          fetchData(range)
+
+  # On "month" change.
+  $scope.monthChange = () ->
+    if $scope.type == 'month'
+      fetchData([
+        '&month=' + $scope.month,
+        '&year=' + $scope.year
+      ])
+
+  # On "type" change.
+  $scope.typeChange = () ->
+    # If the "range radio" is checked.
+    if $scope.type == 'range'
+      # Execute the "rangeChange" function for both "from" and "to".
+      $scope.rangeChange('from')
+      $scope.rangeChange('to')
+    # If the "month radio" is checked.
+    else if $scope.type == 'month'
+      # Execute the month
+      $scope.monthChange()
 
   # Url to JSON.
   $scope.loading = true
-  fetchData = (url_arguments) ->
-    # Prepare possible feed arguments.
-    arg_string = '';
-    if url_arguments['from']
-      arg_string += '&from=' + url_arguments['from']
+  fetchData = (args) ->
+    args = args || null;
 
-    if url_arguments['to']
-      arg_string += '&to=' + url_arguments['to']
+    # Prepare the feed-request.
+    url = 'inc/feed.php'
+    if args
+      url += '?' + args.join('')
 
-    $http.get('inc/feed.php?' + arg_string)
+    # Execute feed-request.
+    $http.get(url)
       .success (data, status, headers, config) ->
         # Get registered percent.
         data.total_percent = Math.round 100*data.hours_total_registered/data.hours_in_range
@@ -40,15 +136,40 @@ app.controller 'TimeLord', ($scope, $http) ->
         $scope.loading = false
         $scope.loginOpen = false
 
+        # The reason we create a new instance of the date is the following:
+        # In theory there could have been a year-change since the last
+        # page-request, so we have to create a new instance of the
+        # date, on every data-request.
+        date = new Date()
+        # If the first entry was created this year.
+        if parseInt(data.misc.first_entry.year, 10) == date.getFullYear()
+          $scope.date_options_year = [{
+            value: data.misc.first_entry.year,
+            year: data.misc.first_entry.year
+          }]
+        # If the first entry was created before this year.
+        if data.misc.first_entry.year < date.getFullYear()
+          year = data.misc.first_entry.year
+          $scope.date_options_year = []
+          while year <= date.getFullYear()
+            $scope.date_options_year.push {
+              value: year,
+              year: year
+            }
+            year++
+          # Reverse the array to get the "greatest" year, first.
+          $scope.date_options_year.reverse()
+
       .error (data ,status, headers, config) ->
         $scope.data  = data
         $scope.loading = false
         console.log 'Error:' + status
 
+
   # Trigger and loop fetch function.
-  fetchData(date_arguments)
+  fetchData()
   setInterval ()->
-    fetchData(date_arguments)
+    fetchData()
   , 300000
 
   # Set login message.
@@ -157,8 +278,12 @@ app.controller 'TimeLord', ($scope, $http) ->
     doughnut('hours-chart', data, options)
 
   # Close user-modal
-  $scope.userModal = (user_modal) ->
-    $scope.user_modal = user_modal
+  $scope.modalState = (name, state) ->
+    switch name
+      when 'user_modal'
+        $scope.user_modal = state
+      when 'range_modal'
+        $scope.range_modal = state
 
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->

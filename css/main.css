@@ -220,3 +220,16 @@ body {
   -o-border-radius: 50%;
   border-radius: 50%;
 }
+
+/* line 209, sass/main.scss */
+.range-modal-button {
+  position: absolute;
+  font-size: 24px;
+  cursor: pointer;
+  left: 5px;
+  top: 5px;
+}
+/* line 215, sass/main.scss */
+.range-modal-button:hover {
+  color: #0676bc;
+}

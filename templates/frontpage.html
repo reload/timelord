@@ -20,12 +20,6 @@
       </div>
     </div>
 
-    <!-- Date selector -->
-    <div class="date">
-      <input type="text" class="from"/>
-      <input type="text" class="to"/>
-    </div>
-
     <!-- User portraits -->
     <div class="user-report">
       <ul class="inner">
@@ -73,7 +67,43 @@
     </figure>
   </div>
 
-  <!-- Modal -->
+  <!-- Range Modal button -->
+  <i class="glyphicon glyphicon-time range-modal-button" ng-click="modalState('range_modal', true)"></i>
+  <!-- Range Modal -->
+  <div class="modal_wrap" ng-show="range_modal">
+    <div class="modal_content date">
+      <!-- Header -->
+      <div class="header">
+        <h3>Set the range-settings</h3>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- From -->
+        <label for="date_from">From</label>
+        <input id="date_from" type="text" ng-model="from" ng-change="rangeChange('from')" placeholder="YYYY-MM-DD"/>
+        <!-- To -->
+        <label for="date_to">To</label>
+        <input id="date_to" type="text" ng-model="to" ng-change="rangeChange('to')" placeholder="YYYY-MM-DD"/>
+        <!-- Month -->
+        <label for="date_month">Month</label>
+        <select id="date_month" ng-model="month" ng-change="monthChange()" ng-options="month.value as month.name for month in date_options_month"></select>
+        <!-- Year -->
+        <label for="date_year">Year</label>
+        <select id="date_year" ng-model="year" ng-change="monthChange()" ng-options="year.value as year.year for year in date_options_year"></select>
+        <!-- Radios -->
+        <label for="type_range">Range</label>
+        <input type="radio" id="type_range" ng-model="type" ng-change="typeChange()" value="range" name="date_type"/>
+        <label for="type_month">Month</label>
+        <input type="radio" id="type_month" ng-model="type" ng-change="typeChange()" value="month" name="date_type"/>
+      </div>
+
+      <!-- Close button -->
+      <i class="glyphicon glyphicon-remove close" ng-click="modalState('range_modal', false)"></i>
+    </div>
+  </div>
+
+  <!-- User Modal -->
   <div class="modal_wrap" ng-show="user_modal">
     <div class="modal_content user_modal">
       <!-- Header -->
@@ -85,7 +115,7 @@
       <!-- Content -->
       <div class="content">
         <!-- Close button -->
-        <i class="glyphicon glyphicon-remove close" ng-click="userModal(False)"></i>
+        <i class="glyphicon glyphicon-remove close" ng-click="modalState('user_modal', false)"></i>
 
        <!-- Percent -->
         <div class="percent">
