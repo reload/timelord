@@ -107,11 +107,15 @@
         <!-- Type: Range -->
         <div class="range" ng-show="show_range_settings">
           <!-- From -->
-          <label for="date_from">From</label>
-          <input id="date_from" type="text" ng-model="from" ng-change="rangeChange('from')" placeholder="YYYY-MM-DD"/>
+          <div class="field">
+            <label for="date_from">From</label>
+            <input id="date_from" type="text" ng-model="from" ng-change="rangeChange('from')" placeholder="YYYY-MM-DD"/>
+          </div>
           <!-- To -->
-          <label for="date_to">To</label>
-          <input id="date_to" type="text" ng-model="to" ng-change="rangeChange('to')" placeholder="YYYY-MM-DD"/>
+          <div class="field">
+            <label for="date_to">To</label>
+            <input id="date_to" type="text" ng-model="to" ng-change="rangeChange('to')" placeholder="YYYY-MM-DD"/>
+          </div>
         </div>
       </div>
 

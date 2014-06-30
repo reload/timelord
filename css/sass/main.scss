@@ -231,8 +231,26 @@ body {
       text-align: right;
       margin-right: 8px;
       margin-top: 10px;
+      @include modal {
+        margin-bottom: 5px;
+      }
       & input:nth-child(2) {
         margin-right: 8px;
+      }
+    }
+    .range {
+      .field {
+        display: inline-block;
+        @include modal {
+          display: block;
+          margin-bottom: 10px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          label {
+            width: 55px;
+          }
+        }
       }
     }
   }

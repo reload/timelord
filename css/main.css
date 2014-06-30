@@ -254,7 +254,32 @@ body {
   margin-right: 8px;
   margin-top: 10px;
 }
-/* line 234, sass/main.scss */
+@media (max-width: 850px) {
+  /* line 228, sass/main.scss */
+  .range-modal .content .radios {
+    margin-bottom: 5px;
+  }
+}
+/* line 237, sass/main.scss */
 .range-modal .content .radios input:nth-child(2) {
   margin-right: 8px;
+}
+/* line 242, sass/main.scss */
+.range-modal .content .range .field {
+  display: inline-block;
+}
+@media (max-width: 850px) {
+  /* line 242, sass/main.scss */
+  .range-modal .content .range .field {
+    display: block;
+    margin-bottom: 10px;
+  }
+  /* line 247, sass/main.scss */
+  .range-modal .content .range .field:last-child {
+    margin-bottom: 0;
+  }
+  /* line 250, sass/main.scss */
+  .range-modal .content .range .field label {
+    width: 55px;
+  }
 }
