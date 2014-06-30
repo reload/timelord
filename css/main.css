@@ -162,27 +162,41 @@ body {
   margin-top: 80px;
   text-align: center;
 }
-/* line 155, sass/main.scss */
+@media (max-width: 850px) {
+  /* line 148, sass/main.scss */
+  .user-modal .content .percent {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+/* line 159, sass/main.scss */
 .user-modal .content .percent p {
   display: inline;
   font-weight: bold;
   font-size: 20px;
   border-bottom: 1px solid #c9c9c9;
 }
-/* line 161, sass/main.scss */
+/* line 165, sass/main.scss */
 .user-modal .content .percent h1 {
   font-size: 80px;
   line-height: 1;
   margin-top: 0;
 }
-/* line 169, sass/main.scss */
+/* line 173, sass/main.scss */
 .user-modal .content .chart {
   position: relative;
   margin: 25px auto;
   float: right;
   width: 50%;
 }
-/* line 176, sass/main.scss */
+@media (max-width: 850px) {
+  /* line 173, sass/main.scss */
+  .user-modal .content .chart {
+    width: 100%;
+    float: left;
+  }
+}
+/* line 184, sass/main.scss */
 .user-modal .content .chart .label-colors {
   border: 1px solid #c9c9c9;
   background-color: #fff;
@@ -192,26 +206,26 @@ body {
   padding: 5px;
   padding-bottom: 0;
 }
-/* line 185, sass/main.scss */
+/* line 193, sass/main.scss */
 .user-modal .content .chart .label-colors p {
   position: relative;
   padding-left: 18px;
   margin-bottom: 5px;
   font-size: 14px;
 }
-/* line 192, sass/main.scss */
+/* line 200, sass/main.scss */
 .user-modal .content .chart .label-colors p.gold:before {
   background: gold;
 }
-/* line 193, sass/main.scss */
+/* line 201, sass/main.scss */
 .user-modal .content .chart .label-colors p.green:before {
   background: #99bf31;
 }
-/* line 194, sass/main.scss */
+/* line 202, sass/main.scss */
 .user-modal .content .chart .label-colors p.red:before {
   background: red;
 }
-/* line 195, sass/main.scss */
+/* line 203, sass/main.scss */
 .user-modal .content .chart .label-colors p:before {
   position: absolute;
   display: block;
@@ -227,7 +241,7 @@ body {
   border-radius: 50%;
 }
 
-/* line 211, sass/main.scss */
+/* line 219, sass/main.scss */
 .range-modal-button {
   position: absolute;
   font-size: 24px;
@@ -235,18 +249,18 @@ body {
   left: 5px;
   top: 5px;
 }
-/* line 217, sass/main.scss */
+/* line 225, sass/main.scss */
 .range-modal-button:hover {
   color: #0676bc;
 }
 
-/* line 223, sass/main.scss */
+/* line 231, sass/main.scss */
 .range-modal .content {
   padding-bottom: 40px !important;
   text-align: center;
   position: relative;
 }
-/* line 228, sass/main.scss */
+/* line 236, sass/main.scss */
 .range-modal .content .radios {
   width: 100%;
   display: block;
@@ -255,30 +269,30 @@ body {
   margin-top: 10px;
 }
 @media (max-width: 850px) {
-  /* line 228, sass/main.scss */
+  /* line 236, sass/main.scss */
   .range-modal .content .radios {
     margin-bottom: 5px;
   }
 }
-/* line 237, sass/main.scss */
+/* line 245, sass/main.scss */
 .range-modal .content .radios input:nth-child(2) {
   margin-right: 8px;
 }
-/* line 242, sass/main.scss */
+/* line 250, sass/main.scss */
 .range-modal .content .range .field {
   display: inline-block;
 }
 @media (max-width: 850px) {
-  /* line 242, sass/main.scss */
+  /* line 250, sass/main.scss */
   .range-modal .content .range .field {
     display: block;
     margin-bottom: 10px;
   }
-  /* line 247, sass/main.scss */
+  /* line 255, sass/main.scss */
   .range-modal .content .range .field:last-child {
     margin-bottom: 0;
   }
-  /* line 250, sass/main.scss */
+  /* line 258, sass/main.scss */
   .range-modal .content .range .field label {
     width: 55px;
   }

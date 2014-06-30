@@ -151,6 +151,10 @@ body {
       width: 50%;
       margin-top: 80px;
       text-align: center;
+      @include modal {
+        width: 100%;
+        margin-top: 20px;
+      }
 
       p {
         display: inline;
@@ -171,6 +175,10 @@ body {
       margin: 25px auto;
       float: right;
       width: 50%;
+      @include modal {
+        width: 100%;
+        float: left;
+      }
 
       // Labels.
       .label-colors {
