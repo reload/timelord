@@ -24,13 +24,6 @@
   animation:          $animation;
 }
 
-// Medium size query.
-@mixin medium {
-  @media (max-width: 800px) {
-    @content;
-  }
-}
-
 // When the modal starts to scale down.
 @mixin modal {
   @media (max-width: 850px) {
