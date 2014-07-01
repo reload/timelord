@@ -1,6 +1,4 @@
-@import "vars.core.scss";
-
-// When the modal starts to scale down.
+// Media query: when the modal starts to scale down.
 @mixin modal {
   @media (max-width: 850px) {
     @content;
@@ -58,7 +56,7 @@
 
       &:hover,
       &:focus {
-        color: $drupalBlue;
+        color: $blue;
       }
     }
   }
@@ -135,9 +133,9 @@
           font-size: 14px;
 
           // Color examples.
-          &.gold:before  { background: $portrait-golden; }
-          &.green:before { background: $portrait-green;  }
-          &.red:before   { background: $portrait-red;    }
+          &.gold:before  { background: $yellow; }
+          &.green:before { background: $green;  }
+          &.red:before   { background: $red;    }
           &:before {
             position: absolute;
             display: block;
@@ -161,7 +159,7 @@
   left: 5px;
   top: 5px;
   &:hover {
-    color: $drupalBlue;
+    color: $blue;
   }
 }
 

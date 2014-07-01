@@ -85,7 +85,6 @@ module.exports = function (grunt) {
       combine: {
         files: {
           'css/main.min.css': [
-            'css/loadingbar.css',
             'css/main.css'
           ],
           'vendor/vendor.min.css': [

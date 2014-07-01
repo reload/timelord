@@ -9,6 +9,8 @@ $yellow:          #F7D77C;
 $red:             #EA5F57;
 $black:           #333;
 $lightGray:       #BDC0C6;
+$border-gray:     #C9C9C9;
+$bootstrap-gray:  #f9f9f9;
 
 // Settings
 $fontSize:         16px;
@@ -23,6 +25,8 @@ $containerWidth:   1400px;
 @import "compass/reset";
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
+@import "mixins";
+@import "loadingbar";
 @import "base";
 @import "fonts";
 @import "loader";

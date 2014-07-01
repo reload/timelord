@@ -1,7 +1,3 @@
-@import "compass/css3";
-@import "vars";
-@import "mixins";
-
 // Loading bar.
 /* Make clicks pass-through */
 #loading-bar,
@@ -26,7 +22,7 @@
 }
 
 #loading-bar .bar {
-  background: $primaryColor;
+  background: $green;
   position: fixed;
   z-index: 10002;
   top: 0;
@@ -47,7 +43,7 @@
   height: 2px;
   opacity: .45;
   @include border-radius(100%);
-  @include box-shadow($primaryColor 1px 0 6px 1px);
+  @include box-shadow($green 1px 0 6px 1px);
 }
 
 #loading-bar-spinner {
@@ -62,8 +58,8 @@
   width: 14px;
   height: 14px;
   border:  solid 2px transparent;
-  border-top-color:  $primaryColor;
-  border-left-color: $primaryColor;
+  border-top-color:  $green;
+  border-left-color: $green;
   border-radius: 10px;
   @include animation(loading-bar-spinner 400ms linear infinite);
 }
