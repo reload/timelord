@@ -777,8 +777,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
 }
 
 .range-modal .header {
-  padding-top: 12px;
-  padding-bottom: 6px;
+  padding: 12px 25px 6px !important;
 }
 .range-modal .content {
   padding-bottom: 40px !important;
