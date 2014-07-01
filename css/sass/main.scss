@@ -1,265 +1,34 @@
+// Colors
+$green:           #3AAF8B;
+$darkGreen:       #367763;
+$darkerGreen:     #2A443B;
+$blue:            #4FB1D7;
+$darkerBlue:      #225D77;
+$lightYellow:     #FEEDC2;
+$yellow:          #F7D77C;
+$red:             #EA5F57;
+$black:           #333;
+$lightGray:       #BDC0C6;
+
+// Settings
+$fontSize:         16px;
+$bodyFontColor:    $black;
+$bodyLineHeight:   1.4;
+$bodyFontFamily:   AsapRegular, sans-serif;
+$headerFontColor:  $darkerGreen;
+$headerFontFamily: AsapBold, sans-serif;
+$containerWidth:   1400px;
+
+// Imports
+@import "compass/reset";
 @import "compass/css3";
-@import "mixins";
-@import "vars.core";
-
-// Users.
-body {
-  background: radial-gradient($bgColor, $bgColor2 100%) no-repeat;
-  color: $fgColor;
-}
-
-.user-report {
-  li.user {
-    // Karma-hunter.
-    .portrait.a-karmahunter {
-      img { border-color: $portrait-golden; }
-    }
-    // Goalie.
-    .portrait.b-goalie {
-      img { border-color: $portrait-green; }
-    }
-    // Karma-user.
-    .portrait.c-karmauser {
-      img { border-color: $portrait-gray; }
-    }
-    // Slacker.
-    .portrait.d-slacker{
-      img { border-color: $portrait-red; }
-    }
-  }
-}
-
-.user-form {
-  background-color: rgba($fgColor, 0.8);
-  form {
-    padding: 20px 40px;
-    background-color: rgba($fgColor, 0.9);
-    box-shadow: 0 0 20px rgba(black, 0.4);
-    border: 1px solid $primaryColor;
-    border-radius: 5px;
-    position: relative;
-    max-width: 400px;
-
-    .login-close {
-      border: none;
-      background: none;
-      color: $bgColor;
-      position: absolute;
-      bottom: 15px;
-      right: 40px;
-      font-size: 2rem;
-      @include appearance(none);
-      &:hover {
-        text-shadow: 0 0 10px $bgColor;
-      }
-    }
-  }
-}
-
-.active-user {
-  &:before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    background-color: $activeUserLight;
-    @include border-radius(100%);
-    @include box-shadow(0 0 10px rgba($activeUserLight, 0.9));
-  }
-}
-
-// Modal wrap.
-.modal-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.75); // Dark overlay.
-
-  // Modal content.
-  .modal-content {
-    background-color: #fff;
-    position: relative;
-    margin: 25px auto;
-    max-width: 800px;
-    @include modal {
-      margin: 25px;
-    }
-
-    // Modal header.
-    .header {
-      background-color: $bootstrap-gray;
-      border-bottom: 1px solid $border-gray;
-      padding: 0 25px;
-      width: 100%;
-      @include border-top-left-radius(5px);
-      @include border-top-right-radius(5px);
-    }
-
-    // Modal content.
-    .content {
-      padding: 1px 25px;
-      display: block;
-      @include box-sizing(border-box);
-    }
-
-    // Modal close button.
-    .close {
-      font-weight: normal;
-      position: absolute;
-      cursor: pointer;
-      right: 20px;
-      top: 12px;
-      color: #333;
-      padding: 4px;
-      font-size: 16px;
-      @include opacity(1);
-
-      &:hover,
-      &:focus {
-        color: $drupalBlue;
-      }
-    }
-  }
-}
-
-// User modal to display statistics.
-.user-modal {
-  // Header.
-  .header {
-    img {
-      float: left;
-      width: 55px;
-      margin: 10px 0;
-    }
-    h3 {
-      margin-top: 25px;
-      margin-left: 20px;
-      float: left;
-    }
-  }
-
-  // Content.
-  .content {
-    // Large percent.
-    .percent {
-      position: relative;
-      float: left;
-      width: 50%;
-      margin-top: 80px;
-      text-align: center;
-      @include modal {
-        width: 100%;
-        margin-top: 20px;
-      }
-
-      p {
-        display: inline;
-        font-weight: bold;
-        font-size: 20px;
-        border-bottom: 1px solid $border-gray;
-      }
-      h1 {
-        font-size: 80px;
-        line-height: 1;
-        margin-top: 0;
-      }
-    }
-
-    // Chart.
-    .chart {
-      position: relative;
-      margin: 25px auto;
-      float: right;
-      width: 50%;
-      @include modal {
-        width: 100%;
-        float: left;
-      }
-
-      // Labels.
-      .label-colors {
-        border: 1px solid $border-gray;
-        background-color: #fff;
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 5px;
-        padding-bottom: 0;
-        // Individual labels.
-        p {
-          position: relative;
-          padding-left: 18px;
-          margin-bottom: 5px;
-          font-size: 14px;
-
-          // Color examples.
-          &.gold:before  { background: $portrait-golden; }
-          &.green:before { background: $portrait-green;  }
-          &.red:before   { background: $portrait-red;    }
-          &:before {
-            position: absolute;
-            display: block;
-            content: ' ';
-            left: 0;
-            top: 1px;
-            width: 16px;
-            height: 16px;
-            @include border-radius(50%);
-          }
-        }
-      }
-    }
-  }
-}
-
-.range-modal-button {
-  position: absolute;
-  font-size: 24px;
-  cursor: pointer;
-  left: 5px;
-  top: 5px;
-  &:hover {
-    color: $drupalBlue;
-  }
-}
-
-.range-modal {
-  .content {
-    padding-bottom: 40px !important;
-    text-align: center;
-    position: relative;
-
-    .radios {
-      width: 100%;
-      display: block;
-      text-align: right;
-      margin-right: 8px;
-      margin-top: 10px;
-      @include modal {
-        margin-bottom: 5px;
-      }
-      & input:nth-child(2) {
-        margin-right: 8px;
-      }
-    }
-    .range {
-      .field {
-        display: inline-block;
-        @include modal {
-          display: block;
-          margin-bottom: 10px;
-          &:last-child {
-            margin-bottom: 0;
-          }
-          label {
-            width: 55px;
-          }
-        }
-      }
-    }
-  }
-}
+@import "compass/utilities/general/clearfix";
+@import "base";
+@import "fonts";
+@import "loader";
+@import "layout";
+@import "typography";
+@import "header";
+@import "user-ranking";
+@import "modal";
+@import "tables";

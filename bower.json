@@ -6,18 +6,18 @@
     "André Kallehauge <andre@reload.dk>"
   ],
   "license": "MIT",
-    "ignore": [
-      "**/.*",
-      "node_modules",
-      "bower_components",
-      "test",
-      "tests"
-    ],
-    "dependencies": {
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
     "angular": "latest",
-    "bootstrap-sass": "latest",
     "angular-loading-bar": "latest",
     "angular-route": "latest",
-    "chartjs": "latest"
+    "chartjs": "latest",
+    "fontawesome": "latest"
   }
 }

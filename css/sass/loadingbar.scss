@@ -61,12 +61,10 @@
 #loading-bar-spinner .spinner-icon {
   width: 14px;
   height: 14px;
-
   border:  solid 2px transparent;
   border-top-color:  $primaryColor;
   border-left-color: $primaryColor;
   border-radius: 10px;
-
   @include animation(loading-bar-spinner 400ms linear infinite);
 }
 

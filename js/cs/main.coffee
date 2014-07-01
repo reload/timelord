@@ -144,12 +144,25 @@ app.controller 'TimeLord', ($scope, $http) ->
     # Execute feed-request.
     $http.get(url)
       .success (data, status, headers, config) ->
+        # Make the total amount of hours an integer instead of float.
+        data.hours_total_registered = parseInt(data.hours_total_registered, 10)
         # Get registered percent.
         data.total_percent = Math.round 100*data.hours_total_registered/data.hours_in_range
+
         # Get user ranking.
         angular.forEach data.ranking, (user, i) ->
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg'
           data.ranking[i].group = data.ranking[i].group.toLowerCase()
+          # Set icon for the group.
+          switch data.ranking[i].group
+            when "a-karmahunter"
+              data.ranking[i].group_icon = '★'
+            when "b-goalie"
+              data.ranking[i].group_icon = '✓'
+            when "c-karmauser"
+              data.ranking[i].group_icon = '☂'
+            when "d-slacker"
+              data.ranking[i].group_icon = '☁'
 
         # Output to scope.
         $scope.data = data

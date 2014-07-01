@@ -14,15 +14,16 @@ module.exports = function (grunt) {
         tasks: ['compass:dev']
       },
       css: {
-        files: ['css/*.css'],
         options: {
           livereload: true
         },
+        files: ['css/*.css'],
+        tasks: ['cssmin']
       },
       coffee: {
         files: ['js/cs/*.coffee'],
         tasks: ['coffee']
-      },
+      }
       /*
       jshint: {
         files: ['Gruntfile.js' ,'js/*.js'],
@@ -57,13 +58,18 @@ module.exports = function (grunt) {
     concat: {
       scripts: {
         'src': [
-          //'vendor/modernizr/modernizr.js',
           'vendor/angular/angular.js',
           'vendor/angular-loading-bar/src/loading-bar.js',
           'vendor/angular-route/angular-route.js',
           'vendor/chartjs/Chart.js'
         ],
         'dest': 'vendor/vendor.js'
+      },
+      css: {
+        'src': [
+          'vendor/fontawesome/css/font-awesome.css'
+        ],
+        'dest': 'vendor/vendor.css'
       }
     },
     // Uglify.
@@ -72,6 +78,34 @@ module.exports = function (grunt) {
         files: {
           'js/vendor.min.js': ['vendor/vendor.js']
         }
+      }
+    },
+    // CSSmin.
+    cssmin: {
+      combine: {
+        files: {
+          'css/main.min.css': [
+            'css/loadingbar.css',
+            'css/main.css'
+          ],
+          'vendor/vendor.min.css': [
+            'vendor/vendor.css'
+          ]
+        }
+      }
+    },
+    // Copy.
+    copy: {
+      main: {
+        files: [
+          { // Copy fontawesome fonts to the "fonts" directory.
+            expand: true,
+            flatten: true,
+            src: ['vendor/fontawesome/fonts/*'],
+            dest: 'fonts/',
+            filter: 'isFile'
+          }
+        ]
       }
     },
     // Compass and SCSS
@@ -90,17 +124,6 @@ module.exports = function (grunt) {
           environment: 'development',
           outputStyle: 'expanded',
           relativeAssets: true,
-          noLineComments: false
-        }
-      },
-      bootstrap: {
-        options: {
-          cssDir: 'css',
-          sassDir: 'vendor/bootstrap-sass/lib/',
-          fontsDir: 'vendor/bootstrap-sass/fonts/',
-          environment: 'development',
-          outputStyle: 'compact',
-          relativeAssets: true,
           noLineComments: true
         }
       }
@@ -112,16 +135,18 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-
   grunt.registerTask('default', [
-    'compass:bootstrap',
     'compass:dev',
     'coffee',
     'concat',
     'uglify',
     //'jshint',
+    'cssmin',
+    'copy',
     'watch'
   ]);
 };

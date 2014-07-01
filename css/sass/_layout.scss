@@ -1,0 +1,7 @@
+.container {
+  max-width: $containerWidth;
+  margin:0 auto;
+  padding: 0 4%;
+  @include transition(opacity 2000ms ease-in-out);
+  @include pie-clearfix;
+}

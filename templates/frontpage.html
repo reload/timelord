@@ -1,192 +1,192 @@
-<div class="time-report">
-  <div class="page" ng-hide="loading">
+<!-- Page loader -->
+<div id="loader" ng-show="loading" aria-hidden="true">
+  <h3>
+    <i class="thingy"></i>
+    Loading...
+  </h3>
+</div>
+
+<!-- Main content -->
+<div class="container" ng-hide="loading">
+  <!-- Header -->
+  <div id="header">
+    <!-- Site logo -->
+    <div id="logo">Reload!</div>
+
+    <p class="logged_hours">{{data.hours_total_registered}}</p>
+    <div class="logged_hours_desc">
+      <span>Out of <span class="date">{{data.hours_in_range}}</span></span>
+      <span>hours was</span>
+      <span>registered</span>
+    </div>
+
+    <div id="hours_productive">
+      <h4>{{data.total_percent}}</h4>
+      <p class="percent">percent</p>
+      <p class="description">Registered</p>
+    </div>
+  </div>
+
+  <!-- User portraits -->
+  <ul id="user-ranking">
+    <li class="user {{user.group}}" ng-click="toggleStats(user)" ng-repeat="user in data.ranking | orderBy:'group'">
+      <div class="user_avatar">
+        <span class="rank {{user.group}}">
+          {{user.group_icon}}
+        </span>
+        <figure class="user_avatar_holder">
+          <img src="{{user.imageUrl}}">
+        </figure>
+      </div>
+      <div class="user_info">
+        <h2>{{user.first_name}}</h2>
+        <p class="desc">Hello</p>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="inner">
+      <button ng-hide="session" class="btn btn-default" ng-click="loginOpen = !loginOpen">Login</button>
+      <span>{{loginMessage}}</span>
+      <form class="logout-form form-inline" role="form" name="logoutForm" ng-show="session" ng-submit="userLogout()">
+        <button ng-click="loginOpen = !loginOpen" class="btn btn-default" type="submit">Logout</button>
+        <span ng-show="session" class="active-user">{{session_user}} </span>
+      </form>
+    </div>
+  </div>
+
+  <!-- Range Modal button -->
+  <i class="fa fa-calendar range-modal-button" ng-click="modalState('range_modal', true)"></i>
+</div>
+
+<!-- Login form -->
+<div class="user-form" ng-show="loginOpen && !session">
+  <form class="form-horizontal" role="form" name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
+    <button class="login-close" ng-hide="session" ng-click="loginOpen = !loginOpen" title="Close this.">
+      <span class="fa fa-times"></span>
+    </button>
+    <div class="form-group">
+      <input class="form-control" type="email" placeholder="Email" name="username" ng-model="user.name" required autofocus />
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="password" placeholder="Password" name="password" ng-minlength="4" ng-model="user.pass" required />
+    </div>
+    <button class="btn btn-default" type="submit" ng-disabled="loginForm.$invalid">Enter</button>
+  </form>
+</div>
+
+<!-- Range Modal -->
+<div class="modal-wrap" ng-show="range_modal">
+  <div class="modal-content range-modal">
     <!-- Header -->
     <div class="header">
-      <div class="inner">
-        <!-- Site logo -->
-        <figure class="site-logo">
-          <?php include 'img/reload-logo.svg' ?>
-        </figure>
-        <!-- Site title -->
-        <h1 class="site-title"><?php print $site_name; ?></h1>
+      <h3>Set data scope</h3>
+    </div>
 
-        <!-- Time total -->
-        <div class="time-display">
-          <span class="month">{{data.date_start * 1000 | date : 'MMMM yyyy'}}</span>
-          <div class="values">
-            <span class="registered">{{data.hours_total_registered}}</span>
-            <span class="divider">of</span>
-            <span class="total">{{data.hours_in_range}}</span>
-            <span class="divider">hours logged</span>
-          </div>
-          <span class="percent">{{data.total_percent}}%</span>
+    <!-- Content -->
+    <div class="content">
+      <!-- Type: Radios -->
+      <div class="radios">
+        <label for="type_month">Month</label>
+        <input type="radio" id="type_month" ng-model="type" ng-change="typeChange()" value="month" name="date_type"/>
+        <label for="type_range">Range</label>
+        <input type="radio" id="type_range" ng-model="type" ng-change="typeChange()" value="range" name="date_type"/>
+      </div>
+
+      <!-- Type: Month -->
+      <div class="month" ng-show="show_month_settings">
+        <!-- Month -->
+        <label for="date_month">Month</label>
+        <select id="date_month" ng-model="month" ng-change="monthChange()" ng-options="month.value as month.name for month in date_options_month"></select>
+        <!-- Year -->
+        <label for="date_year">Year</label>
+        <select id="date_year" ng-model="year" ng-change="monthChange()" ng-options="year.value as year.year for year in date_options_year"></select>
+      </div>
+
+      <!-- Type: Range -->
+      <div class="range" ng-show="show_range_settings">
+        <!-- From -->
+        <div class="field">
+          <label for="date_from">From</label>
+          <input id="date_from" type="text" ng-model="from" ng-change="rangeChange('from')" placeholder="YYYY-MM-DD"/>
+        </div>
+        <!-- To -->
+        <div class="field">
+          <label for="date_to">To</label>
+          <input id="date_to" type="text" ng-model="to" ng-change="rangeChange('to')" placeholder="YYYY-MM-DD"/>
         </div>
       </div>
     </div>
 
-    <!-- User portraits -->
-    <div class="user-report">
-      <ul class="inner">
-        <li class="user" ng-click="toggleStats(user)" ng-repeat="user in data.ranking | orderBy:'group'">
-          <figure class="portrait {{user.group}}">
-            <img class="img-circle" src="{{user.imageUrl}}">
-          </figure>
-          <strong>{{user.name}}</strong>
-        </li>
-      </ul>
+    <!-- Close button -->
+    <i class="fa fa-times close" ng-click="modalState('range_modal', false)"></i>
+  </div>
+</div>
+
+<!-- User Modal -->
+<div class="modal-wrap" ng-show="user_modal">
+  <div class="modal-content user-modal">
+    <!-- Header -->
+    <div class="header">
+      <!--<img src="{{user.imageUrl}}" alt=""/>-->
+      <h3>{{user.full_name}}</h3>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      <div class="inner">
-        <button ng-hide="session" class="btn btn-default" ng-click="loginOpen = !loginOpen">Login</button>
-        <span>{{loginMessage}}</span>
-        <form class="logout-form form-inline" role="form" name="logoutForm" ng-show="session" ng-submit="userLogout()">
-          <button ng-click="loginOpen = !loginOpen" class="btn btn-default" type="submit">Logout</button>
-          <span ng-show="session" class="active-user">{{session_user}} </span>
-        </form>
-      </div>
-    </div>
-
-    <!-- Range Modal button -->
-    <i class="glyphicon glyphicon-calendar range-modal-button" ng-click="modalState('range_modal', true)"></i>
-  </div>
-
-  <!-- Login form -->
-  <div class="user-form" ng-show="loginOpen && !session">
-    <form class="form-horizontal" role="form" name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
-      <button class="login-close" ng-hide="session" ng-click="loginOpen = !loginOpen" title="Close this.">
-        <span class="glyphicon glyphicon-off"></span>
-      </button>
-      <div class="form-group">
-        <input class="form-control" type="email" placeholder="Email" name="username" ng-model="user.name" required autofocus />
-      </div>
-      <div class="form-group">
-        <input class="form-control" type="password" placeholder="Password" name="password" ng-minlength="4" ng-model="user.pass" required />
-      </div>
-      <button class="btn btn-default" type="submit" ng-disabled="loginForm.$invalid">Enter</button>
-    </form>
-  </div>
-
-  <!-- Page loader -->
-  <div class="loader" ng-show="loading" aria-hidden="true">
-    <figure class="logo">
-      <img src="../img/reload-logo.svg" alt=""/>
-      <span>Loading...</span>
-    </figure>
-  </div>
-
-  <!-- Range Modal -->
-  <div class="modal-wrap" ng-show="range_modal">
-    <div class="modal-content range-modal">
-      <!-- Header -->
-      <div class="header">
-        <h3>Set data scope</h3>
-      </div>
-
-      <!-- Content -->
-      <div class="content">
-        <!-- Type: Radios -->
-        <div class="radios">
-          <label for="type_month">Month</label>
-          <input type="radio" id="type_month" ng-model="type" ng-change="typeChange()" value="month" name="date_type"/>
-          <label for="type_range">Range</label>
-          <input type="radio" id="type_range" ng-model="type" ng-change="typeChange()" value="range" name="date_type"/>
-        </div>
-
-        <!-- Type: Month -->
-        <div class="month" ng-show="show_month_settings">
-          <!-- Month -->
-          <label for="date_month">Month</label>
-          <select id="date_month" ng-model="month" ng-change="monthChange()" ng-options="month.value as month.name for month in date_options_month"></select>
-          <!-- Year -->
-          <label for="date_year">Year</label>
-          <select id="date_year" ng-model="year" ng-change="monthChange()" ng-options="year.value as year.year for year in date_options_year"></select>
-        </div>
-
-        <!-- Type: Range -->
-        <div class="range" ng-show="show_range_settings">
-          <!-- From -->
-          <div class="field">
-            <label for="date_from">From</label>
-            <input id="date_from" type="text" ng-model="from" ng-change="rangeChange('from')" placeholder="YYYY-MM-DD"/>
-          </div>
-          <!-- To -->
-          <div class="field">
-            <label for="date_to">To</label>
-            <input id="date_to" type="text" ng-model="to" ng-change="rangeChange('to')" placeholder="YYYY-MM-DD"/>
-          </div>
-        </div>
-      </div>
-
+    <!-- Content -->
+    <div class="content">
       <!-- Close button -->
-      <i class="glyphicon glyphicon-remove close" ng-click="modalState('range_modal', false)"></i>
-    </div>
-  </div>
+      <i class="fa fa-times close" ng-click="modalState('user_modal', false)"></i>
 
-  <!-- User Modal -->
-  <div class="modal-wrap" ng-show="user_modal">
-    <div class="modal-content user-modal">
-      <!-- Header -->
-      <div class="header">
-        <!--<img src="{{user.imageUrl}}" alt=""/>-->
-        <h3>{{user.name}}</h3>
+      <!-- Percent -->
+      <div class="percent">
+        <p>Registered hours</p>
+        <h1>{{user.registered_hours_percent}}%</h1>
       </div>
 
-      <!-- Content -->
-      <div class="content">
-        <!-- Close button -->
-        <i class="glyphicon glyphicon-remove close" ng-click="modalState('user_modal', false)"></i>
-
-       <!-- Percent -->
-        <div class="percent">
-          <p>Registered hours</p>
-          <h1>{{user.registered_hours_percent}}%</h1>
+      <!-- Chart -->
+      <div class="chart">
+        <div class="label-colors">
+          <p class="gold">Overtime</p>
+          <p class="green">Registered time</p>
+          <p class="red">Time behind</p>
         </div>
+        <canvas id="hours-chart" width="225" height="225"></canvas>
+      </div>
 
-        <!-- Chart -->
-        <div class="chart">
-          <div class="label-colors">
-            <p class="gold">Overtime</p>
-            <p class="green">Registered time</p>
-            <p class="red">Time behind</p>
-          </div>
-          <canvas id="hours-chart" width="225" height="225"></canvas>
-        </div>
-
-        <!-- Table -->
-        <div class="table-responsive">
-          <table class="table table-striped table-bordered table-hover">
-            <tr>
-              <td>Hours to reach</td>
-              <td>{{user.hours_goal}} hours</td>
-            </tr>
-            <tr>
-              <td>Hours registered</td>
-              <td>{{user.hours_registered}} hours</td>
-            </tr>
-            <tr>
-              <td>Registered hours in percent</td>
-              <td>{{user.registered_hours_percent}}%</td>
-            </tr>
-            <tr ng-show="user.extra">
-              <td>Billable hours</td>
-              <td>{{user.extra.billability.calculated}} hours</td>
-            </tr>
-            <tr ng-show="user.extra">
-              <td>Holiday</td>
-              <td>{{user.extra.holiday}} hours</td>
-            </tr>
-            <tr ng-show="user.extra">
-              <td>Vacation</td>
-              <td>{{user.extra.vacation}} hours</td>
-            </tr>
-            <tr ng-show="user.extra.show_illness">
-              <td>Illness (child)</td>
-              <td>{{user.extra.illness.hours}} ({{user.extra.illness.child}}) hours</td>
-            </tr>
-          </table>
-        </div>
+      <!-- Table -->
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+          <tr>
+            <td>Hours to reach</td>
+            <td>{{user.hours_goal}} hours</td>
+          </tr>
+          <tr>
+            <td>Hours registered</td>
+            <td>{{user.hours_registered}} hours</td>
+          </tr>
+          <tr>
+            <td>Registered hours in percent</td>
+            <td>{{user.registered_hours_percent}}%</td>
+          </tr>
+          <tr ng-show="user.extra">
+            <td>Billable hours</td>
+            <td>{{user.extra.billability.calculated}} hours</td>
+          </tr>
+          <tr ng-show="user.extra">
+            <td>Holiday</td>
+            <td>{{user.extra.holiday}} hours</td>
+          </tr>
+          <tr ng-show="user.extra">
+            <td>Vacation</td>
+            <td>{{user.extra.vacation}} hours</td>
+          </tr>
+          <tr ng-show="user.extra.show_illness">
+            <td>Illness (child)</td>
+            <td>{{user.extra.illness.hours}} ({{user.extra.illness.child}}) hours</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

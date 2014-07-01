@@ -16,10 +16,8 @@
   <meta name="viewport" content="width=device-width">
   <link rel="shortcut icon" href="favicon.ico">
 
-  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-  <link href="css/loadingbar.css" rel="stylesheet" type="text/css">
-  <link href="css/layout.css" rel="stylesheet" type="text/css">
-  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <link href="vendor/vendor.min.css" rel="stylesheet" type="text/css">
+  <link href="css/main.min.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="TimeLordApp">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.

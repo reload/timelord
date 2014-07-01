@@ -1,0 +1,47 @@
+@-webkit-keyframes color-pulse {
+  0%,
+  20% {
+    background-color: $green;
+  }
+  40% {
+    background-color: $yellow;
+  }
+  60% {
+    background-color: $blue;
+  }
+  80% {
+    background-color: $red;
+  }
+  100% {
+    background-color: $darkerBlue;
+  }
+}
+
+#loader {
+  font-size: 20px; // Use this to scale the loader
+  text-align: center;
+  width: 450px;
+  margin: 20% 0 0 -225px;
+  position: absolute;
+  left: 50%;
+  @include transition(margin-top 500ms ease-in-out);
+
+  .thingy {
+    -webkit-animation: color-pulse 800ms infinite linear;
+    display: inline-block;
+    background-image: url(../../img/reload-logo-inverted.png);
+    width: 40px;
+    height: 40px;
+    position: relative;
+    bottom: -.4em;
+    margin-right: .2em;
+  }
+
+  h3 {
+    color: $lightGray;
+  }
+}
+
+#loader.hide {
+  margin-top: -5%;
+}

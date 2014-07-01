@@ -128,10 +128,21 @@
       }
       return $http.get(url).success(function(data, status, headers, config) {
         var year;
+        data.hours_total_registered = parseInt(data.hours_total_registered, 10);
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_in_range);
         angular.forEach(data.ranking, function(user, i) {
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg';
-          return data.ranking[i].group = data.ranking[i].group.toLowerCase();
+          data.ranking[i].group = data.ranking[i].group.toLowerCase();
+          switch (data.ranking[i].group) {
+            case "a-karmahunter":
+              return data.ranking[i].group_icon = '★';
+            case "b-goalie":
+              return data.ranking[i].group_icon = '✓';
+            case "c-karmauser":
+              return data.ranking[i].group_icon = '☂';
+            case "d-slacker":
+              return data.ranking[i].group_icon = '☁';
+          }
         });
         $scope.data = data;
         $scope.loading = false;

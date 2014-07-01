@@ -100,7 +100,7 @@
 }
 
 @-webkit-keyframes loading-bar-spinner {
-  /* line 74, sass/loadingbar.scss */
+  /* line 72, sass/loadingbar.scss */
   0% {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -109,7 +109,7 @@
     transform: rotate(0deg);
   }
 
-  /* line 75, sass/loadingbar.scss */
+  /* line 73, sass/loadingbar.scss */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -120,7 +120,7 @@
 }
 
 @-moz-keyframes loading-bar-spinner {
-  /* line 74, sass/loadingbar.scss */
+  /* line 72, sass/loadingbar.scss */
   0% {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -129,7 +129,7 @@
     transform: rotate(0deg);
   }
 
-  /* line 75, sass/loadingbar.scss */
+  /* line 73, sass/loadingbar.scss */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -140,7 +140,7 @@
 }
 
 @-ms-keyframes loading-bar-spinner {
-  /* line 74, sass/loadingbar.scss */
+  /* line 72, sass/loadingbar.scss */
   0% {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -149,7 +149,7 @@
     transform: rotate(0deg);
   }
 
-  /* line 75, sass/loadingbar.scss */
+  /* line 73, sass/loadingbar.scss */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -160,7 +160,7 @@
 }
 
 @-o-keyframes loading-bar-spinner {
-  /* line 74, sass/loadingbar.scss */
+  /* line 72, sass/loadingbar.scss */
   0% {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -169,7 +169,7 @@
     transform: rotate(0deg);
   }
 
-  /* line 75, sass/loadingbar.scss */
+  /* line 73, sass/loadingbar.scss */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -180,7 +180,7 @@
 }
 
 @keyframes loading-bar-spinner {
-  /* line 74, sass/loadingbar.scss */
+  /* line 72, sass/loadingbar.scss */
   0% {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -189,7 +189,7 @@
     transform: rotate(0deg);
   }
 
-  /* line 75, sass/loadingbar.scss */
+  /* line 73, sass/loadingbar.scss */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);

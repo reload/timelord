@@ -4,3 +4,7 @@ node_modules
 .sass-cache
 composer.lock
 config.yml
+
+# Exclude all fonts that's not placed inside a folder (vendor fonts).
+fonts/*
+!fonts/*/
