@@ -16,6 +16,7 @@
   <meta name="viewport" content="width=device-width">
   <link rel="shortcut icon" href="favicon.ico">
 
+  <link href="css/reset.css" rel="stylesheet" type="text/css" />
   <link href="vendor/vendor.min.css" rel="stylesheet" type="text/css">
   <link href="css/main.min.css" rel="stylesheet" type="text/css">
 </head>
