@@ -157,12 +157,16 @@ app.controller 'TimeLord', ($scope, $http) ->
           switch data.ranking[i].group
             when "a-karmahunter"
               data.ranking[i].group_icon = '★'
+              data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
             when "b-goalie"
               data.ranking[i].group_icon = '✓'
+              data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
             when "c-karmauser"
               data.ranking[i].group_icon = '☂'
+              data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
             when "d-slacker"
               data.ranking[i].group_icon = '☁'
+              data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
 
         # Output to scope.
         $scope.data = data

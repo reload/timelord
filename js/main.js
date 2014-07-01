@@ -135,13 +135,17 @@
           data.ranking[i].group = data.ranking[i].group.toLowerCase();
           switch (data.ranking[i].group) {
             case "a-karmahunter":
-              return data.ranking[i].group_icon = '★';
+              data.ranking[i].group_icon = '★';
+              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
             case "b-goalie":
-              return data.ranking[i].group_icon = '✓';
+              data.ranking[i].group_icon = '✓';
+              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
             case "c-karmauser":
-              return data.ranking[i].group_icon = '☂';
+              data.ranking[i].group_icon = '☂';
+              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
             case "d-slacker":
-              return data.ranking[i].group_icon = '☁';
+              data.ranking[i].group_icon = '☁';
+              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
           }
         });
         $scope.data = data;
