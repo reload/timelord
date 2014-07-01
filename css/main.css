@@ -328,12 +328,7 @@ img {
   clear: both;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: AsapBold, sans-serif;
   color: #2a443b;
   margin-bottom: .2em;
@@ -592,9 +587,11 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
 }
 
 .modal-wrap {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -611,17 +608,29 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
     margin: 25px;
   }
 }
+.modal-wrap .modal-content h1, .modal-wrap .modal-content h2, .modal-wrap .modal-content h3, .modal-wrap .modal-content h4, .modal-wrap .modal-content h5, .modal-wrap .modal-content h6 {
+  color: #333333;
+}
 .modal-wrap .modal-content .header {
   background-color: #f9f9f9;
   border-bottom: 1px solid #c9c9c9;
   padding: 0 25px;
   width: 100%;
+  *zoom: 1;
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
   border-top-left-radius: 5px;
   -moz-border-radius-topright: 5px;
   -webkit-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
+}
+.modal-wrap .modal-content .header h3 {
+  font-size: 1.45em;
+}
+.modal-wrap .modal-content .header:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 .modal-wrap .modal-content .content {
   padding: 1px 25px;
@@ -652,7 +661,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   margin: 10px 0;
 }
 .user-modal .header h3 {
-  margin-top: 25px;
+  margin-top: 27px;
   margin-left: 20px;
   float: left;
 }
@@ -742,6 +751,10 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   color: #4fb1d7;
 }
 
+.range-modal .header {
+  padding-top: 12px;
+  padding-bottom: 6px;
+}
 .range-modal .content {
   padding-bottom: 40px !important;
   text-align: center;
