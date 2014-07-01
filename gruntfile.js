@@ -61,13 +61,16 @@ module.exports = function (grunt) {
           'vendor/angular/angular.js',
           'vendor/angular-loading-bar/src/loading-bar.js',
           'vendor/angular-route/angular-route.js',
+          'vendor/jquery/dist/jquery.js',
+          'vendor/bootstrap-sass/dist/js/bootstrap.js',
           'vendor/chartjs/Chart.js'
         ],
         'dest': 'vendor/vendor.js'
       },
       css: {
         'src': [
-          'vendor/fontawesome/css/font-awesome.css'
+          'vendor/fontawesome/css/font-awesome.css',
+          'vendor/bootstrap-sass/dist/css/bootstrap.css'
         ],
         'dest': 'vendor/vendor.css'
       }
@@ -100,7 +103,10 @@ module.exports = function (grunt) {
           { // Copy fontawesome fonts to the "fonts" directory.
             expand: true,
             flatten: true,
-            src: ['vendor/fontawesome/fonts/*'],
+            src: [
+              'vendor/fontawesome/fonts/*',
+              'vendor/bootstrap-sass/dist/fonts/*'
+            ],
             dest: 'fonts/',
             filter: 'isFile'
           }

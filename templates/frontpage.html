@@ -7,7 +7,7 @@
 </div>
 
 <!-- Main content -->
-<div class="container" ng-hide="loading">
+<div id="content" ng-hide="loading">
   <!-- Header -->
   <div id="header">
     <!-- Site logo -->
@@ -121,7 +121,7 @@
     </div>
 
     <!-- Close button -->
-    <i class="fa fa-times close" ng-click="modalState('range_modal', false)"></i>
+    <i class="glyphicon glyphicon-remove close" ng-click="modalState('range_modal', false)"></i>
   </div>
 </div>
 
@@ -137,7 +137,7 @@
     <!-- Content -->
     <div class="content">
       <!-- Close button -->
-      <i class="fa fa-times close" ng-click="modalState('user_modal', false)"></i>
+      <i class="glyphicon glyphicon-remove close" ng-click="modalState('user_modal', false)"></i>
 
       <!-- Percent -->
       <div class="percent">
