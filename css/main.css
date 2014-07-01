@@ -456,8 +456,33 @@ ul#user-ranking li.user {
 ul#user-ranking li.user.hide {
   display: none;
 }
-ul#user-ranking li.user:nth-child(4n) {
-  margin-right: 0;
+@media (min-width: 1201px) {
+  ul#user-ranking li.user:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+@media (max-width: 1200px) {
+  ul#user-ranking li.user {
+    width: 31%;
+  }
+  ul#user-ranking li.user:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+@media (max-width: 900px) {
+  ul#user-ranking li.user {
+    width: 48.6%;
+    margin-right: 0;
+  }
+  ul#user-ranking li.user:nth-child(2n+1) {
+    margin-right: 2.8%;
+  }
+}
+@media (max-width: 550px) {
+  ul#user-ranking li.user {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 ul#user-ranking li.user .rank {
   width: 30px;

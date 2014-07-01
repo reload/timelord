@@ -24,8 +24,37 @@
   animation:          $animation;
 }
 
+// Mixin to style all headlines.
 @mixin headlines {
   h1, h2, h3, h4, h5, h6 {
+    @content;
+  }
+}
+
+// Extra-Large media-query.
+@mixin x-large {
+  @media (min-width: 1201px) {
+    @content;
+  }
+}
+
+// Large media-query.
+@mixin large {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+// Medium media-query.
+@mixin medium {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
+// Small media-query.
+@mixin small {
+  @media (max-width: 550px) {
     @content;
   }
 }

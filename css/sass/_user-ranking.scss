@@ -10,7 +10,26 @@ ul#user-ranking {
     margin-right: 2.8%;
     float: left;
     height: 110px;
-    &:nth-child(4n) {
+    @include x-large {
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+    }
+    @include large {
+      width: 31%;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+    @include medium {
+      width: 48.6%;
+      margin-right: 0;
+      &:nth-child(2n+1) {
+        margin-right: 2.8%;
+      }
+    }
+    @include small {
+      width: 100%;
       margin-right: 0;
     }
 
