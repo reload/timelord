@@ -308,15 +308,6 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
   setParams = (obj) ->
     $location.search(obj)
 
-  # Get URL parameters like PHP's "$_GET[]".
-  getParam = (name) ->
-    # Regular Expression to look for params after "?" and "&".
-    regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
-    # If we had a match with the name of the parameter.
-    if results = regex.exec(location.search)
-      # Return the value of the parameter.
-      results[1]
-
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->
   # We need to define the width / height on every init since there
@@ -327,3 +318,12 @@ doughnut = (id, data, options = null) ->
   # Get context and init the chart.
   ctx = document.getElementById(id).getContext('2d')
   new Chart(ctx).Doughnut(data, options)
+
+# Get URL parameters like PHP's "$_GET[]".
+getParam = (name) ->
+  # Regular Expression to look for params after "?" and "&".
+  regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
+  # If we had a match with the name of the parameter.
+  if results = regex.exec(location.search)
+    # Return the value of the parameter.
+    results[1]

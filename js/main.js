@@ -1,5 +1,5 @@
 (function() {
-  var app, doughnut;
+  var app, doughnut, getParam;
 
   app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute']);
 
@@ -15,7 +15,7 @@
   });
 
   app.controller('TimeLord', function($scope, $http, $routeParams, $location) {
-    var date, fetchData, getLoginStatus, getParam, getSession, setParams;
+    var date, fetchData, getLoginStatus, getSession, setParams;
     $scope.user_modal = false;
     $scope.range_modal = false;
     $scope.type = 'month';
@@ -279,15 +279,8 @@
           return $scope.range_modal = state;
       }
     };
-    setParams = function(obj) {
+    return setParams = function(obj) {
       return $location.search(obj);
-    };
-    return getParam = function(name) {
-      var regex, results;
-      regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-      if (results = regex.exec(location.search)) {
-        return results[1];
-      }
     };
   });
 
@@ -300,6 +293,14 @@
     document.getElementById(id).setAttribute('height', '225px');
     ctx = document.getElementById(id).getContext('2d');
     return new Chart(ctx).Doughnut(data, options);
+  };
+
+  getParam = function(name) {
+    var regex, results;
+    regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    if (results = regex.exec(location.search)) {
+      return results[1];
+    }
   };
 
 }).call(this);
