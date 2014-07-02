@@ -62,19 +62,32 @@
 </div>
 
 <!-- Login form -->
-<div class="user-form" ng-show="loginOpen && !session">
-  <form class="form-horizontal" role="form" name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
-    <button class="login-close" ng-hide="session" ng-click="loginOpen = !loginOpen" title="Close this.">
-      <span class="fa fa-times"></span>
-    </button>
-    <div class="form-group">
-      <input class="form-control" type="email" placeholder="Email" name="username" ng-model="user.name" required autofocus />
-    </div>
-    <div class="form-group">
-      <input class="form-control" type="password" placeholder="Password" name="password" ng-minlength="4" ng-model="user.pass" required />
-    </div>
-    <button class="btn btn-primary btn-sm" type="submit" ng-disabled="loginForm.$invalid">Enter</button>
-  </form>
+<div class="user-form modal-wrap" ng-show="loginOpen && !session">
+  <div class="modal-content range-modal">
+    <form class="form-horizontal" role="form" name="loginForm" ng-submit="userLogin(user, 'login')" novalidate>
+      <!-- Header -->
+      <div class="header">
+        <h3>Login</h3>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Email -->
+        <div class="form-group">
+          <input class="form-control" type="email" placeholder="Email" name="username" ng-model="user.name" required autofocus />
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <input class="form-control" type="password" placeholder="Password" name="password" ng-minlength="4" ng-model="user.pass" required />
+        </div>
+        <!-- Submit -->
+        <button class="btn btn-primary btn-m" type="submit" ng-disabled="loginForm.$invalid">Enter</button>
+      </div>
+
+      <!-- Close -->
+      <i class="glyphicon glyphicon-remove close" ng-click="loginOpen = !loginOpen"></i>
+    </form>
+  </div>
 </div>
 
 <!-- Range Modal -->
@@ -105,7 +118,7 @@
           <label for="date_year">Year</label>
           <select id="date_year" ng-model="year" ng-options="year.value as year.year for year in date_options_year"></select>
           <!-- Submit -->
-          <button class="btn btn-primary btn-sm" type="submit">Select</button>
+          <button class="btn btn-primary btn-m" type="submit">Select</button>
         </form>
       </div>
 
@@ -123,7 +136,7 @@
             <input id="date_to" type="text" ng-model="to" placeholder="YYYY-MM-DD"/>
           </div>
           <!-- Submit -->
-          <button class="btn btn-primary btn-sm" type="submit">Select</button>
+          <button class="btn btn-primary btn-m" type="submit">Select</button>
         </form>
       </div>
     </div>

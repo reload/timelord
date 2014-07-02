@@ -680,6 +680,14 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   color: #4fb1d7;
 }
 
+.user-form .content {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.user-form .content .btn {
+  float: right;
+}
+
 .user-modal .header img {
   float: left;
   width: 55px;
