@@ -1,25 +1,28 @@
 (function() {
-  var app, doughnut, getParam, roundNumber;
+  var app, doughnut, hashtag, roundNumber;
 
   app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute']);
 
   app.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
       templateUrl: 'templates/frontpage.html',
-      controller: 'TimeLord'
-    }).when('/:from/:to/:month/:year', {
-      templateUrl: 'templates/frontpage.html',
-      controller: 'TimeLord'
+      controller: 'TimeLord',
+      reloadOnSearch: false
     });
-    return $locationProvider.html5Mode(true);
+    return $locationProvider.html5Mode(true).hashPrefix('!');
   });
 
   app.controller('TimeLord', function($scope, $http, $routeParams, $location) {
-    var date, fetchData, getLoginStatus, getSession, setParams;
+    var date, fetchData, getLoginStatus, getSession;
     $scope.user_modal = false;
     $scope.range_modal = false;
-    $scope.type = 'month';
-    $scope.show_month_settings = true;
+    if ($routeParams.from) {
+      $scope.type = 'range';
+      $scope.show_range_settings = true;
+    } else {
+      $scope.type = 'month';
+      $scope.show_month_settings = true;
+    }
     $scope.date_options_month = [
       {
         value: "jan",
@@ -59,13 +62,13 @@
         name: "December"
       }
     ];
-    if (getParam('from') != null) {
-      $scope.from = getParam('from');
+    if ($routeParams.from) {
+      $scope.from = $routeParams.from;
     } else {
       $scope.from = '';
     }
-    if (getParam('to') != null) {
-      $scope.to = getParam('to');
+    if ($routeParams.to) {
+      $scope.to = $routeParams.to;
     } else {
       $scope.to = '';
     }
@@ -85,25 +88,29 @@
       from = $scope.from.replace(/-/g, '');
       to = $scope.to.replace(/-/g, '');
       if (from.length === 8 && to.length === 8) {
-        return setParams({
+        $location.search({
           from: from,
           to: to
         });
+        return fetchData();
       } else if (from.length === 8) {
-        return setParams({
+        $location.search({
           from: from
         });
+        return fetchData();
       } else if (to.length === 8) {
-        return setParams({
+        $location.search({
           to: to
         });
+        return fetchData();
       }
     };
     $scope.monthChange = function() {
-      return setParams({
+      $location.search({
         month: $scope.month,
         year: $scope.year
       });
+      return fetchData();
     };
     $scope.typeChange = function() {
       if ($scope.type === 'range') {
@@ -118,38 +125,44 @@
     fetchData = function() {
       var url;
       url = 'inc/feed.php?';
-      if ($routeParams.from) {
-        url += '&from=' + $routeParams.from;
+      if ($routeParams.from || ($scope.type === 'range' && $scope.from !== '')) {
+        url += '&from=' + $scope.from;
       }
-      if ($routeParams.to) {
-        url += '&to=' + $routeParams.to;
+      if ($routeParams.to || ($scope.type === 'range' && $scope.to !== '')) {
+        url += '&to=' + $scope.to;
       }
-      if ($routeParams.month) {
-        url += '&month=' + $routeParams.month;
+      if ($routeParams.month || ($scope.type === 'month' && $scope.month !== '')) {
+        url += '&month=' + $scope.month;
       }
-      if ($routeParams.year) {
-        url += '&year=' + $routeParams.year;
+      if ($routeParams.year || ($scope.type === 'month' && $scope.year !== '')) {
+        url += '&year=' + $scope.year;
       }
       return $http.get(url).success(function(data, status, headers, config) {
-        var year;
+        var user_id, year;
         data.hours_total_registered = parseInt(data.hours_total_registered, 10);
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_in_range);
+        if (hashtag() !== '') {
+          user_id = hashtag();
+        }
         angular.forEach(data.ranking, function(user, i) {
           data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg';
           data.ranking[i].group = data.ranking[i].group.toLowerCase();
+          if (user_id && (user_id === user.converted_user_id.replace(/\//g, ''))) {
+            $scope.toggleStats(user);
+          }
           switch (data.ranking[i].group) {
             case "a-karmahunter":
               data.ranking[i].group_icon = '★';
-              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
+              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
             case "b-goalie":
               data.ranking[i].group_icon = '✓';
-              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
+              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
             case "c-karmauser":
               data.ranking[i].group_icon = '☂';
-              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
+              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
             case "d-slacker":
               data.ranking[i].group_icon = '☁';
-              return data.ranking[i].group_text = 'Arbejder derudaf, rammer timerne perfekt. Sådan!';
+              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
           }
         });
         $scope.data = data;
@@ -227,6 +240,7 @@
     };
     $scope.toggleStats = function(user) {
       var colors, data, hours_goal, hours_registered, label_text, options;
+      hashtag(user.converted_user_id);
       $scope.user_modal = true;
       $scope.user = user;
       $scope.user.registered_hours_percent = Math.round(user.hours_registered / user.hours_goal * 100);
@@ -312,16 +326,14 @@
       };
       return doughnut('hours-chart', data, options);
     };
-    $scope.modalState = function(name, state) {
+    return $scope.modalState = function(name, state) {
       switch (name) {
         case 'user_modal':
-          return $scope.user_modal = state;
+          $scope.user_modal = state;
+          return hashtag(' ');
         case 'range_modal':
           return $scope.range_modal = state;
       }
-    };
-    return setParams = function(obj) {
-      return $location.search(obj);
     };
   });
 
@@ -336,16 +348,17 @@
     return new Chart(ctx).Doughnut(data, options);
   };
 
-  getParam = function(name) {
-    var regex, results;
-    regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-    if (results = regex.exec(location.search)) {
-      return results[1];
-    }
-  };
-
   roundNumber = function(num) {
     return Math.round(num * 100) / 100;
+  };
+
+  hashtag = function(val) {
+    val = val || null;
+    if (val) {
+      return window.location.hash = val.replace(/\//g, '');
+    } else {
+      return window.location.hash.substring(1);
+    }
   };
 
 }).call(this);
