@@ -122,7 +122,6 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     if $routeParams.year
       url += '&year=' + $routeParams.year
 
-    console.log url
     # Execute feed-request.
     $http.get(url)
       .success (data, status, headers, config) ->
@@ -239,7 +238,6 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
 
   # User click function.
   $scope.toggleStats = (user) ->
-    console.log user
     # Set the user modal as true.
     $scope.user_modal = true
     # Asign the user object to $scrope and provide extra arguments.
@@ -257,36 +255,92 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     # There are 3 possible "charts". If you're in plus/minus or spot on,
     # so we want to check where the user is and push relevant data.
     data = []
-    green = '#428F3E'
-    red = '#BE0323'
-    gold = '#FFD700'
+    # Colors for the charts.
+    colors = {
+      green: {
+        main: '#8FA77B',
+        highlight: '#9cb18a'
+      }
+      red: {
+        main: '#bf616a',
+        highlight: '#c6737b'
+      }
+      yellow: {
+        main: '#F7D77C',
+        highlight: '#f8de94'
+      }
+      purple: {
+        main: '#b48ead',
+        highlight: '#be9db8'
+      }
+    }
+    # Label text.
+    label_text = {
+      green: 'Hours',
+      red: 'Hours',
+      yellow: 'Hours',
+      purple: 'Hours'
+    }
+    # Labels toggle state.
+    $scope.label_state = []
+    $scope.label_state[0] = false # Green.
+    $scope.label_state[1] = false # Red.
+    $scope.label_state[2] = false # Yellow.
+    $scope.label_state[3] = false # Purple.
+
+    # Round the numbers we're working with.
+    hours_registered = roundNumber(user.hours_registered)
+    hours_goal = roundNumber(user.hours_goal)
 
     # If the user needs to WORK MOAR!.
-    if user.hours_registered < user.hours_goal
+    if hours_registered < hours_goal
+      # Registered time.
       data.push {
-        value: user.hours_registered,
-        color: green
+        value: hours_registered,
+        color: colors.green.main,
+        highlight: colors.green.highlight,
+        label: label_text.green
       }
+      # Time behind.
       data.push {
-        value: user.hours_goal - user.hours_registered,
-        color: red
+        value: roundNumber(hours_goal - hours_registered),
+        color: colors.red.main,
+        highlight: colors.red.highlight,
+        label: label_text.red
       }
+      # What labels to display.
+      $scope.label_state[0] = true
+      $scope.label_state[1] = true
     # If the user is over the goal. GOOD JAWB!
-    else if user.hours_registered > user.hours_goal
+    else if hours_registered > hours_goal
+      # Registered time.
       data.push {
-        value: user.hours_goal,
-        color: green
+        value: hours_goal,
+        color: colors.green.main,
+        highlight: colors.green.highlight,
+        label: label_text.green
       }
+      # Overtime.
       data.push {
-        value: user.hours_registered - user.hours_goal,
-        color: gold
+        value: roundNumber(hours_registered - hours_goal),
+        color: colors.yellow.main,
+        highlight: colors.yellow.highlight,
+        label: label_text.yellow
       }
+      # What labels to display.
+      $scope.label_state[0] = true
+      $scope.label_state[2] = true
     # If the amount of registered hours match the goal.
-    else if user.hours_registered == user.hours_goal
+    else if hours_registered == hours_goal
+      # Registered time.
       data.push {
-        value: user.hours_registered,
-        color: green
+        value: hours_registered,
+        color: colors.green.main,
+        highlight: colors.green.highlight,
+        label: label_text.green
       }
+      # What labels to display.
+      $scope.label_state[0] = true
 
     # Chart options.
     options = {
@@ -327,3 +381,7 @@ getParam = (name) ->
   if results = regex.exec(location.search)
     # Return the value of the parameter.
     results[1]
+
+# Make sure numbers only have up to 2 decimals.
+roundNumber = (num) ->
+  Math.round(num * 100) / 100

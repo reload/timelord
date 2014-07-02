@@ -139,7 +139,7 @@
       }
 
       // Labels.
-      .label-colors {
+      ul.label-colors {
         border: 1px solid $border-gray;
         background-color: #fff;
         position: absolute;
@@ -148,16 +148,17 @@
         padding: 5px;
         padding-bottom: 0;
         // Individual labels.
-        p {
+        li {
           position: relative;
           padding-left: 18px;
           margin-bottom: 5px;
           font-size: 14px;
 
           // Color examples.
-          &.gold:before  { background: $yellow; }
-          &.green:before { background: $green;  }
-          &.red:before   { background: $red;    }
+          &.gold:before  { background: $chart-yellow; }
+          &.green:before { background: $chart-green;  }
+          &.red:before   { background: $chart-red;    }
+          &.purple:before{ background: $chart-purple; }
           &:before {
             position: absolute;
             display: block;

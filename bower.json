@@ -18,7 +18,7 @@
     "angular-loading-bar": "latest",
     "angular-route": "latest",
     "bootstrap-sass": "latest",
-    "chartjs": "latest",
+    "chartjs": "1.0.1-beta",
     "fontawesome": "latest",
     "jquery": "latest"
   }

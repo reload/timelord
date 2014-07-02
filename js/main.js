@@ -1,5 +1,5 @@
 (function() {
-  var app, doughnut, getParam;
+  var app, doughnut, getParam, roundNumber;
 
   app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute']);
 
@@ -130,7 +130,6 @@
       if ($routeParams.year) {
         url += '&year=' + $routeParams.year;
       }
-      console.log(url);
       return $http.get(url).success(function(data, status, headers, config) {
         var year;
         data.hours_total_registered = parseInt(data.hours_total_registered, 10);
@@ -227,8 +226,7 @@
       });
     };
     $scope.toggleStats = function(user) {
-      var data, gold, green, options, red;
-      console.log(user);
+      var colors, data, hours_goal, hours_registered, label_text, options;
       $scope.user_modal = true;
       $scope.user = user;
       $scope.user.registered_hours_percent = Math.round(user.hours_registered / user.hours_goal * 100);
@@ -239,32 +237,75 @@
         }
       }
       data = [];
-      green = '#428F3E';
-      red = '#BE0323';
-      gold = '#FFD700';
-      if (user.hours_registered < user.hours_goal) {
+      colors = {
+        green: {
+          main: '#8FA77B',
+          highlight: '#9cb18a'
+        },
+        red: {
+          main: '#bf616a',
+          highlight: '#c6737b'
+        },
+        yellow: {
+          main: '#F7D77C',
+          highlight: '#f8de94'
+        },
+        purple: {
+          main: '#b48ead',
+          highlight: '#be9db8'
+        }
+      };
+      label_text = {
+        green: 'Hours',
+        red: 'Hours',
+        yellow: 'Hours',
+        purple: 'Hours'
+      };
+      $scope.label_state = [];
+      $scope.label_state[0] = false;
+      $scope.label_state[1] = false;
+      $scope.label_state[2] = false;
+      $scope.label_state[3] = false;
+      hours_registered = roundNumber(user.hours_registered);
+      hours_goal = roundNumber(user.hours_goal);
+      if (hours_registered < hours_goal) {
         data.push({
-          value: user.hours_registered,
-          color: green
+          value: hours_registered,
+          color: colors.green.main,
+          highlight: colors.green.highlight,
+          label: label_text.green
         });
         data.push({
-          value: user.hours_goal - user.hours_registered,
-          color: red
+          value: roundNumber(hours_goal - hours_registered),
+          color: colors.red.main,
+          highlight: colors.red.highlight,
+          label: label_text.red
         });
-      } else if (user.hours_registered > user.hours_goal) {
+        $scope.label_state[0] = true;
+        $scope.label_state[1] = true;
+      } else if (hours_registered > hours_goal) {
         data.push({
-          value: user.hours_goal,
-          color: green
+          value: hours_goal,
+          color: colors.green.main,
+          highlight: colors.green.highlight,
+          label: label_text.green
         });
         data.push({
-          value: user.hours_registered - user.hours_goal,
-          color: gold
+          value: roundNumber(hours_registered - hours_goal),
+          color: colors.yellow.main,
+          highlight: colors.yellow.highlight,
+          label: label_text.yellow
         });
-      } else if (user.hours_registered === user.hours_goal) {
+        $scope.label_state[0] = true;
+        $scope.label_state[2] = true;
+      } else if (hours_registered === hours_goal) {
         data.push({
-          value: user.hours_registered,
-          color: green
+          value: hours_registered,
+          color: colors.green.main,
+          highlight: colors.green.highlight,
+          label: label_text.green
         });
+        $scope.label_state[0] = true;
       }
       options = {
         segmentStrokeWidth: 1
@@ -301,6 +342,10 @@
     if (results = regex.exec(location.search)) {
       return results[1];
     }
+  };
+
+  roundNumber = function(num) {
+    return Math.round(num * 100) / 100;
   };
 
 }).call(this);

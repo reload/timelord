@@ -1,4 +1,4 @@
-// Colors
+// Colors.
 $green:           #3AAF8B;
 $darkGreen:       #367763;
 $darkerGreen:     #2A443B;
@@ -7,12 +7,19 @@ $darkerBlue:      #225D77;
 $lightYellow:     #FEEDC2;
 $yellow:          #F7D77C;
 $red:             #EA5F57;
-$black:           #333;
+$purple:          #b48ead;
+$black:           #333333;
 $lightGray:       #BDC0C6;
 $border-gray:     #C9C9C9;
 $bootstrap-gray:  #f9f9f9;
 
-// Settings
+// Chart colors.
+$chart-green:     #8FA77B;
+$chart-red:       #bf616a;
+$chart-yellow:    $yellow;
+$chart-purple:    $purple;
+
+// Settings.
 $fontSize:         16px;
 $bodyFontColor:    $black;
 $bodyLineHeight:   1.4;
@@ -21,7 +28,7 @@ $headerFontColor:  $darkerGreen;
 $headerFontFamily: AsapBold, sans-serif;
 $containerWidth:   1400px;
 
-// Imports
+// Imports.
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
 @import "mixins";

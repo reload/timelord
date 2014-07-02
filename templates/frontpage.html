@@ -168,11 +168,12 @@
 
       <!-- Chart -->
       <div class="chart">
-        <div class="label-colors">
-          <p class="gold">Overtime</p>
-          <p class="green">Registered time</p>
-          <p class="red">Time behind</p>
-        </div>
+        <ul class="label-colors">
+          <li class="green" ng-show="label_state[0]">Registered time</li>
+          <li class="red" ng-show="label_state[1]">Time behind</li>
+          <li class="gold" ng-show="label_state[2]">Overtime</li>
+          <li class="purple" ng-show="label_state[3]">Sickness</li>
+        </ul>
         <canvas id="hours-chart" width="225" height="225"></canvas>
       </div>
 

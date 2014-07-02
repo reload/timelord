@@ -734,7 +734,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
     float: left;
   }
 }
-.user-modal .content .chart .label-colors {
+.user-modal .content .chart ul.label-colors {
   border: 1px solid #c9c9c9;
   background-color: #fff;
   position: absolute;
@@ -743,22 +743,25 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   padding: 5px;
   padding-bottom: 0;
 }
-.user-modal .content .chart .label-colors p {
+.user-modal .content .chart ul.label-colors li {
   position: relative;
   padding-left: 18px;
   margin-bottom: 5px;
   font-size: 14px;
 }
-.user-modal .content .chart .label-colors p.gold:before {
+.user-modal .content .chart ul.label-colors li.gold:before {
   background: #f7d77c;
 }
-.user-modal .content .chart .label-colors p.green:before {
-  background: #3aaf8b;
+.user-modal .content .chart ul.label-colors li.green:before {
+  background: #8fa77b;
 }
-.user-modal .content .chart .label-colors p.red:before {
-  background: #ea5f57;
+.user-modal .content .chart ul.label-colors li.red:before {
+  background: #bf616a;
 }
-.user-modal .content .chart .label-colors p:before {
+.user-modal .content .chart ul.label-colors li.purple:before {
+  background: #b48ead;
+}
+.user-modal .content .chart ul.label-colors li:before {
   position: absolute;
   display: block;
   content: ' ';
