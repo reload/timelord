@@ -3,17 +3,22 @@
 
   app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute']);
 
-  app.config(function($routeProvider) {
-    return $routeProvider.when('/', {
+  app.config(function($routeProvider, $locationProvider) {
+    $routeProvider.when('/', {
+      templateUrl: 'templates/frontpage.html',
+      controller: 'TimeLord'
+    }).when('/:from/:to/:month/:year', {
       templateUrl: 'templates/frontpage.html',
       controller: 'TimeLord'
     });
+    return $locationProvider.html5Mode(true);
   });
 
-  app.controller('TimeLord', function($scope, $http) {
-    var date, fetchData, from, from_state, getLoginStatus, getSession, to, to_state;
+  app.controller('TimeLord', function($scope, $http, $routeParams, $location) {
+    var date, fetchData, getLoginStatus, getParam, getSession, setParams;
     $scope.user_modal = false;
     $scope.range_modal = false;
+    $scope.type = 'month';
     $scope.show_month_settings = true;
     $scope.date_options_month = [
       {
@@ -54,78 +59,78 @@
         name: "December"
       }
     ];
-    $scope.type = 'month';
-    $scope.from = '';
-    $scope.to = '';
+    if (getParam('from') != null) {
+      $scope.from = getParam('from');
+    } else {
+      $scope.from = '';
+    }
+    if (getParam('to') != null) {
+      $scope.to = getParam('to');
+    } else {
+      $scope.to = '';
+    }
     date = new Date();
-    $scope.month = $scope.date_options_month[date.getMonth()].value;
-    $scope.year = date.getFullYear();
-    from_state = false;
-    to_state = false;
-    from = '';
-    to = '';
-    $scope.rangeChange = function(input) {
-      var range;
-      if ($scope.type === 'range') {
-        range = [];
-        if (from !== '') {
-          range[0] = '&from=' + from;
-        }
-        if (to !== '') {
-          range[1] = '&to=' + to;
-        }
-        if (input === 'from') {
-          from = $scope.from.replace(/-/g, '');
-          if (from.length === 8) {
-            range[0] = '&from=' + from;
-            from_state = true;
-            return fetchData(range);
-          } else if (from.length === 0 && from_state === true) {
-            range[0] = '';
-            $scope.from = '';
-            from_state = false;
-            return fetchData(range);
-          }
-        } else if (input === 'to') {
-          to = $scope.to.replace(/-/g, '');
-          if (to.length === 8) {
-            range[1] = '&to=' + to;
-            to_state = true;
-            return fetchData(range);
-          } else if (to.length === 0 && to_state === true) {
-            $scope.to = '';
-            range[1] = '';
-            to_state = false;
-            return fetchData(range);
-          }
-        }
+    if ($routeParams.month) {
+      $scope.month = $routeParams.month;
+    } else {
+      $scope.month = $scope.date_options_month[date.getMonth()].value;
+    }
+    if ($routeParams.year) {
+      $scope.year = parseInt($routeParams.year, 10);
+    } else {
+      $scope.year = date.getFullYear();
+    }
+    $scope.rangeChange = function() {
+      var from, to;
+      from = $scope.from.replace(/-/g, '');
+      to = $scope.to.replace(/-/g, '');
+      if (from.length === 8 && to.length === 8) {
+        return setParams({
+          from: from,
+          to: to
+        });
+      } else if (from.length === 8) {
+        return setParams({
+          from: from
+        });
+      } else if (to.length === 8) {
+        return setParams({
+          to: to
+        });
       }
     };
     $scope.monthChange = function() {
-      if ($scope.type === 'month') {
-        return fetchData(['&month=' + $scope.month, '&year=' + $scope.year]);
-      }
+      return setParams({
+        month: $scope.month,
+        year: $scope.year
+      });
     };
     $scope.typeChange = function() {
       if ($scope.type === 'range') {
-        $scope.rangeChange('from');
-        $scope.rangeChange('to');
         $scope.show_range_settings = true;
         return $scope.show_month_settings = false;
       } else if ($scope.type === 'month') {
-        $scope.monthChange();
         $scope.show_range_settings = false;
         return $scope.show_month_settings = true;
       }
     };
     $scope.loading = true;
-    fetchData = function(args) {
+    fetchData = function() {
       var url;
-      args = args || null;
-      url = 'inc/feed.php';
-      if (args) {
-        url += '?' + args.join('');
+      url = 'inc/feed.php?';
+      if ($routeParams.from) {
+        url += '&from=' + $routeParams.from;
       }
+      if ($routeParams.to) {
+        url += '&to=' + $routeParams.to;
+      }
+      if ($routeParams.month) {
+        url += '&month=' + $routeParams.month;
+      }
+      if ($routeParams.year) {
+        url += '&year=' + $routeParams.year;
+      }
+      console.log(url);
       return $http.get(url).success(function(data, status, headers, config) {
         var year;
         data.hours_total_registered = parseInt(data.hours_total_registered, 10);
@@ -266,12 +271,22 @@
       };
       return doughnut('hours-chart', data, options);
     };
-    return $scope.modalState = function(name, state) {
+    $scope.modalState = function(name, state) {
       switch (name) {
         case 'user_modal':
           return $scope.user_modal = state;
         case 'range_modal':
           return $scope.range_modal = state;
+      }
+    };
+    setParams = function(obj) {
+      return $location.search(obj);
+    };
+    return getParam = function(name) {
+      var regex, results;
+      regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+      if (results = regex.exec(location.search)) {
+        return results[1];
       }
     };
   });

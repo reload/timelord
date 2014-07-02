@@ -1,18 +1,28 @@
 app = angular.module 'TimeLordApp', ['angular-loading-bar', 'ngRoute']
 
 # The router.
-app.config ($routeProvider) ->
+app.config ($routeProvider, $locationProvider) ->
+  # Set the behaviour for routes.
   $routeProvider.when('/', {
     templateUrl: 'templates/frontpage.html',
     controller: 'TimeLord'
   })
+  # Allow the following route parameters.
+  .when('/:from/:to/:month/:year', {
+    templateUrl: 'templates/frontpage.html',
+    controller: 'TimeLord'
+  })
+
+  # Remove the "/#/" from the URL.
+  $locationProvider.html5Mode(true)
 
 # TimeLord controller.
-app.controller 'TimeLord', ($scope, $http) ->
+app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
 
   # Define modal's default states.
   $scope.user_modal = false
   $scope.range_modal = false
+  $scope.type = 'month'
   $scope.show_month_settings = true
 
   # Set the choices for the "month selector".
@@ -31,116 +41,88 @@ app.controller 'TimeLord', ($scope, $http) ->
     { value: "dec", name: "December" }
   ]
 
-  # Define input models.
-  $scope.type = 'month'
-  $scope.from = ''
-  $scope.to = ''
+  # Set the default values for the "from" and "to" arguments.
+  if getParam('from')?
+    $scope.from = getParam('from')
+  else
+    $scope.from = ''
+  # Define default "to" value.
+  if getParam('to')?
+    $scope.to = getParam('to')
+  else
+    $scope.to = ''
 
-  # Set initial date variables (will be overwritten after fetchData request).
+  # Set the default values for the "month" and "year" arguments.
   date = new Date()
-  $scope.month = $scope.date_options_month[date.getMonth()].value
-  $scope.year = date.getFullYear()
-
-  # Define "date/range states" so we only fetch data when we have to,
-  # instead of on every value-change.
-  from_state = false
-  to_state = false
-
-  # Global variables to store "from" and "to" values outside of
-  # the individual function-calls.
-  from = ''
-  to = ''
+  if $routeParams.month
+    $scope.month = $routeParams.month
+  else
+    $scope.month = $scope.date_options_month[date.getMonth()].value
+  if $routeParams.year
+    $scope.year = parseInt($routeParams.year, 10)
+  else
+    $scope.year = date.getFullYear()
 
   # On "range" change.
-  $scope.rangeChange = (input) ->
-    # Only execute this code, if the "range radio-button" is selected.
-    if $scope.type == 'range'
-      # Define the range-arguments array.
-      range = []
-      # If the "from" argument isn't empty.
-      if from != ''
-        range[0] = '&from=' + from
-      # If the "to" argument isn't empty.
-      if to != ''
-        range[1] = '&to=' + to
-      # Input: "from".
-      if input == 'from'
-        # Remove dashes from the input value.
-        from = $scope.from.replace(/-/g, '')
-        # If an entire date is provided.
-        if from.length == 8
-          # Update the feed argument.
-          range[0] = '&from=' + from
-          # Update the state and fetch new data.
-          from_state = true
-          fetchData(range)
-        # Or if the field is empty.
-        else if from.length == 0 && from_state == true
-          # Clear the input value & feed argument.
-          range[0] = ''
-          $scope.from = ''
-          # Update state and fetch new data.
-          from_state = false
-          fetchData(range)
+  $scope.rangeChange = () ->
+    # Remove possible dashes from the input values.
+    from = $scope.from.replace(/-/g, '')
+    to = $scope.to.replace(/-/g, '')
 
-      # Input: "to".
-      else if input == 'to'
-        # Remove dashes from the input value.
-        to = $scope.to.replace(/-/g, '')
-        # If an entire date is provided.
-        if to.length == 8
-          # Update the feed argument.
-          range[1] = '&to=' + to
-          # Update state and fetch new data.
-          to_state = true
-          fetchData(range)
-        # Or if the field is empty.
-        else if to.length == 0 && to_state == true
-          # Clear the input value & feed argument.
-          $scope.to = ''
-          range[1] = ''
-          # Update state and fetch new data.
-          to_state = false
-          fetchData(range)
+    # If both "from" and "to" is set and doesn't equal the previous value.
+    if from.length == 8 && to.length == 8
+      setParams({
+        from: from,
+        to: to
+      })
+    # If "from" is set.
+    else if from.length == 8
+      setParams({
+        from: from
+      })
+    # If "to" is set.
+    else if to.length == 8
+      setParams({
+        to: to
+      })
 
   # On "month" change.
   $scope.monthChange = () ->
-    # Only execute this code if the "month radio-button" is selected.
-    if $scope.type == 'month'
-      fetchData([
-        '&month=' + $scope.month,
-        '&year=' + $scope.year
-      ])
+    # Set the route parameters.
+    setParams({
+      month: $scope.month,
+      year: $scope.year
+    })
 
   # On "type" change.
   $scope.typeChange = () ->
     # If the "range radio" is checked.
     if $scope.type == 'range'
-      # Execute the "rangeChange" function for both "from" and "to".
-      $scope.rangeChange('from')
-      $scope.rangeChange('to')
       # Toggle the state of settings-display.
       $scope.show_range_settings = true
       $scope.show_month_settings = false
 
     # If the "month radio" is checked.
     else if $scope.type == 'month'
-      # Execute the month
-      $scope.monthChange()
       # Toggle the state of settings-display.
       $scope.show_range_settings = false
       $scope.show_month_settings = true
 
   # Url to JSON.
   $scope.loading = true
-  fetchData = (args) ->
-    args = args || null;
+  fetchData = () ->
+    # Check for arguments and repare the feed-request.
+    url = 'inc/feed.php?'
+    if $routeParams.from
+      url += '&from=' + $routeParams.from
+    if $routeParams.to
+      url += '&to=' + $routeParams.to
+    if $routeParams.month
+      url += '&month=' + $routeParams.month
+    if $routeParams.year
+      url += '&year=' + $routeParams.year
 
-    # Prepare the feed-request.
-    url = 'inc/feed.php'
-    if args
-      url += '?' + args.join('')
-
+    console.log url
     # Execute feed-request.
     $http.get(url)
       .success (data, status, headers, config) ->
@@ -321,6 +303,19 @@ app.controller 'TimeLord', ($scope, $http) ->
         $scope.user_modal = state
       when 'range_modal'
         $scope.range_modal = state
+
+  # Set the URL parameters.
+  setParams = (obj) ->
+    $location.search(obj)
+
+  # Get URL parameters like PHP's "$_GET[]".
+  getParam = (name) ->
+    # Regular Expression to look for params after "?" and "&".
+    regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
+    # If we had a match with the name of the parameter.
+    if results = regex.exec(location.search)
+      # Return the value of the parameter.
+      results[1]
 
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->

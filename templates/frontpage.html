@@ -73,7 +73,7 @@
     <div class="form-group">
       <input class="form-control" type="password" placeholder="Password" name="password" ng-minlength="4" ng-model="user.pass" required />
     </div>
-    <button class="btn btn-default" type="submit" ng-disabled="loginForm.$invalid">Enter</button>
+    <button class="btn btn-primary btn-sm" type="submit" ng-disabled="loginForm.$invalid">Enter</button>
   </form>
 </div>
 
@@ -97,26 +97,34 @@
 
       <!-- Type: Month -->
       <div class="month" ng-show="show_month_settings">
-        <!-- Month -->
-        <label for="date_month">Month</label>
-        <select id="date_month" ng-model="month" ng-change="monthChange()" ng-options="month.value as month.name for month in date_options_month"></select>
-        <!-- Year -->
-        <label for="date_year">Year</label>
-        <select id="date_year" ng-model="year" ng-change="monthChange()" ng-options="year.value as year.year for year in date_options_year"></select>
+        <form class="form-horizontal" role="form" name="monthForm" ng-submit="monthChange()" novalidate>
+          <!-- Month -->
+          <label for="date_month">Month</label>
+          <select id="date_month" ng-model="month" ng-options="month.value as month.name for month in date_options_month"></select>
+          <!-- Year -->
+          <label for="date_year">Year</label>
+          <select id="date_year" ng-model="year" ng-options="year.value as year.year for year in date_options_year"></select>
+          <!-- Submit -->
+          <button class="btn btn-primary btn-sm" type="submit">Select</button>
+        </form>
       </div>
 
       <!-- Type: Range -->
       <div class="range" ng-show="show_range_settings">
-        <!-- From -->
-        <div class="field">
-          <label for="date_from">From</label>
-          <input id="date_from" type="text" ng-model="from" ng-change="rangeChange('from')" placeholder="YYYY-MM-DD"/>
-        </div>
-        <!-- To -->
-        <div class="field">
-          <label for="date_to">To</label>
-          <input id="date_to" type="text" ng-model="to" ng-change="rangeChange('to')" placeholder="YYYY-MM-DD"/>
-        </div>
+        <form class="form-horizontal" role="form" name="rangeForm" ng-submit="rangeChange()" novalidate>
+          <!-- From -->
+          <div class="field">
+            <label for="date_from">From</label>
+            <input id="date_from" type="text" ng-model="from" placeholder="YYYY-MM-DD"/>
+          </div>
+          <!-- To -->
+          <div class="field">
+            <label for="date_to">To</label>
+            <input id="date_to" type="text" ng-model="to" placeholder="YYYY-MM-DD"/>
+          </div>
+          <!-- Submit -->
+          <button class="btn btn-primary btn-sm" type="submit">Select</button>
+        </form>
       </div>
     </div>
 
