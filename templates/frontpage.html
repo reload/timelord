@@ -118,7 +118,7 @@
           <label for="date_year">Year</label>
           <select id="date_year" ng-model="year" ng-options="year.value as year.year for year in date_options_year"></select>
           <!-- Submit -->
-          <button class="btn btn-primary btn-m" type="submit">Select</button>
+          <button class="btn btn-primary btn-m" ng-click="modalState('range_modal', false)" type="submit">Select</button>
         </form>
       </div>
 
@@ -136,7 +136,7 @@
             <input id="date_to" type="text" ng-model="to" placeholder="YYYY-MM-DD"/>
           </div>
           <!-- Submit -->
-          <button class="btn btn-primary btn-m" type="submit">Select</button>
+          <button class="btn btn-primary btn-m" ng-click="modalState('range_modal', false)" type="submit">Select</button>
         </form>
       </div>
     </div>
