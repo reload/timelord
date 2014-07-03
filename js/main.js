@@ -253,20 +253,20 @@
       data = [];
       colors = {
         green: {
-          main: '#8FA77B',
-          highlight: '#9cb18a'
+          main: '#76caa3',
+          highlight: '#98d7b9'
         },
         red: {
           main: '#bf616a',
           highlight: '#c6737b'
         },
         yellow: {
-          main: '#F7D77C',
-          highlight: '#f8de94'
+          main: '#efab00',
+          highlight: '#f6d57f'
         },
         purple: {
-          main: '#b48ead',
-          highlight: '#be9db8'
+          main: '#786492',
+          highlight: '#998aad'
         }
       };
       label_text = {

@@ -1,20 +1,23 @@
 // Colors.
-$green:           #3AAF8B;
-$darkGreen:       #367763;
-$darkerGreen:     #2A443B;
+$green:           #76caa3;
+$green-dark:      darken($green, 20%);
+$green-darkest:   darken($green, 45%);
 $blue:            #4FB1D7;
-$darkerBlue:      #225D77;
-$lightYellow:     #FEEDC2;
-$yellow:          #F7D77C;
+$blue-darkest:    darken($blue, 30%);
+$yellow:          #efab00;
+$yellow-light:    #f6d57f;
 $red:             #EA5F57;
-$purple:          #b48ead;
-$black:           #333333;
-$lightGray:       #BDC0C6;
+$purple:          #786492;
+$black:           #252525;
+$gray:            #595957;
+$gray-light:      #919291;
+$gray-lightest:   #c8c9c8;
 $border-gray:     #C9C9C9;
 $bootstrap-gray:  #f9f9f9;
 
 // Chart colors.
-$chart-green:     #8FA77B;
+//$chart-green:     #8FA77B;
+$chart-green:     $green;
 $chart-red:       #bf616a;
 $chart-yellow:    $yellow;
 $chart-purple:    $purple;
@@ -24,7 +27,7 @@ $fontSize:         16px;
 $bodyFontColor:    $black;
 $bodyLineHeight:   1.4;
 $bodyFontFamily:   AsapRegular, sans-serif;
-$headerFontColor:  $darkerGreen;
+$headerFontColor:  $green-darkest;
 $headerFontFamily: AsapBold, sans-serif;
 $containerWidth:   1400px;
 
@@ -41,4 +44,3 @@ $containerWidth:   1400px;
 @import "header";
 @import "user-ranking";
 @import "modal";
-@import "tables";

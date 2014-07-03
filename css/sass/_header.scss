@@ -1,5 +1,5 @@
 #header {
-  border-bottom: 4px solid lighten($green, 30%);
+  border-bottom: 4px solid lighten($green, 10%);
   margin-bottom: 70px;
   position: relative;
   height: 112px;
@@ -30,7 +30,7 @@
     // Label
     p {
       font-size: .75em;
-      color: $darkerGreen;
+      color: $green-darkest;
     }
 
     .percent {
@@ -51,7 +51,7 @@
   .logged_hours {
     font-size: 5em;
     font-family: $headerFontFamily;
-    color: $darkerBlue;
+    color: $blue-darkest;
     float: left;
     margin-top: -2px;
     margin-right: .15em;
@@ -59,7 +59,7 @@
   }
 
   .logged_hours_desc {
-    color: $darkerBlue;
+    color: $blue-darkest;
     text-transform: uppercase;
     float: left;
     margin-top: 23px;
@@ -83,6 +83,6 @@
     font-family: AsapItalic;
     font-size: 1.5em;
     line-height: 1.2;
-    color: darken($lightGray, 5%);
+    color: darken($gray-light, 5%);
   }
 }
