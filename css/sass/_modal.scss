@@ -186,10 +186,11 @@
   position: absolute;
   font-size: 24px;
   cursor: pointer;
+  color: $green;
   left: 5px;
   top: 5px;
   &:hover {
-    color: $blue;
+    color: $green-dark;
   }
 }
 

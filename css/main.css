@@ -799,11 +799,12 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   position: absolute;
   font-size: 24px;
   cursor: pointer;
+  color: #76caa3;
   left: 5px;
   top: 5px;
 }
 .range-modal-button:hover {
-  color: #4fb1d7;
+  color: #3d9d70;
 }
 
 .range-modal .header {
