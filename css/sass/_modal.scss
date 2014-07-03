@@ -88,15 +88,22 @@
 .user-modal {
   // Header.
   .header {
+    position: relative;
     img {
       float: left;
       width: 55px;
       margin: 10px 0;
     }
     h3 {
-      margin-top: 27px;
-      margin-left: 20px;
-      float: left;
+      position: absolute;
+      left: 100px;
+      top: 16px;
+      margin: 0;
+    }
+    p {
+      position: absolute;
+      left: 100px;
+      top: 42px;
     }
   }
 

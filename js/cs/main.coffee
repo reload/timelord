@@ -41,6 +41,16 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     { value: "dec", name: "December" }
   ]
 
+  # Convert the current month to the full name of the month.
+  # Example: "jan" -> "January".
+  $scope.converted_month = (val) ->
+    # Loop through the "months array".
+    for object in $scope.date_options_month
+      # When the argument matches the month.
+      if (object.value == val.toLowerCase()) or (object.name.toLowerCase() == val.toLowerCase())
+        # Return the name.
+        return object.name
+
   # Set the default values for the "from" and "to" arguments.
   if $routeParams.from
     $scope.from = $routeParams.from
@@ -72,20 +82,20 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     # If both "from" and "to" is set and doesn't equal the previous value.
     if from.length == 8 && to.length == 8
       $location.search({
-        from: from,
-        to: to
+        from: $scope.from,
+        to: $scope.to
       })
       fetchData()
     # If "from" is set.
     else if from.length == 8
       $location.search({
-        from: from
+        from: $scope.from
       })
       fetchData()
     # If "to" is set.
     else if to.length == 8
       $location.search({
-        to: to
+        to: $scope.to
       })
       fetchData()
 
@@ -119,9 +129,9 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     url = 'inc/feed.php?'
     # Range.
     if ($routeParams.from) or ($scope.type == 'range' and $scope.from != '')
-      url += '&from=' + $scope.from
+      url += '&from=' + $scope.from.replace(/-/g, '')
     if ($routeParams.to) or ($scope.type == 'range' and $scope.to != '')
-      url += '&to=' + $scope.to
+      url += '&to=' + $scope.to.replace(/-/g, '')
     # Month.
     if ($routeParams.month) or ($scope.type == 'month' and $scope.month != '')
       url += '&month=' + $scope.month
@@ -134,7 +144,8 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
         # Make the total amount of hours an integer instead of float.
         data.hours_total_registered = parseInt(data.hours_total_registered, 10)
         # Get registered percent.
-        data.total_percent = Math.round 100*data.hours_total_registered/data.hours_in_range
+        data.total_percent = Math.round 100 * data.hours_total_registered / data.hours_in_range
+        data.hours_in_range = parseInt(data.hours_in_range, 10)
 
         # Check if there's any user-id's in the URL.
         if hashtag() != ''

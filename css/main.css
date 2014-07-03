@@ -371,6 +371,41 @@ a:visited {
   background: url(../img/reload-logo.png) -1px -1px no-repeat;
   text-indent: -100%;
 }
+#header .logged_hours {
+  font-size: 5em;
+  font-family: AsapBold, sans-serif;
+  color: #1a5a73;
+  float: left;
+  margin-top: -2px;
+  margin-right: .15em;
+  letter-spacing: -.05em;
+}
+#header .logged_hours_desc {
+  color: #1a5a73;
+  text-transform: uppercase;
+  float: left;
+  margin-top: 23px;
+  margin-right: 2em;
+}
+#header .logged_hours_desc span {
+  font-size: 1.1em;
+  line-height: 1.2;
+  display: block;
+}
+#header .logged_hours_desc span .date, #header .logged_hours_desc span.date {
+  display: inline;
+  color: #4fb1d7;
+}
+#header .scope_desc {
+  font-family: AsapRegular, sans-serif;
+  padding-top: 40px;
+  font-size: 1.4em;
+  color: #4fb1d7;
+}
+#header .scope_desc p {
+  border-bottom: 1px solid #4fb1d7;
+  display: inline;
+}
 #header #hours_productive {
   background: #76caa3;
   width: 150px;
@@ -402,31 +437,6 @@ a:visited {
   color: #fff;
   margin-bottom: 0;
   line-height: .8;
-}
-#header .logged_hours {
-  font-size: 5em;
-  font-family: AsapBold, sans-serif;
-  color: #1a5a73;
-  float: left;
-  margin-top: -2px;
-  margin-right: .15em;
-  letter-spacing: -.05em;
-}
-#header .logged_hours_desc {
-  color: #1a5a73;
-  text-transform: uppercase;
-  float: left;
-  margin-top: 23px;
-  margin-right: 2em;
-}
-#header .logged_hours_desc span {
-  font-size: 1.1em;
-  line-height: 1.2;
-  display: block;
-}
-#header .logged_hours_desc span .date, #header .logged_hours_desc span.date {
-  display: inline;
-  color: #4fb1d7;
 }
 #header .remaining {
   display: none;
@@ -688,15 +698,24 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   float: right;
 }
 
+.user-modal .header {
+  position: relative;
+}
 .user-modal .header img {
   float: left;
   width: 55px;
   margin: 10px 0;
 }
 .user-modal .header h3 {
-  margin-top: 27px;
-  margin-left: 20px;
-  float: left;
+  position: absolute;
+  left: 100px;
+  top: 16px;
+  margin: 0;
+}
+.user-modal .header p {
+  position: absolute;
+  left: 100px;
+  top: 42px;
 }
 .user-modal .content .percent {
   position: relative;

@@ -20,6 +20,17 @@
       <span>registered</span>
     </div>
 
+    <div class="scope_desc">
+      <p ng-show="type == 'range'">
+        {{from}}
+        <span ng-show="!to">to today</span>
+        <span ng-show="to">to {{to}}</span>
+      </p>
+      <p ng-show="type == 'month'">{{converted_month(month)}} {{year}}</p>
+    </div>
+
+    <div class="remaining">hello</div>
+
     <div id="hours_productive">
       <h4>{{data.total_percent}}</h4>
       <p class="percent">percent</p>
@@ -153,6 +164,12 @@
     <div class="header">
       <img src="{{user.imageUrl}}" alt=""/>
       <h3>{{user.full_name}}</h3>
+      <p ng-show="type == 'range'">
+        {{from}}
+        <span ng-show="!to">to today</span>
+        <span ng-show="to">to {{to}}</span>
+      </p>
+      <p ng-show="type == 'month'">{{converted_month(month)}} {{year}}</p>
     </div>
 
     <!-- Content -->

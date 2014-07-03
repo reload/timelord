@@ -62,6 +62,16 @@
         name: "December"
       }
     ];
+    $scope.converted_month = function(val) {
+      var object, _i, _len, _ref;
+      _ref = $scope.date_options_month;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        object = _ref[_i];
+        if ((object.value === val.toLowerCase()) || (object.name.toLowerCase() === val.toLowerCase())) {
+          return object.name;
+        }
+      }
+    };
     if ($routeParams.from) {
       $scope.from = $routeParams.from;
     } else {
@@ -89,18 +99,18 @@
       to = $scope.to.replace(/-/g, '');
       if (from.length === 8 && to.length === 8) {
         $location.search({
-          from: from,
-          to: to
+          from: $scope.from,
+          to: $scope.to
         });
         return fetchData();
       } else if (from.length === 8) {
         $location.search({
-          from: from
+          from: $scope.from
         });
         return fetchData();
       } else if (to.length === 8) {
         $location.search({
-          to: to
+          to: $scope.to
         });
         return fetchData();
       }
@@ -126,10 +136,10 @@
       var url;
       url = 'inc/feed.php?';
       if ($routeParams.from || ($scope.type === 'range' && $scope.from !== '')) {
-        url += '&from=' + $scope.from;
+        url += '&from=' + $scope.from.replace(/-/g, '');
       }
       if ($routeParams.to || ($scope.type === 'range' && $scope.to !== '')) {
-        url += '&to=' + $scope.to;
+        url += '&to=' + $scope.to.replace(/-/g, '');
       }
       if ($routeParams.month || ($scope.type === 'month' && $scope.month !== '')) {
         url += '&month=' + $scope.month;
@@ -141,6 +151,7 @@
         var user_id, year;
         data.hours_total_registered = parseInt(data.hours_total_registered, 10);
         data.total_percent = Math.round(100 * data.hours_total_registered / data.hours_in_range);
+        data.hours_in_range = parseInt(data.hours_in_range, 10);
         if (hashtag() !== '') {
           user_id = hashtag();
         }
