@@ -371,6 +371,11 @@ a:visited {
   background: url(../img/reload-logo.png) -1px -1px no-repeat;
   text-indent: -100%;
 }
+@media (max-width: 550px) {
+  #header #logo {
+    display: none;
+  }
+}
 #header .logged_hours {
   font-size: 5em;
   font-family: AsapBold, sans-serif;
@@ -387,6 +392,11 @@ a:visited {
   margin-top: 23px;
   margin-right: 2em;
 }
+@media (max-width: 900px) {
+  #header .logged_hours_desc {
+    margin-right: 1em;
+  }
+}
 #header .logged_hours_desc span {
   font-size: 1.1em;
   line-height: 1.2;
@@ -402,9 +412,41 @@ a:visited {
   font-size: 1.4em;
   color: #4fb1d7;
 }
+@media (max-width: 900px) {
+  #header .scope_desc {
+    font-size: 1.2em;
+    padding-top: 28px;
+  }
+}
+@media (max-width: 700px) {
+  #header .scope_desc {
+    position: absolute;
+    top: 85px;
+  }
+}
 #header .scope_desc p {
   border-bottom: 1px solid #4fb1d7;
   display: inline;
+}
+@media (max-width: 900px) {
+  #header .scope_desc p span {
+    display: block;
+  }
+}
+@media (max-width: 700px) {
+  #header .scope_desc p span {
+    display: inline;
+  }
+}
+@media (max-width: 900px) {
+  #header .scope_desc p span.to {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  #header .scope_desc p span.to {
+    display: inline;
+  }
 }
 #header #hours_productive {
   background: #76caa3;

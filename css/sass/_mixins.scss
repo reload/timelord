@@ -54,6 +54,13 @@
 
 // Small media-query.
 @mixin small {
+  @media (max-width: 700px) {
+    @content;
+  }
+}
+
+// Extra-Small media-query.
+@mixin x-small {
   @media (max-width: 550px) {
     @content;
   }

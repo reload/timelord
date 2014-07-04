@@ -23,10 +23,11 @@
     <div class="scope_desc">
       <p ng-show="type == 'range'">
         {{from}}
-        <span ng-show="!to">to today</span>
-        <span ng-show="to">to {{to}}</span>
+        <span class="to">to</span>
+        <span ng-show="!to">today</span>
+        <span ng-show="to">{{to}}</span>
       </p>
-      <p ng-show="type == 'month'">{{converted_month(month)}} {{year}}</p>
+      <p ng-show="type == 'month'">{{converted_month(month)}} <span>{{year}}</span></p>
     </div>
 
     <div class="remaining">hello</div>
