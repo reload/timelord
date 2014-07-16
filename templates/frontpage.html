@@ -20,7 +20,7 @@
       <span>registered</span>
     </div>
 
-    <div class="scope_desc">
+    <div class="scope_desc" ng-click="modalState('range_modal', true)">
       <p ng-show="type == 'range'">
         {{from}}
         <span class="to">to</span>
@@ -68,9 +68,6 @@
       </form>
     </div>
   </div>
-
-  <!-- Range Modal button -->
-  <i class="fa fa-calendar range-modal-button" ng-click="modalState('range_modal', true)"></i>
 </div>
 
 <!-- Login form -->

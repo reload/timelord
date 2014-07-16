@@ -52,9 +52,9 @@
 
   .scope_desc {
     font-family: $bodyFontFamily;
-    padding-top: 40px;
+    position: relative;
     font-size: 1.4em;
-    color: $blue;
+    top: 40px;
     @include medium {
       font-size: 1.2em;
       padding-top: 28px;
@@ -64,8 +64,14 @@
       top: 85px;
     }
     p {
-      border-bottom: 1px solid $blue;
       display: inline;
+      cursor: pointer;
+      color: $blue;
+      border-bottom: 1px solid $blue;
+      &:hover {
+        color: $green;
+        border-color: $green;
+      }
       span {
         @include medium {
           display: block;

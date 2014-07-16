@@ -408,9 +408,9 @@ a:visited {
 }
 #header .scope_desc {
   font-family: AsapRegular, sans-serif;
-  padding-top: 40px;
+  position: relative;
   font-size: 1.4em;
-  color: #4fb1d7;
+  top: 40px;
 }
 @media (max-width: 900px) {
   #header .scope_desc {
@@ -425,8 +425,14 @@ a:visited {
   }
 }
 #header .scope_desc p {
-  border-bottom: 1px solid #4fb1d7;
   display: inline;
+  cursor: pointer;
+  color: #4fb1d7;
+  border-bottom: 1px solid #4fb1d7;
+}
+#header .scope_desc p:hover {
+  color: #76caa3;
+  border-color: #76caa3;
 }
 @media (max-width: 900px) {
   #header .scope_desc p span {
@@ -835,18 +841,6 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
-}
-
-.range-modal-button {
-  position: absolute;
-  font-size: 24px;
-  cursor: pointer;
-  color: #76caa3;
-  left: 5px;
-  top: 5px;
-}
-.range-modal-button:hover {
-  color: #3d9d70;
 }
 
 .range-modal .header {

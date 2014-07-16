@@ -182,18 +182,6 @@
   }
 }
 
-.range-modal-button {
-  position: absolute;
-  font-size: 24px;
-  cursor: pointer;
-  color: $green;
-  left: 5px;
-  top: 5px;
-  &:hover {
-    color: $green-dark;
-  }
-}
-
 .range-modal {
   .header {
     padding: 12px 25px 6px !important;
