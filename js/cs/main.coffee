@@ -271,7 +271,11 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     $scope.user_modal = true
     # Asign the user object to $scrope and provide extra arguments.
     $scope.user = user
+    # Percent of how many hours the user registered compared to the expeced amount.
     $scope.user.registered_hours_percent = Math.round user.hours_registered / user.hours_goal * 100
+    # Percent of how many of the users hours that are billable compared
+    # to the expected amount (not taking overtime into account).
+    $scope.user.extra.billable_hours_percent = (user.extra.billability.calculated / user.hours_goal * 100).toFixed(2)
     # Check if we have access to the "extra" object.
     if user.extra.length != 0
       # Show the "illness fields" if there's any sickness to report.
