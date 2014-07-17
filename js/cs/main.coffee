@@ -395,11 +395,18 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
 
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->
-  # We need to define the width / height on every init since there
-  # is a but with retina displays, where the size double every
+  # Even though the data is reset and a new instance of the graph
+  # is created, the old graph still hangs on to the canvas, so we
+  # have to remove the old canvas and create a new one to
+  # completely reset it.
+  $('canvas#' + id).after($('<canvas>', {id: id})).remove()
+
+  # We need to force the width / height on every init since there
+  # is a bug with retina displays, where the size doubles every
   # time you create a new graph.
   document.getElementById(id).setAttribute('width', '225px')
   document.getElementById(id).setAttribute('height', '225px')
+
   # Get context and init the chart.
   ctx = document.getElementById(id).getContext('2d')
   new Chart(ctx).Doughnut(data, options)

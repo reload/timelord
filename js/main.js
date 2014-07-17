@@ -354,6 +354,9 @@
     if (options == null) {
       options = null;
     }
+    $('canvas#' + id).after($('<canvas>', {
+      id: id
+    })).remove();
     document.getElementById(id).setAttribute('width', '225px');
     document.getElementById(id).setAttribute('height', '225px');
     ctx = document.getElementById(id).getContext('2d');
