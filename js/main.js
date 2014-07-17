@@ -256,7 +256,7 @@
       $scope.user = user;
       $scope.user.registered_hours_percent = Math.round(user.hours_registered / user.hours_goal * 100);
       if (user.extra.length !== 0) {
-        $scope.user.extra.billable_hours_percent = roundNumber(user.extra.billability.calculated / user.hours_goal * 100);
+        $scope.user.extra.billable_hours_percent = roundNumber(user.extra.billable / user.hours_goal * 100);
         if (user.extra.illness !== false) {
           $scope.user.extra.show_illness = true;
           $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child;
