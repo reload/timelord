@@ -175,21 +175,24 @@
       <!-- Close button -->
       <i class="glyphicon glyphicon-remove close" ng-click="modalState('user_modal', false)"></i>
 
-      <!-- Percent -->
-      <div class="percent">
-        <p>Registered hours</p>
-        <h1>{{user.registered_hours_percent}}%</h1>
-      </div>
+      <!-- Illustrations to easily show a quick overview of the user. -->
+      <div class="illustrations">
+        <!-- Percent -->
+        <div class="percent">
+          <p>Registered hours</p>
+          <h1>{{user.registered_hours_percent}}%</h1>
+        </div>
 
-      <!-- Chart -->
-      <div class="chart">
-        <ul class="label-colors">
-          <li class="green" ng-show="label_state[0]">Registered time</li>
-          <li class="red" ng-show="label_state[1]">Time behind</li>
-          <li class="gold" ng-show="label_state[2]">Overtime</li>
-          <li class="purple" ng-show="label_state[3]">Sickness</li>
-        </ul>
-        <canvas id="hours-chart" width="225" height="225"></canvas>
+        <!-- Chart -->
+        <div class="chart">
+          <ul class="label-colors">
+            <li class="green" ng-show="label_state[0]">Registered time</li>
+            <li class="red" ng-show="label_state[1]">Time behind</li>
+            <li class="gold" ng-show="label_state[2]">Overtime</li>
+            <li class="purple" ng-show="label_state[3]">Sickness</li>
+          </ul>
+          <canvas id="hours-chart"></canvas>
+        </div>
       </div>
 
       <!-- Table -->
