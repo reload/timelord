@@ -156,11 +156,11 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
         # Loop though each user.
         angular.forEach data.ranking, (user, i) ->
           # Get user ranking & set path to the profile image.
-          data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg'
+#          data.ranking[i].imageUrl =
           data.ranking[i].group = data.ranking[i].group.toLowerCase()
 
           # Look for the user-id that's requested as a url-parameter.
-          if (user_id) and (user_id == user.converted_user_id.replace(/\//g, ''))
+          if (user_id) and (user_id == String(user.id).replace(/\//g, ''))
             $scope.toggleStats(user)
 
           # Set group icon and text.
@@ -268,7 +268,7 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
   # User click function.
   $scope.toggleStats = (user) ->
     # Set hash-value to be the user id.
-    hashtag(user.converted_user_id)
+    hashtag(user.id)
     # Set the user modal as true.
     $scope.user_modal = true
     # Asign the user object to $scrope and provide extra arguments.
@@ -423,6 +423,8 @@ hashtag = (val) ->
   val = val || null
   # If a value is given.
   if val
+    # Make sure the hash value is a string, so we can "replace".
+    val = String(val)
     # Replace possible slashes and set the hash value.
     window.location.hash = val.replace(/\//g, '')
   # Else just return the hash-value (without the hashtag).

@@ -160,9 +160,8 @@
           user_id = hashtag();
         }
         angular.forEach(data.ranking, function(user, i) {
-          data.ranking[i].imageUrl = 'https://proxy.harvestfiles.com/production_harvestapp_public/uploads/users/avatar/' + user.converted_user_id + '/normal.jpg';
           data.ranking[i].group = data.ranking[i].group.toLowerCase();
-          if (user_id && (user_id === user.converted_user_id.replace(/\//g, ''))) {
+          if (user_id && (user_id === String(user.id).replace(/\//g, ''))) {
             $scope.toggleStats(user);
           }
           switch (data.ranking[i].group) {
@@ -255,7 +254,7 @@
     };
     $scope.toggleStats = function(user) {
       var colors, data, hours_goal, hours_registered, label_text, options;
-      hashtag(user.converted_user_id);
+      hashtag(user.id);
       $scope.user_modal = true;
       $scope.user = user;
       $scope.user.registered_hours_percent = Math.round(user.hours_registered / user.hours_goal * 100);
@@ -374,6 +373,7 @@
   hashtag = function(val) {
     val = val || null;
     if (val) {
+      val = String(val);
       return window.location.hash = val.replace(/\//g, '');
     } else {
       return window.location.hash.substring(1);

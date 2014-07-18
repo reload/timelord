@@ -47,7 +47,7 @@
           {{user.group_icon}}
         </span>
         <figure class="user_avatar_holder">
-          <img src="{{user.imageUrl}}">
+          <img src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
         </figure>
       </div>
       <div class="user_info">
@@ -160,7 +160,7 @@
   <div class="modal-content user-modal">
     <!-- Header -->
     <div class="header">
-      <img src="{{user.imageUrl}}" alt=""/>
+      <img src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
       <h3>{{user.full_name}}</h3>
       <p ng-show="type == 'range'">
         {{from}}
