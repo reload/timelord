@@ -135,17 +135,21 @@
     fetchData = function() {
       var url;
       url = 'inc/feed.php?';
-      if ($routeParams.from || ($scope.type === 'range' && $scope.from !== '')) {
-        url += '&from=' + $scope.from.replace(/-/g, '');
+      if ($scope.type === 'range') {
+        if ($routeParams.from || ($scope.from !== '')) {
+          url += '&from=' + $scope.from.replace(/-/g, '');
+        }
+        if ($routeParams.to || ($scope.to !== '')) {
+          url += '&to=' + $scope.to.replace(/-/g, '');
+        }
       }
-      if ($routeParams.to || ($scope.type === 'range' && $scope.to !== '')) {
-        url += '&to=' + $scope.to.replace(/-/g, '');
-      }
-      if ($routeParams.month || ($scope.type === 'month' && $scope.month !== '')) {
-        url += '&month=' + $scope.month;
-      }
-      if ($routeParams.year || ($scope.type === 'month' && $scope.year !== '')) {
-        url += '&year=' + $scope.year;
+      if ($scope.type === 'month') {
+        if ($routeParams.month || ($scope.month !== '')) {
+          url += '&month=' + $scope.month;
+        }
+        if ($routeParams.year || ($scope.year !== '')) {
+          url += '&year=' + $scope.year;
+        }
       }
       return $http.get(url).success(function(data, status, headers, config) {
         var user_id, year;

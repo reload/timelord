@@ -128,15 +128,17 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     # Check for arguments and prepare the feed-request.
     url = 'inc/feed.php?'
     # Range.
-    if ($routeParams.from) or ($scope.type == 'range' and $scope.from != '')
-      url += '&from=' + $scope.from.replace(/-/g, '')
-    if ($routeParams.to) or ($scope.type == 'range' and $scope.to != '')
-      url += '&to=' + $scope.to.replace(/-/g, '')
+    if $scope.type == 'range'
+      if ($routeParams.from) or ($scope.from != '')
+        url += '&from=' + $scope.from.replace(/-/g, '')
+      if ($routeParams.to) or ($scope.to != '')
+        url += '&to=' + $scope.to.replace(/-/g, '')
     # Month.
-    if ($routeParams.month) or ($scope.type == 'month' and $scope.month != '')
-      url += '&month=' + $scope.month
-    if ($routeParams.year) or ($scope.type == 'month' and $scope.year != '')
-      url += '&year=' + $scope.year
+    if ($scope.type == 'month')
+      if (($routeParams.month) or ($scope.month != ''))
+        url += '&month=' + $scope.month
+      if (($routeParams.year) or ($scope.year != ''))
+        url += '&year=' + $scope.year
 
     # Execute feed-request.
     $http.get(url)
