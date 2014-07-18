@@ -156,7 +156,6 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
         # Loop though each user.
         angular.forEach data.ranking, (user, i) ->
           # Get user ranking & set path to the profile image.
-#          data.ranking[i].imageUrl =
           data.ranking[i].group = data.ranking[i].group.toLowerCase()
 
           # Look for the user-id that's requested as a url-parameter.
