@@ -159,24 +159,30 @@
         if (hashtag() !== '') {
           user_id = hashtag();
         }
-        angular.forEach(data.ranking, function(user, i) {
-          data.ranking[i].group = data.ranking[i].group.toLowerCase();
+        angular.forEach(data.users, function(user, i) {
+          var avg_hours_difference;
           if (user_id && (user_id === String(user.id).replace(/\//g, ''))) {
             $scope.toggleStats(user);
           }
-          switch (data.ranking[i].group) {
-            case "a-karmahunter":
-              data.ranking[i].group_icon = '★';
-              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-            case "b-goalie":
-              data.ranking[i].group_icon = '✓';
-              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-            case "c-karmauser":
-              data.ranking[i].group_icon = '☂';
-              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-            case "d-slacker":
-              data.ranking[i].group_icon = '☁';
-              return data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
+          avg_hours_difference = (user.hours_registered - user.hours_goal) / data.misc.working_days_in_range;
+          data.users[i].rank = {};
+          data.users[i].rank.value = avg_hours_difference;
+          if (avg_hours_difference >= 0.5) {
+            data.users[i].rank["class"] = 'a-karmahunter';
+            data.users[i].rank.icon = '★';
+            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
+          } else if (avg_hours_difference < 0.5 && avg_hours_difference > -0.25) {
+            data.users[i].rank["class"] = 'b-goalie';
+            data.users[i].rank.icon = '✓';
+            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
+          } else if (avg_hours_difference <= -0.25 && avg_hours_difference >= -0.5) {
+            data.users[i].rank["class"] = 'c-karmauser';
+            data.users[i].rank.icon = '☂';
+            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
+          } else {
+            data.users[i].rank["class"] = 'd-slacker';
+            data.users[i].rank.icon = '☁';
+            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
           }
         });
         $scope.data = data;

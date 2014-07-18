@@ -154,28 +154,41 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
           user_id = hashtag();
 
         # Loop though each user.
-        angular.forEach data.ranking, (user, i) ->
-          # Get user ranking & set path to the profile image.
-          data.ranking[i].group = data.ranking[i].group.toLowerCase()
-
-          # Look for the user-id that's requested as a url-parameter.
+        angular.forEach data.users, (user, i) ->
+          # Compare a possible user-id in the URL.
           if (user_id) and (user_id == String(user.id).replace(/\//g, ''))
             $scope.toggleStats(user)
 
-          # Set group icon and text.
-          switch data.ranking[i].group
-            when "a-karmahunter"
-              data.ranking[i].group_icon = '★'
-              data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-            when "b-goalie"
-              data.ranking[i].group_icon = '✓'
-              data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-            when "c-karmauser"
-              data.ranking[i].group_icon = '☂'
-              data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-            when "d-slacker"
-              data.ranking[i].group_icon = '☁'
-              data.ranking[i].group_text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
+          # Calculate the avarage amount of hours a person is over/under the expected goal.
+          # 30min overtime per day = 0.5
+          # 2 hours short per day= -2
+          avg_hours_difference = ((user.hours_registered - user.hours_goal) / data.misc.working_days_in_range)
+
+          # Define the "user rank object" & provide the difference.
+          data.users[i].rank = {}
+          data.users[i].rank.value = avg_hours_difference
+
+          # If the user has been working:
+          # More than 30min extra per day.
+          if avg_hours_difference >= 0.5
+            data.users[i].rank.class = 'a-karmahunter'
+            data.users[i].rank.icon = '★'
+            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
+          # Between +29min to -15min per day.
+          else if avg_hours_difference < 0.5 and avg_hours_difference > -0.25
+            data.users[i].rank.class = 'b-goalie'
+            data.users[i].rank.icon = '✓'
+            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
+          # Between: -15min to -30min per day.
+          else if avg_hours_difference <= -0.25 and avg_hours_difference >= -0.5
+            data.users[i].rank.class = 'c-karmauser'
+            data.users[i].rank.icon = '☂'
+            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
+          # Anything less than -30min per day.
+          else
+            data.users[i].rank.class = 'd-slacker'
+            data.users[i].rank.icon = '☁'
+            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
 
         # Output to scope.
         $scope.data = data

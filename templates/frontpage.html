@@ -41,10 +41,11 @@
 
   <!-- User portraits -->
   <ul id="user-ranking">
-    <li class="user {{user.group}}" ng-click="toggleStats(user)" ng-repeat="user in data.ranking | orderBy:'group'">
+    <!-- Loop through a list of users, based on amount of hours registered (desc) -->
+    <li class="user {{user.rank.class}}" ng-click="toggleStats(user)" ng-repeat="user in data.users | orderBy: '-rank.value'">
       <div class="user_avatar">
-        <span class="rank {{user.group}}">
-          {{user.group_icon}}
+        <span class="rank {{user.rank.class}}">
+          {{user.rank.icon}}
         </span>
         <figure class="user_avatar_holder">
           <img src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
@@ -52,7 +53,7 @@
       </div>
       <div class="user_info">
         <h2>{{user.first_name}}</h2>
-        <p class="desc">{{user.group_text}}</p>
+        <p class="desc">{{user.rank.text}}</p>
       </div>
     </li>
   </ul>
