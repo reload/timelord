@@ -3,10 +3,9 @@
 #loading-bar-spinner {
   -webkit-pointer-events: none;
   pointer-events: none;
-  -webkit-transition: 350mx linear all;
-  -moz-transition: 350mx linear all;
-  -o-transition: 350mx linear all;
-  transition: 350mx linear all;
+  -moz-transition: 350mx all;
+  -webkit-transition: 350mx all;
+  transition: 350mx all;
 }
 
 #loading-bar.ng-enter,
@@ -31,9 +30,8 @@
   left: 0;
   width: 100%;
   height: 2px;
-  -webkit-transition: width 350ms;
   -moz-transition: width 350ms;
-  -o-transition: width 350ms;
+  -webkit-transition: width 350ms;
   transition: width 350ms;
   -moz-border-radius-bottomright: 1px;
   -webkit-border-bottom-right-radius: 1px;
@@ -51,13 +49,11 @@
   top: 0;
   height: 2px;
   opacity: .45;
-  -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
-  -ms-border-radius: 100%;
-  -o-border-radius: 100%;
+  -webkit-border-radius: 100%;
   border-radius: 100%;
-  -webkit-box-shadow: #76caa3 1px 0 6px 1px;
   -moz-box-shadow: #76caa3 1px 0 6px 1px;
+  -webkit-box-shadow: #76caa3 1px 0 6px 1px;
   box-shadow: #76caa3 1px 0 6px 1px;
 }
 
@@ -85,99 +81,84 @@
 
 @-webkit-keyframes loading-bar-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @-moz-keyframes loading-bar-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @-ms-keyframes loading-bar-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @-o-keyframes loading-bar-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @keyframes loading-bar-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -234,7 +215,6 @@ img {
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'AsapItalic';
   src: url("../fonts/asap/Asap-Italic-webfont.eot");
@@ -242,7 +222,6 @@ img {
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'AsapBold';
   src: url("../fonts/asap/Asap-Bold-webfont.eot");
@@ -250,7 +229,6 @@ img {
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'AsapBoldItalic';
   src: url("../fonts/asap/Asap-BoldItalic-webfont.eot");
@@ -258,7 +236,6 @@ img {
   font-weight: normal;
   font-style: normal;
 }
-
 @-webkit-keyframes color-pulse {
   0%,
   20% {
@@ -281,7 +258,6 @@ img {
     background-color: #1a5a73;
   }
 }
-
 #loader {
   font-size: 20px;
   text-align: center;
@@ -289,9 +265,8 @@ img {
   margin: 20% 0 0 -225px;
   position: absolute;
   left: 50%;
-  -webkit-transition: margin-top 500ms ease-in-out;
   -moz-transition: margin-top 500ms ease-in-out;
-  -o-transition: margin-top 500ms ease-in-out;
+  -webkit-transition: margin-top 500ms ease-in-out;
   transition: margin-top 500ms ease-in-out;
 }
 #loader .thingy {
@@ -316,9 +291,8 @@ img {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 4%;
-  -webkit-transition: opacity 2000ms ease-in-out;
   -moz-transition: opacity 2000ms ease-in-out;
-  -o-transition: opacity 2000ms ease-in-out;
+  -webkit-transition: opacity 2000ms ease-in-out;
   transition: opacity 2000ms ease-in-out;
   *zoom: 1;
 }
@@ -458,11 +432,11 @@ a:visited {
   background: #76caa3;
   width: 150px;
   height: 150px;
-  -webkit-border-radius: 150px 150px;
   -moz-border-radius: 150px / 150px;
+  -webkit-border-radius: 150px 150px;
   border-radius: 150px / 150px;
-  -webkit-box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
   text-align: center;
   text-transform: uppercase;
@@ -553,8 +527,8 @@ ul#user-ranking li.user .rank {
   left: -5px;
   line-height: 30px;
   font-size: 1.25em;
-  -webkit-border-radius: 30px 30px;
   -moz-border-radius: 30px / 30px;
+  -webkit-border-radius: 30px 30px;
   border-radius: 30px / 30px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
@@ -569,11 +543,11 @@ ul#user-ranking li.user .user_avatar .user_avatar_holder {
   width: 100px;
   height: 100px;
   background-color: #3d9d70;
-  -webkit-border-radius: 100px 100px;
   -moz-border-radius: 100px / 100px;
+  -webkit-border-radius: 100px 100px;
   border-radius: 100px / 100px;
-  -webkit-box-shadow: -2px 0 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: -2px 0 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: -2px 0 0 rgba(0, 0, 0, 0.1);
   box-shadow: -2px 0 0 rgba(0, 0, 0, 0.1);
   border: 6px solid #76caa3;
   overflow: hidden;
@@ -592,8 +566,8 @@ ul#user-ranking li.user:after {
   text-align: center;
   color: #fff;
   font-family: AsapBoldItalic, sans-serif;
-  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.2), inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.2), inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.2), inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.2), inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
 }
@@ -718,8 +692,8 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
 .modal-wrap .modal-content .content {
   padding: 1px 25px;
   display: block;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 .modal-wrap .modal-content .close {
@@ -731,7 +705,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   color: #333;
   padding: 4px;
   font-size: 16px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
 .modal-wrap .modal-content .close:hover, .modal-wrap .modal-content .close:focus {
@@ -844,10 +818,8 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   top: 1px;
   width: 16px;
   height: 16px;
-  -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  -webkit-border-radius: 50%;
   border-radius: 50%;
 }
 
