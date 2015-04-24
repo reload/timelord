@@ -11,6 +11,7 @@
   <meta charset="utf-8">
 
   <title><?php print $site_name; ?></title>
+  <base href="<?php print $timelord_base; ?>"/>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width">
