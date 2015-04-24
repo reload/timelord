@@ -69,8 +69,7 @@ module.exports = function (grunt) {
       },
       css: {
         'src': [
-          'vendor/fontawesome/css/font-awesome.css',
-          'vendor/bootstrap-sass/dist/css/bootstrap.css'
+          'vendor/bootstrap/dist/css/bootstrap.min.css'
         ],
         'dest': 'vendor/vendor.css'
       }
@@ -104,8 +103,7 @@ module.exports = function (grunt) {
             expand: true,
             flatten: true,
             src: [
-              'vendor/fontawesome/fonts/*',
-              'vendor/bootstrap-sass/dist/fonts/*'
+              'vendor/bootstrap/dist/fonts/*'
             ],
             dest: 'fonts/',
             filter: 'isFile'

@@ -17,9 +17,8 @@
     "angular": "latest",
     "angular-loading-bar": "latest",
     "angular-route": "latest",
-    "bootstrap-sass": "latest",
+    "bootstrap": "3.3.4",
     "chartjs": "1.0.1-beta",
-    "fontawesome": "latest",
     "jquery": "latest"
   }
 }

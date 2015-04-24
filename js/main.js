@@ -63,10 +63,10 @@
       }
     ];
     $scope.converted_month = function(val) {
-      var object, _i, _len, _ref;
-      _ref = $scope.date_options_month;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        object = _ref[_i];
+      var j, len, object, ref;
+      ref = $scope.date_options_month;
+      for (j = 0, len = ref.length; j < len; j++) {
+        object = ref[j];
         if ((object.value === val.toLowerCase()) || (object.name.toLowerCase() === val.toLowerCase())) {
           return object.name;
         }

@@ -109,6 +109,11 @@
 
   // Content.
   .content {
+
+    // Make modal body scrollable
+    height: 70vh;
+    overflow: auto;
+
     // Illustrations to quickly show an overview of the user.
     .illustrations {
       @include pie-clearfix;

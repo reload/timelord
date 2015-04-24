@@ -4,6 +4,7 @@
   -webkit-pointer-events: none;
   pointer-events: none;
   -moz-transition: 350mx all;
+  -o-transition: 350mx all;
   -webkit-transition: 350mx all;
   transition: 350mx all;
 }
@@ -31,6 +32,7 @@
   width: 100%;
   height: 2px;
   -moz-transition: width 350ms;
+  -o-transition: width 350ms;
   -webkit-transition: width 350ms;
   transition: width 350ms;
   -moz-border-radius-bottomright: 1px;
@@ -86,7 +88,6 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-
   100% {
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
@@ -101,7 +102,6 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-
   100% {
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
@@ -116,7 +116,6 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-
   100% {
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
@@ -131,7 +130,6 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-
   100% {
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
@@ -146,7 +144,6 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-
   100% {
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
@@ -169,7 +166,7 @@ body {
 
 body {
   background: #fff;
-  background: -webkit-gradient(linear, right top, right bottom, color-stop(50%, white), color-stop(100%, #e0f4ff));
+  background: -webkit-gradient(linear, right top, right bottom, color-stop(50%, #ffffff), color-stop(100%, #e0f4ff));
   background-attachment: fixed;
   color: #252525;
   padding: 0;
@@ -241,19 +238,15 @@ img {
   20% {
     background-color: #76caa3;
   }
-
   40% {
     background-color: #efab00;
   }
-
   60% {
-    background-color: #4fb1d7;
+    background-color: #4FB1D7;
   }
-
   80% {
-    background-color: #ea5f57;
+    background-color: #EA5F57;
   }
-
   100% {
     background-color: #1a5a73;
   }
@@ -266,6 +259,7 @@ img {
   position: absolute;
   left: 50%;
   -moz-transition: margin-top 500ms ease-in-out;
+  -o-transition: margin-top 500ms ease-in-out;
   -webkit-transition: margin-top 500ms ease-in-out;
   transition: margin-top 500ms ease-in-out;
 }
@@ -292,6 +286,7 @@ img {
   margin: 0 auto;
   padding: 0 4%;
   -moz-transition: opacity 2000ms ease-in-out;
+  -o-transition: opacity 2000ms ease-in-out;
   -webkit-transition: opacity 2000ms ease-in-out;
   transition: opacity 2000ms ease-in-out;
   *zoom: 1;
@@ -378,7 +373,7 @@ a:visited {
 }
 #header .logged_hours_desc span .date, #header .logged_hours_desc span.date {
   display: inline;
-  color: #4fb1d7;
+  color: #4FB1D7;
 }
 #header .scope_desc {
   font-family: AsapRegular, sans-serif;
@@ -401,8 +396,8 @@ a:visited {
 #header .scope_desc p {
   display: inline;
   cursor: pointer;
-  color: #4fb1d7;
-  border-bottom: 1px solid #4fb1d7;
+  color: #4FB1D7;
+  border-bottom: 1px solid #4FB1D7;
 }
 #header .scope_desc p:hover {
   color: #76caa3;
@@ -520,7 +515,7 @@ ul#user-ranking li.user .rank {
   width: 30px;
   height: 30px;
   text-align: center;
-  background: #4fb1d7;
+  background: #4FB1D7;
   color: #1a5a73;
   position: absolute;
   top: -5px;
@@ -629,17 +624,17 @@ ul#user-ranking li.user.c-karmauser .user_avatar .rank {
 }
 ul#user-ranking li.user.d-slacker:after {
   content: "Y U NO WORK";
-  background: #ea5f57;
+  background: #EA5F57;
 }
 ul#user-ranking li.user.d-slacker .user_avatar:before {
   border-bottom-color: #951a13;
 }
 ul#user-ranking li.user.d-slacker .user_avatar .user_avatar_holder {
-  background-color: #ea5f57;
-  border-color: #ea5f57;
+  background-color: #EA5F57;
+  border-color: #EA5F57;
 }
 ul#user-ranking li.user.d-slacker .user_avatar .rank {
-  background: #ea5f57;
+  background: #EA5F57;
   color: #252525;
 }
 
@@ -670,7 +665,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
 }
 .modal-wrap .modal-content .header {
   background-color: #f9f9f9;
-  border-bottom: 1px solid #c9c9c9;
+  border-bottom: 1px solid #C9C9C9;
   padding: 0 25px;
   width: 100%;
   *zoom: 1;
@@ -709,7 +704,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   opacity: 1;
 }
 .modal-wrap .modal-content .close:hover, .modal-wrap .modal-content .close:focus {
-  color: #4fb1d7;
+  color: #4FB1D7;
 }
 
 .user-form .content {
@@ -739,6 +734,10 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   left: 100px;
   top: 42px;
 }
+.user-modal .content {
+  height: 70vh;
+  overflow: auto;
+}
 .user-modal .content .illustrations {
   *zoom: 1;
 }
@@ -764,7 +763,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   display: inline;
   font-weight: bold;
   font-size: 20px;
-  border-bottom: 1px solid #c9c9c9;
+  border-bottom: 1px solid #C9C9C9;
 }
 .user-modal .content .illustrations .percent h1 {
   font-size: 80px;
@@ -784,7 +783,7 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   }
 }
 .user-modal .content .illustrations .chart ul.label-colors {
-  border: 1px solid #c9c9c9;
+  border: 1px solid #C9C9C9;
   background-color: #fff;
   position: absolute;
   top: 0;
