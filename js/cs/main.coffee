@@ -162,33 +162,37 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
           # Calculate the avarage amount of hours a person is over/under the expected goal.
           # 30min overtime per day = 0.5
           # 2 hours short per day= -2
-          avg_hours_difference = ((user.hours_registered - user.hours_goal) / data.misc.working_days_in_range)
+          total_hours_difference = (user.hours_registered - user.hours_goal)
+          avg_hours_difference = (total_hours_difference / data.misc.working_days_in_range)
 
           # Define the "user rank object" & provide the difference.
           data.users[i].rank = {}
           data.users[i].rank.value = avg_hours_difference
 
           # If the user has been working:
-          # More than 30min extra per day.
-          if avg_hours_difference >= 0.5
+          # More than 30min extra per day OR 12 hours in total
+          if avg_hours_difference >= 0.5 or total_hours_difference > 12
             data.users[i].rank.class = 'a-karmahunter'
             data.users[i].rank.icon = '★'
-            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
-          # Between +29min to -15min per day.
-          else if avg_hours_difference < 0.5 and avg_hours_difference > -0.25
+            data.users[i].rank.text = "A career is wonderful, but you can’t curl up with it on a cold night."
+          # Between +29min to -15min per day but no less than -8 hours in total.
+          else if (avg_hours_difference < 0.5 and avg_hours_difference > -0.25) and (total_hours_difference > -8)
             data.users[i].rank.class = 'b-goalie'
             data.users[i].rank.icon = '✓'
-            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
-          # Between: -15min to -30min per day.
-          else if avg_hours_difference <= -0.25 and avg_hours_difference >= -0.5
+            data.users[i].rank.text = "Hot damn, right on target. As they say: Arbeit macht frei :-)"
+          # Between: -15min to -30min per day but no less than -16 hours in total
+          else if (avg_hours_difference <= -0.25 and avg_hours_difference >= -0.5) and (total_hours_difference > -16)
             data.users[i].rank.class = 'c-karmauser'
             data.users[i].rank.icon = '☂'
-            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
+            data.users[i].rank.text = "There’s never enough time to do all the nothing you want."
           # Anything less than -30min per day.
           else
             data.users[i].rank.class = 'd-slacker'
             data.users[i].rank.icon = '☁'
-            data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers."
+            data.users[i].rank.text = "I slack, therefore, I am doing nothing."
+
+          # primarily for debugging use. Add the total hour diff to the class.
+          #data.users[i].rank.class += ' ' + total_hours_difference.toFixed(2)
 
         # Output to scope.
         $scope.data = data
