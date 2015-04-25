@@ -175,13 +175,13 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
             data.users[i].rank.class = 'a-karmahunter'
             data.users[i].rank.icon = '★'
             data.users[i].rank.text = "A career is wonderful, but you can’t curl up with it on a cold night."
-          # Between +29min to -15min per day but no less than -8 hours in total.
-          else if (avg_hours_difference < 0.5 and avg_hours_difference > -0.25) and (total_hours_difference > -8)
+          # Between +29min to -15min per day but no less than -16 hours in total.
+          else if (avg_hours_difference < 0.5 and avg_hours_difference > -0.25) and (total_hours_difference > -16)
             data.users[i].rank.class = 'b-goalie'
             data.users[i].rank.icon = '✓'
             data.users[i].rank.text = "Hot damn, right on target. As they say: Arbeit macht frei :-)"
-          # Between: -15min to -30min per day but no less than -16 hours in total
-          else if (avg_hours_difference <= -0.25 and avg_hours_difference >= -0.5) and (total_hours_difference > -16)
+          # Between: -15min to -60min per day but no less than -16 hours in total
+          else if (avg_hours_difference <= -0.25 and avg_hours_difference >= -1) and (total_hours_difference > -16)
             data.users[i].rank.class = 'c-karmauser'
             data.users[i].rank.icon = '☂'
             data.users[i].rank.text = "There’s never enough time to do all the nothing you want."
@@ -192,7 +192,7 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
             data.users[i].rank.text = "I slack, therefore, I am doing nothing."
 
           # primarily for debugging use. Add the total hour diff to the class.
-          #data.users[i].rank.class += ' ' + total_hours_difference.toFixed(2)
+          #data.users[i].rank.class += ' ' + total_hours_difference.toFixed(2) + ' ' + avg_hours_difference.toFixed(2)
 
         # Output to scope.
         $scope.data = data
