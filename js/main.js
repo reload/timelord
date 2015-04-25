@@ -347,6 +347,20 @@
       };
       return doughnut('hours-chart', data, options);
     };
+
+
+    var closeModal = function(e){
+        if(e.keyCode === 27 && $scope.user_modal == true) {
+          $scope.modalState('user_modal', false);
+        }      
+    };
+
+    var $doc = angular.element(document);
+    $doc.on('keydown', closeModal);
+    $scope.$on('$destroy',function(){
+      $doc.off('keydown', closeModal);
+    });
+
     return $scope.modalState = function(name, state) {
       switch (name) {
         case 'user_modal':
