@@ -63,10 +63,10 @@
       }
     ];
     $scope.converted_month = function(val) {
-      var j, len, object, ref;
-      ref = $scope.date_options_month;
-      for (j = 0, len = ref.length; j < len; j++) {
-        object = ref[j];
+      var object, _i, _len, _ref;
+      _ref = $scope.date_options_month;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        object = _ref[_i];
         if ((object.value === val.toLowerCase()) || (object.name.toLowerCase() === val.toLowerCase())) {
           return object.name;
         }
@@ -160,29 +160,30 @@
           user_id = hashtag();
         }
         angular.forEach(data.users, function(user, i) {
-          var avg_hours_difference;
+          var avg_hours_difference, total_hours_difference;
           if (user_id && (user_id === String(user.id).replace(/\//g, ''))) {
             $scope.toggleStats(user);
           }
-          avg_hours_difference = (user.hours_registered - user.hours_goal) / data.misc.working_days_in_range;
+          total_hours_difference = user.hours_registered - user.hours_goal;
+          avg_hours_difference = total_hours_difference / data.misc.working_days_in_range;
           data.users[i].rank = {};
           data.users[i].rank.value = avg_hours_difference;
-          if (avg_hours_difference >= 0.5) {
+          if (avg_hours_difference >= 0.5 || total_hours_difference > 12) {
             data.users[i].rank["class"] = 'a-karmahunter';
             data.users[i].rank.icon = '★';
-            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-          } else if (avg_hours_difference < 0.5 && avg_hours_difference > -0.25) {
+            return data.users[i].rank.text = "A career is wonderful, but you can’t curl up with it on a cold night.";
+          } else if ((avg_hours_difference < 0.5 && avg_hours_difference > -0.25) && (total_hours_difference > -16)) {
             data.users[i].rank["class"] = 'b-goalie';
             data.users[i].rank.icon = '✓';
-            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
-          } else if (avg_hours_difference <= -0.25 && avg_hours_difference >= -0.5) {
+            return data.users[i].rank.text = "Hot damn, right on target. As they say: Arbeit macht frei :-)";
+          } else if ((avg_hours_difference <= -0.25 && avg_hours_difference >= -1) && (total_hours_difference > -16)) {
             data.users[i].rank["class"] = 'c-karmauser';
             data.users[i].rank.icon = '☂';
-            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
+            return data.users[i].rank.text = "There’s never enough time to do all the nothing you want.";
           } else {
             data.users[i].rank["class"] = 'd-slacker';
             data.users[i].rank.icon = '☁';
-            return data.users[i].rank.text = "Son, if you really want something in this life, you have to work for it. Now quiet! They're about to announce the lottery numbers.";
+            return data.users[i].rank.text = "I slack, therefore, I am doing nothing.";
           }
         });
         $scope.data = data;
@@ -347,20 +348,6 @@
       };
       return doughnut('hours-chart', data, options);
     };
-
-
-    var closeModal = function(e){
-        if(e.keyCode === 27 && $scope.user_modal == true) {
-          $scope.modalState('user_modal', false);
-        }      
-    };
-
-    var $doc = angular.element(document);
-    $doc.on('keydown', closeModal);
-    $scope.$on('$destroy',function(){
-      $doc.off('keydown', closeModal);
-    });
-
     return $scope.modalState = function(name, state) {
       switch (name) {
         case 'user_modal':
