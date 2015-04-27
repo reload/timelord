@@ -24,12 +24,6 @@ module.exports = function (grunt) {
         files: ['js/cs/*.coffee'],
         tasks: ['coffee']
       }
-      /*
-      jshint: {
-        files: ['Gruntfile.js' ,'js/*.js'],
-        tasks: ['jshint']
-      }
-      */
     },
 
     coffee: {
@@ -54,31 +48,18 @@ module.exports = function (grunt) {
         }
       }
     },
-    // Concat.
-    concat: {
-      scripts: {
-        'src': [
-          'vendor/angular/angular.js',
-          'vendor/angular-loading-bar/src/loading-bar.js',
-          'vendor/angular-route/angular-route.js',
-          'vendor/jquery/dist/jquery.js',
-          'vendor/bootstrap/dist/js/bootstrap.min.js',
-          'vendor/chartjs/Chart.js'
-        ],
-        'dest': 'vendor/vendor.js'
-      },
-      css: {
-        'src': [
-          'vendor/bootstrap/dist/css/bootstrap.min.css'
-        ],
-        'dest': 'vendor/vendor.css'
-      }
-    },
     // Uglify.
     uglify: {
       dev: {
         files: {
-          'js/vendor.min.js': ['vendor/vendor.js']
+          'js/vendor.min.js': [
+            'vendor/angular/angular.js',
+            'vendor/angular-loading-bar/src/loading-bar.js',
+            'vendor/angular-route/angular-route.js',
+            'vendor/jquery/dist/jquery.js',
+            'vendor/bootstrap/dist/js/bootstrap.min.js',
+            'vendor/chartjs/Chart.js'
+          ]
         }
       }
     },
@@ -90,7 +71,7 @@ module.exports = function (grunt) {
             'css/main.css'
           ],
           'vendor/vendor.min.css': [
-            'vendor/vendor.css'
+            'vendor/bootstrap/dist/css/bootstrap.min.css'
           ]
         }
       }
@@ -136,7 +117,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -145,9 +125,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'compass:dev',
     'coffee',
-    'concat',
     'uglify',
-    //'jshint',
     'cssmin',
     'copy',
     'watch'
