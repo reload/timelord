@@ -1,5 +1,5 @@
 site_name: "Time Lord"
-timelord_url: "http://my.timelordho.st"
+timelord_base: "/"
 harvester_url: "http://my.harvesterho.so"
 harvester_api_path: "/api/v1/"
 salt_string: "AintNobodyGotTimeForThat"
