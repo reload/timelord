@@ -18,7 +18,7 @@
   <link rel="shortcut icon" href="favicon.ico">
 
   <link href="css/reset.css" rel="stylesheet" type="text/css" />
-  <link href="vendor/vendor.min.css" rel="stylesheet" type="text/css">
+  <link href="css/vendor.min.css" rel="stylesheet" type="text/css">
   <link href="css/main.min.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="TimeLordApp">
@@ -29,6 +29,7 @@
   <!-- Target for view. -->
   <div ng-view></div>
 
+  <!-- Include JavaScripts. -->
   <script src="js/vendor.min.js" type="text/javascript"></script>
   <script src="js/main.js" type="text/javascript"></script>
 </body>

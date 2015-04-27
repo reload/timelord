@@ -70,7 +70,7 @@ module.exports = function (grunt) {
           'css/main.min.css': [
             'css/main.css'
           ],
-          'vendor/vendor.min.css': [
+          'css/vendor.min.css': [
             'vendor/bootstrap/dist/css/bootstrap.min.css'
           ]
         }
