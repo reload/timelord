@@ -14,8 +14,10 @@ app.config ($routeProvider, $locationProvider) ->
 
 # TimeLord controller.
 app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
+  # Get the document.
+  $doc = angular.element document;
 
-  # Define modal's default states.
+# Define modal's default states.
   $scope.user_modal = false
   $scope.range_modal = false
   if $routeParams.from
@@ -401,15 +403,23 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     # Execute the chart.
     doughnut('hours-chart', data, options)
 
+  # Trigger events on keydown.
+  $doc.on 'keydown', (e) ->
+    # Key: ESC.
+    if e.keyCode == 27
+      # Close the user modal.
+      if $scope.user_modal == true
+        $scope.modalState 'user_modal', false
+      # Close the range modal.
+      else if $scope.range_modal == true
+        $scope.modalState 'range_modal', false
+
   # Close user-modal
   $scope.modalState = (name, state) ->
-    switch name
-      when 'user_modal'
-        $scope.user_modal = state
-        # Remove the user-id as the hash-value.
-        hashtag(' ')
-      when 'range_modal'
-        $scope.range_modal = state
+    # Set the state of the modal.
+    $scope[name] = state
+    # Remove the hash-value from the URL.
+    hashtag(' ')
 
 # Adapter to easily execute doughnut charts.
 doughnut = (id, data, options = null) ->

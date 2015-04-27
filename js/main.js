@@ -13,7 +13,8 @@
   });
 
   app.controller('TimeLord', function($scope, $http, $routeParams, $location) {
-    var date, fetchData, getLoginStatus, getSession;
+    var $doc, date, fetchData, getLoginStatus, getSession;
+    $doc = angular.element(document);
     $scope.user_modal = false;
     $scope.range_modal = false;
     if ($routeParams.from) {
@@ -348,14 +349,18 @@
       };
       return doughnut('hours-chart', data, options);
     };
-    return $scope.modalState = function(name, state) {
-      switch (name) {
-        case 'user_modal':
-          $scope.user_modal = state;
-          return hashtag(' ');
-        case 'range_modal':
-          return $scope.range_modal = state;
+    $doc.on('keydown', function(e) {
+      if (e.keyCode === 27) {
+        if ($scope.user_modal === true) {
+          return $scope.modalState('user_modal', false);
+        } else if ($scope.range_modal === true) {
+          return $scope.modalState('range_modal', false);
+        }
       }
+    });
+    return $scope.modalState = function(name, state) {
+      $scope[name] = state;
+      return hashtag(' ');
     };
   });
 
