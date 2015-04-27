@@ -1,50 +1,57 @@
-TimeLord
-==========
+# TimeLord
+Timelord is a way to visually present data provided by the [Harvester](http://example.com/ "Harvester") project. If you don't know what Harvester is, please go to the project and checkout the README file.
 
-Guide is based on OSX. If you run linux you are smart enough to figure it out by yourself.
+## Setup
+There is only a few steps you need to follow for Timelord to be functioning with your Harvester project:
+1. Clone the repository `git clone https://github.com/reload/timelord.git`
+2. Copy the `config.inc.skel` file to `config.inc` and fill out the configuration.
 
-First step is to clone this repo.
+You should, by now, have a fully functioning TimeLord project up and running. If you wish to customize the project, checkout the **"Customize"** section below.
+
+## Customize
+
+We have setup a few steps that you should follow to get a fully customizable version up and running, if you wish to alter the styling or create further functionality.
+
+This guide is based on OSX. If you run linux you are smart enough to figure it out by yourself.
 
 
-Compass
--------
+### 1) Node
 
-You need to have compass installed.
+We use NodeJS/NPM to get our Grunt dependencies and install Bower:
 
-` gem install compass `
+`brew install node `
 
-Node
-----
+Get components (defined in package.json) by running:
 
-You need to NodeJS on you system.
+` npm install `
 
-` brew install node `
+### 2) Bower
 
-Bower
------
+We user Bower to get the libraries that we need (AngularJS and it's dependencies etc).
 
-We user bower for libraries. So you need that.
+`npm install -g bower `
 
-` npm install -g bower `
+Then install libraries (defined in bower.json)
 
-Then install libraries (defined in bower.json) ` bower install `.
+`bower install`.
 
-Grunt
------
+### 3) Compass
+We use the Compass SASS Framework to compile our CSS and provide easy cross browser support (mixins).
+
+`gem install compass `
+
+### 4) Grunt
 
 You need grunt on your system.
 
-` npm install -g grunt `
+`npm install -g grunt `
 
-Get components (defined in package.json) by running ` npm install `
-
-Then just simply run ` grunt ` and it will compile and enter watch mode.
+Then just simply run `grunt` and it will compile and enter watch mode.
 
 If you have the 'Live reload' plugin, you can use it in watch mode.
 
-Badass way
-----------
+## Badass way
 
-Clone repo, then run:
+If you have NodeJS and Compass installed: Clone repo, then run:
 
-` composer install && npm install && bower install && grunt `
+`npm install && bower install && grunt`
