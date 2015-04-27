@@ -1,10 +1,9 @@
 <?php
   session_start();
-
-  include_once 'config.inc';
+  include_once dirname(__DIR__) . '/config.inc';
 
   // Feed url.
-  $url = $harvester_base . $harvester_api . 'entries.json?group=user';
+  $url = $config['harvester_base'] . 'entries.json?group=user';
 
   // Conditionals.
   if (!empty($_GET['from'])) {

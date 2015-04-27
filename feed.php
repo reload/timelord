@@ -1,10 +1,10 @@
 <?php
   session_start();
 
-  include_once __DIR__ . 'config.inc';
+  require_once 'config.inc';
 
   // Feed url.
-  $url = $harvester_base . $harvester_api . 'entries.json?group=user';
+  $url = $config['harvester_base'] . 'entries.json?group=user';
 
   // Add token to URL if logged in.
   if (!empty($_SESSION['harvester_pass'])) {
@@ -31,4 +31,3 @@
 
   // Output result.
   print get_contents($url);
-

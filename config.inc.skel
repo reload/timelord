@@ -1,0 +1,9 @@
+<?php
+/**
+ * This information is the only thing you have to fill out to get
+ * Timelord up and running. Have fun :)
+ */
+$config['site_name'] = 'Time Lord';
+$config['timelord_base'] = '/';
+$config['harvester_base'] = 'http://my.harvester.host/api/v1/';
+$config['salt_string'] = 'AintNobodyGotTimeForThat';

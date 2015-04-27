@@ -1,5 +1,5 @@
 <?php
-include_once 'config.inc';
+require_once dirname(__DIR__) . 'config.inc';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (isset($_GET["user"])) {
@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = json_decode($_GET["user"]);
 
     $name = $user->name;
-    $options = ['salt' => md5($salt_string)];
+    $options = ['salt' => md5($config['salt_string'])];
     $pass = password_hash($user->pass, PASSWORD_DEFAULT, $options);
 
     /**
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      *  $token = '?email=' . $name .  '&password=' . $pass;
      */
 
-    $url = $harvester_base . $harvester_api . 'entries.json?group=user';
+    $url = $config['harvester_base'] . 'entries.json?group=user';
     $token = '&token=' . $pass . '|' . $name;
     $url = $url . $token;
 

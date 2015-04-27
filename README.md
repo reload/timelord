@@ -5,24 +5,6 @@ Guide is based on OSX. If you run linux you are smart enough to figure it out by
 
 First step is to clone this repo.
 
-Then you have to stand within the reposity folder and run the following commands.
-
-Yaml support
-------------
-
-You need to run composer to get the yaml parser.
-
-` composer install ` if you have composer globally.
-
-Or if you dont have composer:
-
-` curl -s http://getcomposer.org/installer | php `
-
-then
-
-` php composer.phar install `
-
-Restart php.
 
 Compass
 -------

@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once 'inc/config.inc';
+  include_once 'config.inc';
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -10,8 +10,8 @@
 <head>
   <meta charset="utf-8">
 
-  <title><?php print $site_name; ?></title>
-  <base href="<?php print $timelord_base; ?>"/>
+  <title><?php print $config['site_name']; ?></title>
+  <base href="<?php print $config['timelord_base']; ?>"/>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width">
