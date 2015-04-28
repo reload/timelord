@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      *  $token = '?email=' . $name .  '&password=' . $pass;
      */
 
-    $url = $config['harvester_base'] . 'entries.json?group=user';
+    $url = $config['harvester_url'] . $config['harvester_api_path'] . 'entries.json?group=user';
     $token = '&token=' . $pass . '|' . $name;
     $url = $url . $token;
 

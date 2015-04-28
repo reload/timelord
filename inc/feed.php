@@ -3,7 +3,7 @@
   include_once dirname(__DIR__) . '/config.inc';
 
   // Feed url.
-  $url = $config['harvester_base'] . 'entries.json?group=user';
+  $url = $config['harvester_url'] . $config['harvester_api_path'] . 'entries.json?group=user';
 
   // Conditionals.
   if (!empty($_GET['from'])) {
