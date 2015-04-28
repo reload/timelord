@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . 'config.inc';
+require_once dirname(__DIR__) . '/config.inc';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (isset($_GET["user"])) {
