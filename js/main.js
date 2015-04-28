@@ -355,6 +355,8 @@
           return $scope.modalState('user_modal', false);
         } else if ($scope.range_modal === true) {
           return $scope.modalState('range_modal', false);
+        } else if ($scope.loginOpen === true) {
+          return $scope.modalState('loginOpen', false);
         }
       }
     });

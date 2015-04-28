@@ -413,6 +413,8 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
       # Close the range modal.
       else if $scope.range_modal == true
         $scope.modalState 'range_modal', false
+      else if $scope.loginOpen == true
+        $scope.modalState 'loginOpen', false
 
   # Close user-modal
   $scope.modalState = (name, state) ->
