@@ -17,7 +17,7 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
   # Get the document.
   $doc = angular.element document;
 
-# Define modal's default states.
+  # Define modal's default states.
   $scope.user_modal = false
   $scope.range_modal = false
   if $routeParams.from
