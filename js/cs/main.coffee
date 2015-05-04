@@ -295,9 +295,6 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
     $scope.user.registered_hours_percent = Math.round user.hours_registered / user.hours_goal * 100
     # Check if we have access to the "extra" object.
     if user.extra.length != 0
-      # Percent of how many of the users hours that are billable compared
-      # to the expected amount (not taking overtime into account).
-      $scope.user.extra.billable_hours_percent = roundNumber(user.extra.billable / user.hours_goal * 100)
       # Show the "illness fields" if there's any sickness to report.
       if user.extra.illness != false
         $scope.user.extra.show_illness = true
