@@ -399,6 +399,29 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
 
     # Execute the chart.
     doughnut('hours-chart', data, options)
+    
+  $scope.employeeOfWeek = (val) ->
+    date = new Date
+    users = $scope.data.users
+    sortedUsers = []
+    users.forEach (entry) ->
+      sortedUsers.push entry.full_name
+      return
+    sortedUsers = sortedUsers.sort()
+
+    employee = ->
+      Math.seedrandom date.getWeek() + date.getFullYear()
+      theWinner = Math.floor(Math.random() * sortedUsers.length)
+      sortedUsers[theWinner]
+
+    if val == employee()
+      return false
+    true
+
+  Date::getWeek = ->
+    onejan = new Date(@getFullYear(), 0, 1)
+    Math.ceil ((this - onejan) / 86400000 + onejan.getDay() + 1) / 7
+
 
   # Trigger events on keydown.
   $doc.on 'keydown', (e) ->

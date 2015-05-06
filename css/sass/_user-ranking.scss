@@ -59,6 +59,13 @@ ul#user-ranking {
       }
     }
 
+    .has-hat {
+      position: absolute;
+      top: -32px;
+      left: 6px;
+      z-index: 2;
+    }
+
     // Avatar
     .user_avatar {
       .user_avatar_holder {

@@ -47,6 +47,7 @@
         <span class="rank {{user.rank.class}}">
           {{user.rank.icon}}
         </span>
+        <img ng-hide="employeeOfWeek(user.full_name)" src="img/label-sir-hat.png" class="has-hat">
         <figure class="user_avatar_holder">
           <img src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
         </figure>

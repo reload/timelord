@@ -58,7 +58,8 @@ module.exports = function (grunt) {
             'vendor/angular-route/angular-route.js',
             'vendor/jquery/dist/jquery.js',
             'vendor/bootstrap/dist/js/bootstrap.min.js',
-            'vendor/chartjs/Chart.js'
+            'vendor/chartjs/Chart.js',
+            'node_modules/seedrandom/seedrandom.min.js'
           ]
         }
       }

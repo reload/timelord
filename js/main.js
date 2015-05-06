@@ -64,10 +64,10 @@
       }
     ];
     $scope.converted_month = function(val) {
-      var object, _i, _len, _ref;
-      _ref = $scope.date_options_month;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        object = _ref[_i];
+      var j, len, object, ref;
+      ref = $scope.date_options_month;
+      for (j = 0, len = ref.length; j < len; j++) {
+        object = ref[j];
         if ((object.value === val.toLowerCase()) || (object.name.toLowerCase() === val.toLowerCase())) {
           return object.name;
         }
@@ -347,6 +347,31 @@
         segmentStrokeWidth: 1
       };
       return doughnut('hours-chart', data, options);
+    };
+    $scope.employeeOfWeek = function(val) {
+      var employee, sortedUsers, users;
+      date = new Date;
+      users = $scope.data.users;
+      sortedUsers = [];
+      users.forEach(function(entry) {
+        sortedUsers.push(entry.full_name);
+      });
+      sortedUsers = sortedUsers.sort();
+      employee = function() {
+        var theWinner;
+        Math.seedrandom(date.getWeek() + date.getFullYear());
+        theWinner = Math.floor(Math.random() * sortedUsers.length);
+        return sortedUsers[theWinner];
+      };
+      if (val === employee()) {
+        return false;
+      }
+      return true;
+    };
+    Date.prototype.getWeek = function() {
+      var onejan;
+      onejan = new Date(this.getFullYear(), 0, 1);
+      return Math.ceil(((this - onejan) / 86400000 + onejan.getDay() + 1) / 7);
     };
     $doc.on('keydown', function(e) {
       if (e.keyCode === 27) {
