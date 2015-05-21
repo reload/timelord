@@ -1,5 +1,5 @@
 # TimeLord
-Timelord is a way to visually present data provided by the [Harvester](http://example.com/ "Harvester") project. If you don't know what Harvester is, please go to the project and checkout the README file.
+Timelord is a way to visually present data provided by the [Harvester](https://github.com/reload/harvester "Harvester") project. If you don't know what Harvester is, please go to the project and checkout the README file.
 
 ## Setup
 There is only a few steps you need to follow for Timelord to be functioning with your Harvester project:
