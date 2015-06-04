@@ -49,7 +49,7 @@
         </span>
         <img ng-hide="employeeOfWeek(user.full_name)" src="img/label-sir-hat.png" class="has-hat">
         <figure class="user_avatar_holder">
-          <img src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
+          <img ng-src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
         </figure>
       </div>
       <div class="user_info">
@@ -162,7 +162,7 @@
   <div class="modal-content user-modal">
     <!-- Header -->
     <div class="header">
-      <img src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
+      <img ng-src="{{user.image}}" alt="Image of {{ user.full_name }}"/>
       <h3>{{user.full_name}}</h3>
       <p ng-show="type == 'range'">
         {{from}}
