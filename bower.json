@@ -17,6 +17,7 @@
     "angular": "1.2.19",
     "angular-route": "1.2.19",
     "angular-loading-bar": "0.7.1",
+    "angular-md5": "0.1.8",
     "bootstrap": "3.3.4",
     "chartjs": "1.0.1-beta",
     "jquery": "2.1.3"
