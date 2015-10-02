@@ -1,4 +1,4 @@
-app = angular.module 'TimeLordApp', ['angular-loading-bar', 'ngRoute']
+app = angular.module 'TimeLordApp', ['angular-loading-bar', 'ngRoute', 'ngMd5']
 
 # The router.
 app.config ($routeProvider, $locationProvider) ->
@@ -13,7 +13,7 @@ app.config ($routeProvider, $locationProvider) ->
   $locationProvider.html5Mode(true).hashPrefix('!')
 
 # TimeLord controller.
-app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
+app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
   # Get the document.
   $doc = angular.element document;
 
@@ -161,6 +161,10 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
           if (user_id) and (user_id == String(user.id).replace(/\//g, ''))
             $scope.toggleStats(user)
 
+          # Get gravatar url.
+          gravatar_width = 125
+          data.users[i].gravatar = 'http://www.gravatar.com/avatar/' + md5.createHash(user.email || '') + '?s=' + gravatar_width
+
           # Calculate the avarage amount of hours a person is over/under the expected goal.
           # 30min overtime per day = 0.5
           # 2 hours short per day= -2
@@ -229,7 +233,6 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location) ->
         $scope.data  = data
         $scope.loading = false
         console.log 'Error:' + status
-
 
   # Trigger and loop fetch function.
   fetchData()

@@ -1,7 +1,7 @@
 (function() {
   var app, doughnut, hashtag, roundNumber;
 
-  app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute']);
+  app = angular.module('TimeLordApp', ['angular-loading-bar', 'ngRoute', 'ngMd5']);
 
   app.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
@@ -12,7 +12,7 @@
     return $locationProvider.html5Mode(true).hashPrefix('!');
   });
 
-  app.controller('TimeLord', function($scope, $http, $routeParams, $location) {
+  app.controller('TimeLord', function($scope, $http, $routeParams, $location, md5) {
     var $doc, date, fetchData, getLoginStatus, getSession;
     $doc = angular.element(document);
     $scope.user_modal = false;
@@ -161,10 +161,12 @@
           user_id = hashtag();
         }
         angular.forEach(data.users, function(user, i) {
-          var avg_hours_difference, total_hours_difference;
+          var avg_hours_difference, gravatar_width, total_hours_difference;
           if (user_id && (user_id === String(user.id).replace(/\//g, ''))) {
             $scope.toggleStats(user);
           }
+          gravatar_width = 125;
+          data.users[i].gravatar = 'http://www.gravatar.com/avatar/' + md5.createHash(user.email || '') + '?s=' + gravatar_width;
           total_hours_difference = user.hours_registered - user.hours_goal;
           avg_hours_difference = total_hours_difference / data.misc.working_days_in_range;
           data.users[i].rank = {};
