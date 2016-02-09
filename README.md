@@ -5,7 +5,7 @@ Timelord is a way to visually present data provided by the [Harvester](https://g
 There is only a few steps you need to follow for Timelord to be functioning with your Harvester project:
 
 1. Clone the repository `git clone https://github.com/reload/timelord.git`
-2. Copy the `config.inc.skel` file to `config.inc` and fill out the configuration.
+2. Copy the `config.inc.example` file to `config.inc` and fill out the configuration.
 
 You should, by now, have a fully functioning TimeLord project up and running. If you wish to customize the project, checkout the **"Customize"** section below.
 
