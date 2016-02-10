@@ -229,16 +229,16 @@
             <td>{{user.extra.billability.of_working_hours}}%</td>
           </tr>
           <tr ng-show="user.extra">
-            <td>Time off</td>
-            <td>{{user.extra.time_off}} hours</td>
+            <td>Time off <span ng-if="user.extra.time_off.paternity_leave !== 0">(Paternity leave)</span></td>
+            <td>{{user.extra.time_off.hours}}<span ng-if="user.extra.time_off.paternity_leave !== 0">({{user.extra.time_off.paternity_leave}})<span>hours</td>
           </tr>
           <tr ng-show="user.extra">
             <td>Vacation</td>
             <td>{{user.extra.vacation}} hours</td>
           </tr>
           <tr ng-show="user.extra.show_illness">
-            <td>Illness (child)</td>
-            <td>{{user.extra.illness.hours}} ({{user.extra.illness.child}}) hours</td>
+            <td>Illness <span ng-if="user.extra.illness.child !== 0">(child)</span></td>
+            <td>{{user.extra.illness.hours}} <span ng-if="user.extra.illness.child !== 0">({{user.extra.illness.child}})</span> hours</td>
           </tr>
         </table>
       </div>
