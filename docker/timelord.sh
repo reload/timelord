@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Replace docroot with Timelord.
-rm -rf /var/www/html
-git clone https://github.com/reload/timelord.git /var/www/html
-
 cat > /var/www/html/config.inc <<EOF
 <?php
 \$config['site_name'] = '$TIMELORD_SITE_NAME';
