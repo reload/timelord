@@ -5,6 +5,7 @@ node_modules
 composer.lock
 config.inc
 npm-debug.log
+docker-compose.override.yml
 
 # Exclude all fonts that's not placed inside a folder (vendor fonts).
 fonts/*
