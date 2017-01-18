@@ -1,0 +1,10 @@
+version: "2"
+services:
+  npm:
+    build: docker/npm
+    volumes:
+      - '.:/data'
+  timelord:
+    build: .
+    volumes:
+      - '.:/var/www/html'
