@@ -1,6 +1,10 @@
 # TimeLord
 Timelord is a way to visually present data provided by the [Harvester](https://github.com/reload/harvester "Harvester") project. If you don't know what Harvester is, please go to the project and checkout the README file.
 
+## Docker-compose
+Copy `.env.example` to `.env` and update the variables according to the LastPass 'reload.harvestapp.com' notes.
+`docker-compose up` will give you a working timelord _and_ harvester. First time building Harvester will take a long time importing the database.
+
 ## Setup
 There is only a few steps you need to follow for Timelord to be functioning with your Harvester project:
 

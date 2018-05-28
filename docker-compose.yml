@@ -1,0 +1,37 @@
+version: "2"
+services:
+
+  harvester:
+    image: reload/harvester:latest
+    environment:
+      VIRTUAL_HOST: harvester.docker
+      HARVESTER_HARVEST_USER: ${HARVESTER_HARVEST_USER}
+      HARVESTER_HARVEST_PASSWORD: ${HARVESTER_HARVEST_PASSWORD}
+      HARVESTER_HARVEST_ACCOUNT: ${HARVESTER_HARVEST_ACCOUNT}
+      SYMFONY_ENV: ${SYMFONY_ENV}
+    ports:
+      - '80'
+    volumes: 
+      - './docker/harvester/data/harvester.sqlite:/data/harvester.sqlite'
+
+  timelord:
+    image: reload/timelord:latest 
+    environment:
+      VIRTUAL_HOST: timelord.docker
+    ports:
+      - '80'
+    volumes:
+      - '.:/var/www/html'
+    depends_on:
+      - harvester
+  
+  node:
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    depends_on:
+      - timelord
+      - harvester
+    volumes_from:
+      - timelord
+      - harvester
