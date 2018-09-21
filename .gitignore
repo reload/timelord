@@ -5,3 +5,8 @@ node_modules
 composer.lock
 config.inc
 npm-debug.log
+.env
+
+# Exclude all fonts that's not placed inside a folder (vendor fonts).
+fonts/*
+!fonts/*/

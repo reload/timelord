@@ -171,6 +171,8 @@
           avg_hours_difference = total_hours_difference / data.misc.working_days_in_range;
           data.users[i].rank = {};
           data.users[i].rank.value = avg_hours_difference;
+          data.users[i].rank.diff = parseFloat(total_hours_difference).toFixed(2);
+
           if (avg_hours_difference >= 0.5 || total_hours_difference > 12) {
             data.users[i].rank["class"] = 'a-karmahunter';
             data.users[i].rank.icon = '★';
@@ -179,7 +181,7 @@
             data.users[i].rank["class"] = 'b-goalie';
             data.users[i].rank.icon = '✓';
             return data.users[i].rank.text = "Hot damn, right on target. As they say: Arbeit macht frei :-)";
-          } else if ((avg_hours_difference <= -0.25 && avg_hours_difference >= -1) && (total_hours_difference > -16)) {
+          } else if ((avg_hours_difference <= 0 && avg_hours_difference >= -1) && (total_hours_difference > -30)) {
             data.users[i].rank["class"] = 'c-karmauser';
             data.users[i].rank.icon = '☂';
             return data.users[i].rank.text = "There’s never enough time to do all the nothing you want.";
