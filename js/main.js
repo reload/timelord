@@ -176,19 +176,19 @@
           if (avg_hours_difference >= 0.5 || total_hours_difference > 12) {
             data.users[i].rank["class"] = 'a-karmahunter';
             data.users[i].rank.icon = '★';
-            return data.users[i].rank.text = "A career is wonderful, but you can’t curl up with it on a cold night.";
+            return data.users[i].rank.text = "I've heard that hard work never killed anyone, but I say why take the chance?";
           } else if ((avg_hours_difference < 0.5 && avg_hours_difference > -0.25) && (total_hours_difference > -16)) {
             data.users[i].rank["class"] = 'b-goalie';
             data.users[i].rank.icon = '✓';
-            return data.users[i].rank.text = "Hot damn, right on target. As they say: Arbeit macht frei :-)";
+            return data.users[i].rank.text = "There is no pleasure in having nothing to do; the fun is having lots to do and not doing it.";
           } else if ((avg_hours_difference <= 0 && avg_hours_difference >= -1) && (total_hours_difference > -30)) {
             data.users[i].rank["class"] = 'c-karmauser';
             data.users[i].rank.icon = '☂';
-            return data.users[i].rank.text = "There’s never enough time to do all the nothing you want.";
+            return data.users[i].rank.text = "I always arrive late at the office, but I make up for it by leaving early.";
           } else {
             data.users[i].rank["class"] = 'd-slacker';
             data.users[i].rank.icon = '☁';
-            return data.users[i].rank.text = "I slack, therefore, I am doing nothing.";
+            return data.users[i].rank.text = "I like work: it fascinates me. I can sit and look at it for hours.";
           }
         });
         $scope.data = data;
