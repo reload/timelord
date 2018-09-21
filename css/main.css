@@ -534,6 +534,12 @@ ul#user-ranking li.user .user_info {
 ul#user-ranking li.user .user_info .desc {
   font-size: .75em;
 }
+ul#user-ranking li.user .user_info .diff {
+  font-size: .75em;
+  font-style: italic;
+  color: #333;
+  margin-top: 3px;
+}
 ul#user-ranking li.user .has-hat {
   position: absolute;
   top: -32px;
