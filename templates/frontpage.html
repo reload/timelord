@@ -219,6 +219,10 @@
             <td>{{user.hours_registered}} hours</td>
           </tr>
           <tr>
+            <td>Diff. between to reach vs registered</td>
+            <td>{{user.rank.diff}} hours</td>
+          </tr> 
+          <tr>
             <td>Registered hours in percent</td>
             <td>{{user.registered_hours_percent}}%</td>
           </tr>
@@ -235,12 +239,13 @@
             <td>{{user.admin.billability.performance}}% ({{user.admin.billability.goal}}%)</td>
           </tr>
           <tr ng-show="user.extra.billability">
-            <td>Billable % of paid time</td>
+            <!-- https://github.com/reload/harvester/blob/c55e86d947701d7656fbbb93ffc46d70c0f09849/src/reloaddk/HarvesterBundle/Entity/EntryRepository.php#L426 -->
+            <td>Billable % of paid time <span title="Defined as billable hours / (hours registered - vacation - holiday - time_off - paternity_leave - education)" style="cursor: help;">?</span></td>
             <td>{{user.extra.billability.of_working_hours}}%</td>
           </tr>
           <tr ng-show="user.extra">
             <td>Time off <span ng-if="user.extra.time_off.paternity_leave !== 0">(Paternity leave)</span></td>
-            <td>{{user.extra.time_off.hours}}<span ng-if="user.extra.time_off.paternity_leave !== 0">({{user.extra.time_off.paternity_leave}})<span>hours</td>
+            <td>{{user.extra.time_off.hours}}<span ng-if="user.extra.time_off.paternity_leave !== 0">({{user.extra.time_off.paternity_leave}})</span> hours</td>
           </tr>
           <tr ng-show="user.extra">
             <td>Vacation</td>
