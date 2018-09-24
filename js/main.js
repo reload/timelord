@@ -94,6 +94,20 @@
     } else {
       $scope.year = date.getFullYear();
     }
+    $scope.shiftMonth = function(val, shift) {
+      var j, len, object, ref, date;
+      ref = $scope.date_options_month;
+      for (j = 0, len = ref.length; j < len; j++) {
+        object = ref[j];
+        if ((object.value === val.toLowerCase()) || (object.name.toLowerCase() === val.toLowerCase())) {
+          var date = new Date($scope.year, j, 01); // First day of prev or next month (move by 'shift' months)
+          date.setMonth(date.getMonth() + shift);
+          $scope.year = date.getFullYear();
+          $scope.month = $scope.date_options_month[date.getMonth()].value;  
+          $scope.monthChange();
+        }
+      }
+    };    
     $scope.rangeChange = function() {
       var from, to;
       from = $scope.from.replace(/-/g, '');
