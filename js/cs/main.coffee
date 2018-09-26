@@ -1,3 +1,5 @@
+# NOTE: All javascript is done in Coffeescript - see /js/cs/main.coffee
+
 app = angular.module 'TimeLordApp', ['angular-loading-bar', 'ngRoute', 'ngMd5']
 
 # The router.
