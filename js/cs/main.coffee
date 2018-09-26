@@ -180,22 +180,22 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
           if avg_hours_difference >= 0.5 or total_hours_difference > 12
             data.users[i].rank.class = 'a-karmahunter'
             data.users[i].rank.icon = '★'
-            data.users[i].rank.text = "A career is wonderful, but you can’t curl up with it on a cold night."
+            data.users[i].rank.text = "I've heard that hard work never killed anyone, but I say why take the chance?"
           # Between +29min to -15min per day but no less than -16 hours in total.
           else if (avg_hours_difference < 0.5 and avg_hours_difference > -0.25) and (total_hours_difference > -16)
             data.users[i].rank.class = 'b-goalie'
             data.users[i].rank.icon = '✓'
-            data.users[i].rank.text = "Hot damn, right on target. As they say: Arbeit macht frei :-)"
+            data.users[i].rank.text = "There is no pleasure in having nothing to do; the fun is having lots to do and not doing it."
           # Between: -15min to -60min per day but no less than -16 hours in total
           else if (avg_hours_difference <= -0.25 and avg_hours_difference >= -1) and (total_hours_difference > -16)
             data.users[i].rank.class = 'c-karmauser'
             data.users[i].rank.icon = '☂'
-            data.users[i].rank.text = "There’s never enough time to do all the nothing you want."
+            data.users[i].rank.text = "I always arrive late at the office, but I make up for it by leaving early."
           # Anything less than -30min per day.
           else
             data.users[i].rank.class = 'd-slacker'
             data.users[i].rank.icon = '☁'
-            data.users[i].rank.text = "I slack, therefore, I am doing nothing."
+            data.users[i].rank.text = "I like work: it fascinates me. I can sit and look at it for hours."
 
           # primarily for debugging use. Add the total hour diff to the class.
           #data.users[i].rank.class += ' ' + total_hours_difference.toFixed(2) + ' ' + avg_hours_difference.toFixed(2)
