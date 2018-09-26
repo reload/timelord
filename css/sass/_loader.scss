@@ -29,11 +29,11 @@
   .thingy {
     -webkit-animation: color-pulse 800ms infinite linear;
     display: inline-block;
-    background-image: url(../../img/reload-logo-inverted.png);
-    width: 40px;
-    height: 40px;
+    background-image: url(/img/reload-logo-inverted.png);
+    width: 64px;
+    height: 64px;
     position: relative;
-    bottom: -.4em;
+    bottom: -1em;
     margin-right: .2em;
   }
 
