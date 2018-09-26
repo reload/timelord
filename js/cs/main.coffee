@@ -174,6 +174,7 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
           # Define the "user rank object" & provide the difference.
           data.users[i].rank = {}
           data.users[i].rank.value = avg_hours_difference
+          data.users[i].rank.diff = parseFloat(total_hours_difference).toFixed(2);
 
           # If the user has been working:
           # More than 30min extra per day OR 12 hours in total
@@ -186,8 +187,8 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
             data.users[i].rank.class = 'b-goalie'
             data.users[i].rank.icon = '✓'
             data.users[i].rank.text = "There is no pleasure in having nothing to do; the fun is having lots to do and not doing it."
-          # Between: -15min to -60min per day but no less than -16 hours in total
-          else if (avg_hours_difference <= -0.25 and avg_hours_difference >= -1) and (total_hours_difference > -16)
+          # Between: 0min to -60min per day but no less than -30 hours in total
+          else if (avg_hours_difference <= 0 and avg_hours_difference >= -1) and (total_hours_difference > -30)
             data.users[i].rank.class = 'c-karmauser'
             data.users[i].rank.icon = '☂'
             data.users[i].rank.text = "I always arrive late at the office, but I make up for it by leaving early."
