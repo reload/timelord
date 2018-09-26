@@ -75,6 +75,19 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
   else
     $scope.year = date.getFullYear()
 
+  # Calculate and change the month (to previous or next)
+  $scope.shiftMonth = (val, shift) ->
+    # Loop through the "months array".
+    # for object in $scope.date_options_month
+    angular.forEach $scope.date_options_month, (object, j) ->
+      # When the argument matches the month.
+      if (object.value == val.toLowerCase()) or (object.name.toLowerCase() == val.toLowerCase())
+          date = new Date($scope.year, j, 1) #First day of prev or next month (move by 'shift' months)
+          date.setMonth(date.getMonth() + shift)
+          $scope.year = date.getFullYear()
+          $scope.month = $scope.date_options_month[date.getMonth()].value  
+          $scope.monthChange()        
+
   # On "range" change.
   $scope.rangeChange = () ->
     # Remove possible dashes from the input values.
