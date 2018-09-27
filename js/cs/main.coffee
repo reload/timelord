@@ -1,3 +1,5 @@
+# NOTE: All javascript is done in Coffeescript - see /js/cs/main.coffee
+
 app = angular.module 'TimeLordApp', ['angular-loading-bar', 'ngRoute', 'ngMd5']
 
 # The router.
@@ -74,6 +76,19 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
     $scope.year = parseInt($routeParams.year, 10)
   else
     $scope.year = date.getFullYear()
+
+  # Calculate and change the month (to previous or next)
+  $scope.shiftMonth = (val, shift) ->
+    # Loop through the "months array".
+    # for object in $scope.date_options_month
+    angular.forEach $scope.date_options_month, (object, j) ->
+      # When the argument matches the month.
+      if (object.value == val.toLowerCase()) or (object.name.toLowerCase() == val.toLowerCase())
+          date = new Date($scope.year, j, 1) #First day of prev or next month (move by 'shift' months)
+          date.setMonth(date.getMonth() + shift)
+          $scope.year = date.getFullYear()
+          $scope.month = $scope.date_options_month[date.getMonth()].value  
+          $scope.monthChange()        
 
   # On "range" change.
   $scope.rangeChange = () ->
@@ -174,28 +189,29 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
           # Define the "user rank object" & provide the difference.
           data.users[i].rank = {}
           data.users[i].rank.value = avg_hours_difference
+          data.users[i].rank.diff = parseFloat(total_hours_difference).toFixed(2);
 
           # If the user has been working:
           # More than 30min extra per day OR 12 hours in total
           if avg_hours_difference >= 0.5 or total_hours_difference > 12
             data.users[i].rank.class = 'a-karmahunter'
             data.users[i].rank.icon = '★'
-            data.users[i].rank.text = "A career is wonderful, but you can’t curl up with it on a cold night."
+            data.users[i].rank.text = "I've heard that hard work never killed anyone, but I say why take the chance?"
           # Between +29min to -15min per day but no less than -16 hours in total.
           else if (avg_hours_difference < 0.5 and avg_hours_difference > -0.25) and (total_hours_difference > -16)
             data.users[i].rank.class = 'b-goalie'
             data.users[i].rank.icon = '✓'
-            data.users[i].rank.text = "Hot damn, right on target. As they say: Arbeit macht frei :-)"
-          # Between: -15min to -60min per day but no less than -16 hours in total
-          else if (avg_hours_difference <= -0.25 and avg_hours_difference >= -1) and (total_hours_difference > -16)
+            data.users[i].rank.text = "There is no pleasure in having nothing to do; the fun is having lots to do and not doing it."
+          # Between: 0min to -60min per day but no less than -30 hours in total
+          else if (avg_hours_difference <= 0 and avg_hours_difference >= -1) and (total_hours_difference > -30)
             data.users[i].rank.class = 'c-karmauser'
             data.users[i].rank.icon = '☂'
-            data.users[i].rank.text = "There’s never enough time to do all the nothing you want."
+            data.users[i].rank.text = "I always arrive late at the office, but I make up for it by leaving early."
           # Anything less than -30min per day.
           else
             data.users[i].rank.class = 'd-slacker'
             data.users[i].rank.icon = '☁'
-            data.users[i].rank.text = "I slack, therefore, I am doing nothing."
+            data.users[i].rank.text = "I like work: it fascinates me. I can sit and look at it for hours."
 
           # primarily for debugging use. Add the total hour diff to the class.
           #data.users[i].rank.class += ' ' + total_hours_difference.toFixed(2) + ' ' + avg_hours_difference.toFixed(2)

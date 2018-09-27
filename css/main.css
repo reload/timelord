@@ -248,7 +248,7 @@ img {
     background-color: #EA5F57;
   }
   100% {
-    background-color: #1a5a73;
+    background-color: #0E223B;
   }
 }
 #loader {
@@ -266,11 +266,11 @@ img {
 #loader .thingy {
   -webkit-animation: color-pulse 800ms infinite linear;
   display: inline-block;
-  background-image: url(../../img/reload-logo-inverted.png);
-  width: 40px;
-  height: 40px;
+  background-image: url(/img/reload-logo-inverted.png);
+  width: 64px;
+  height: 64px;
   position: relative;
-  bottom: -.4em;
+  bottom: -1em;
   margin-right: .2em;
 }
 #loader h3 {
@@ -348,14 +348,14 @@ a:visited {
 #header .logged_hours {
   font-size: 5em;
   font-family: AsapBold, sans-serif;
-  color: #1a5a73;
+  color: #0E223B;
   float: left;
   margin-top: -2px;
   margin-right: .15em;
   letter-spacing: -.05em;
 }
 #header .logged_hours_desc {
-  color: #1a5a73;
+  color: #0E223B;
   text-transform: uppercase;
   float: left;
   margin-top: 23px;
@@ -516,7 +516,7 @@ ul#user-ranking li.user .rank {
   height: 30px;
   text-align: center;
   background: #4FB1D7;
-  color: #1a5a73;
+  color: #0E223B;
   position: absolute;
   top: -5px;
   left: -5px;
@@ -537,7 +537,7 @@ ul#user-ranking li.user .user_info .desc {
 ul#user-ranking li.user .user_info .diff {
   font-size: .75em;
   font-style: italic;
-  color: #333;
+  color: #919291;
   margin-top: 3px;
 }
 ul#user-ranking li.user .has-hat {

@@ -57,6 +57,13 @@ ul#user-ranking {
       .desc {
         font-size: .75em;
       }
+
+      .diff {
+        font-size: .75em;
+        font-style: italic;
+        color: $gray-light;
+        margin-top: 3px;        
+      }      
     }
 
     .has-hat {
