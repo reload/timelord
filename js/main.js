@@ -513,7 +513,6 @@
     return $scope.modalState = function(name, state) {
       // Set the state of the modal.
       $scope[name] = state;
-      $scope.name = state;
       // Remove the hash-value from the URL.
       return hashtag(' ');
     };
