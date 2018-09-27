@@ -129,7 +129,6 @@ module.exports = function (grunt) {
     'coffee',
     'uglify',
     'cssmin',
-    'copy',
-    'watch'
+    'copy'
   ]);
 };
