@@ -32,6 +32,7 @@
   // Wrap response.
   function get_contents($url) {
     $headers = get_headers($url, TRUE);
+    // Fetch HTTP response code from header.
     preg_match('!\d{3}!', $headers[0], $matches);
     $code = (int) reset($matches);
 
@@ -40,7 +41,7 @@
     }
 
     if ($code !== 200) {
-      # Set HTTP response according to remote.
+      // Set HTTP response according to remote.
       http_response_code($code);
     }
     else {
