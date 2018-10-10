@@ -31,17 +31,22 @@
 
   // Wrap response.
   function get_contents($url) {
-    $header = get_headers($url);
-    preg_match('!\d{3}!', $header[0], $matches);
+    $headers = get_headers($url, TRUE);
+    preg_match('!\d{3}!', $headers[0], $matches);
     $code = (int) reset($matches);
 
-    if ($code === 200) {
-      return file_get_contents($url);
+    if (isset($headers['Content-Type'])) {
+      header('Content-Type: ' . $headers['Content-Type']);
     }
 
-    return http_response_code($code);
+    if ($code !== 200) {
+      # Set HTTP response according to remote.
+      http_response_code($code);
+    }
+    else {
+      return file_get_contents($url);
+    }
   }
 
   // Output result.
   print get_contents($url);
-
