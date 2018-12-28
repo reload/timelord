@@ -228,8 +228,12 @@
             <td>{{user.extra.billable_hours}} hours</td>
           </tr>
           <tr ng-show="user.extra.billability">
-            <td>Billable hours per day</td>
+            <td>Billable hours per day <span title="Defined as billable_hours / workingdays_in_range" style="cursor: help;">?</span></td>
             <td>{{user.extra.billability.hours_pr_day}} hours</td>
+          </tr>
+          <tr ng-show="user.extra.billability">
+            <td>Billable hours per day normalized (vacation etc removed) <span title="Defined as billable_hours / working_days - ((hours_registered - working_hours) / user_working_hours_pr_day)" style="cursor: help;">?</span></td>
+            <td>{{user.extra.billability.hours_pr_day_normalized}} hours</td>
           </tr>
           <tr ng-show="user.admin">
             <td>Billable performance (goal)</td>

@@ -314,6 +314,8 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
     $scope.user.registered_hours_percent = Math.round user.hours_registered / user.hours_goal * 100
     # Check if we have access to the "extra" object.
     if user.extra.length != 0
+      #normalized billable hours_pr_day (vacation etc removed)
+      $scope.user.extra.billability.hours_pr_day_normalized = user.extra.billability.hours_pr_day_normalized
       # Assign total hours of time off.
       $scope.user.extra.time_off.hours = user.extra.time_off.normal + user.extra.time_off.paternity_leave
       # Show the "illness fields" if there's any sickness to report.
