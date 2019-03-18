@@ -336,9 +336,9 @@ a:visited {
   width: 62px;
   height: 62px;
   margin-top: 22px;
-  margin-right: 1em;
+  margin-right: 18px;
   background: url(../img/reload-logo.png) -1px -1px no-repeat;
-  text-indent: -100%;
+  font-size: 0;
 }
 @media (max-width: 550px) {
   #header #logo {
