@@ -1,19 +1,17 @@
 version: "2"
 services:
 
-  harvester:
-    image: reload/harvester:latest
-    environment:
-      VIRTUAL_HOST: harvester.docker
-    ports:
-      - '80'
-    volumes:
-      - './docker/harvester/data/harvester.sqlite:/data/harvester.sqlite'
-
   timelord:
-    image: reload/timelord:latest
+    build:
+      context: .
+      dockerfile: ./docker/timelord.dockerfile
     environment:
       VIRTUAL_HOST: timelord.docker
+      TIMELORD_SITE_NAME: Time Lord dev
+      TIMELORD_BASE: /
+      TIMELORD_HARVESTER_URL: http://harvester.reload.dk
+      TIMELORD_HARVESTER_API_PATH: /api/v1/
+      TIMELORD_SALT_STRING: ReloadGotTime
     ports:
       - '80'
     volumes:
@@ -22,6 +20,7 @@ services:
   node:
     build:
       context: .
-      dockerfile: ./docker/node/Dockerfile
+      dockerfile: ./docker/node.dockerfile
     volumes:
       - '.:/var/www/html'
+    command: sh -c "npm install && node_modules/.bin/bower install && npm run build && npm run watch"
