@@ -1,44 +1,70 @@
-![Docker Badge](https://img.shields.io/docker/automated/reload/timelord.svg) ![Docker Badge](https://img.shields.io/docker/build/reload/timelord.svg)
+![https://i.imgur.com/IzNEVAR.png](https://i.imgur.com/IzNEVAR.png)
 
 # TimeLord
-Timelord is a way to visually present data provided by the [Harvester](https://github.com/reload/harvester "Harvester") project. If you don't know what Harvester is, please go to the project and checkout the README file.
 
-## Setup
-There is only a few steps you need to follow for Timelord to be functioning with your Harvester project:
+![Docker Badge](https://img.shields.io/docker/automated/reload/timelord.svg) ![Docker Badge](https://img.shields.io/docker/build/reload/timelord.svg)
 
-1. Clone the repository `git clone https://github.com/reload/timelord.git`
-2. Copy the `config.inc.example` file to `config.inc` and fill out the configuration.
+Timelord is a way to visually present data provided by the [Harvester](https://github.com/reload/harvester "Harvester") project.
 
-You should now have a fully functioning TimeLord project up and running.
+## Get started
 
-## Local development setup
-
-The local setup requires Docker and docker-compose.
-
-Copy `.env.example` to `.env` and update the variables according to your harvestapp.com credentials, eg.:
+#### 1. Create the config:
 
 ```
-HARVESTER_HARVEST_USER=harvest@example.com
-HARVESTER_HARVEST_PASSWORD=secret
-HARVESTER_HARVEST_ACCOUNT=companyname
+make create-config
 ```
 
-`docker-compose up` will now give you a working timelord _and_ harvester. First time building Harvester will take a long time importing the database.
+#### 2. Fill in envs in `./docker/harvester.env` and `./docker/timelord.env`:
 
-Alternately, you can edit `config.inc` and insert a remote URL to a Harvester environment, and then just `docker-compose up timelord`. Your local Time Lord container will then fetch data from the remote Harvester environment.
-
-## Customize
-
-We have setup a few steps that you should follow to get a fully customizable version up and running, if you wish to alter the styling or create further functionality.
-
-First build the `node` container and install dependencies:
 ```
-docker-compose build --force-rm node && \
-docker-compose run --rm node npm install && \
-docker-compose run --rm node bower install
+# ./docker/harvester.env
+VIRTUAL_HOST=harvester.docker
+HARVESTER_HARVEST_USER=harvest@reload.dk
+HARVESTER_HARVEST_PASSWORD=secretpassword
+HARVESTER_HARVEST_ACCOUNT=reload
+SYMFONY_ENV=dev
+SYMFONY_DEBUG=1
 ```
 
-To recompile everything, simply run grunt from inside the container:
+If running locally the only thing you need to change from the defaults are the the `HARVESTER_HARVEST_PASSWORD=secretpassword`.
+
 ```
-docker-compose run --rm node grunt
+# ./docker/timelord.env
+VIRTUAL_HOST=timelord.docker
+TIMELORD_SITE_NAME=Time Lord dev
+TIMELORD_BASE=/
+TIMELORD_HARVESTER_URL=http://harvester
+TIMELORD_HARVESTER_API_PATH=/api/v1/
+TIMELORD_SALT_STRING=ReloadGotTime
 ```
+
+If you want to have Timelord pulling data from a local version of Harvester you let the default values remain
+but if you want to pull data from some other Harvester instance fx. [http://harvester.reload.dk](http://harvester.reload.dk)
+you go ahead and change TIMELORD_HARVESTER_URL.
+
+```
+TIMELORD_HARVESTER_URL=http://harvester.reload.dk
+```
+
+#### 3. Make sure you have [Harvester](https://github.com/reload/harvester).
+
+As in, make sure you have run the Harvester project at least once and build the Dockerfile that is being build when running `make up` in the Harvester project. We need that for local development in the Timelord project as stated in this projects `docker-compose.yml`.
+
+This should be uncessecary some time along the road when these two repos get collected under a single mono-repo.
+Alas this is the state of affairs.
+
+This also means that any changes that needs to be made to the Harvester project that is required in the Timelord project
+needs to have the Harvester project make the changes and create a new fresh build of the image locally and then ask the Timelord
+project to run: `docker-compose up --build`. This is not necessary if the feature you are developing or the bug you are fixing
+only resides in the Timelord code base.
+
+#### 4. Get everything up and running.
+
+This will bring up the server needed to serve the web app and make requests to Harvester.
+Besides that this will also run a watcher service that will re-transpile your changed coffescript and SCSS.
+
+```
+make up
+```
+
+#### 5. Timelord is now accessible: [http://timelord.docker/](http://timelord.docker/)
