@@ -458,6 +458,12 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
         $scope.modalState 'range_modal', false
       else if $scope.loginOpen == true
         $scope.modalState 'loginOpen', false
+      # The nature of using non-Anular based event means that they won't be ingested into the Angular lifecycle.
+      # Therefore we need to manually tell the UI to update. https://jimhoskins.com/2012/12/17/angularjs-and-apply.html
+      # We can probably do this better with an ng-keypress directive.
+      $scope.$apply()
+
+      return
 
   # Close user-modal
   $scope.modalState = (name, state) ->
