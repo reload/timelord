@@ -1,7 +1,7 @@
 version: "2"
 services:
 
-  timelord:
+  server:
     build:
       context: .
       dockerfile: ./docker/timelord.dockerfile
@@ -17,7 +17,7 @@ services:
     volumes:
       - '.:/var/www/html'
 
-  node:
+  watch:
     build:
       context: .
       dockerfile: ./docker/node.dockerfile

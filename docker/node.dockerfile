@@ -1,24 +1,20 @@
-# In order for the ON BUILD triggers to execute, we need
-# to build
 FROM node:13.13.0-stretch
 
-# Install image libs
 RUN apt-get update && apt-get install -y ruby ruby-compass && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Allow Bower to be run as root
+# Bower won't let us run it as root by default.
+# We need to allow for this since we are root in the case of the container instance.
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
 
-# Define working directory.
 WORKDIR /var/www/html
 
 COPY . /var/www/html
 
-# Install npm dependencies
+# The dependencies are seperated in the npm dependencies being for node based (build, dev) and bower being the dependecies
+# that actually ship to the client.
 RUN npm install
-
-# Install bower dependencies
 RUN node_modules/.bin/bower install
 
 # Build artifacts
