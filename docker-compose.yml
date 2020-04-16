@@ -1,19 +1,19 @@
 version: "2"
 services:
 
+  harvester:
+    image: harvester_server:latest
+    env_file: ./docker/harvester.env
+    ports:
+      - 80
+
   server:
     build:
       context: .
       dockerfile: ./docker/timelord.dockerfile
-    environment:
-      VIRTUAL_HOST: timelord.docker
-      TIMELORD_SITE_NAME: Time Lord dev
-      TIMELORD_BASE: /
-      TIMELORD_HARVESTER_URL: http://harvester.reload.dk
-      TIMELORD_HARVESTER_API_PATH: /api/v1/
-      TIMELORD_SALT_STRING: ReloadGotTime
+    env_file: ./docker/timelord.env
     ports:
-      - '80'
+      - 80
     volumes:
       - '.:/var/www/html'
 

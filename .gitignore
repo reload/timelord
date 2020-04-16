@@ -11,3 +11,7 @@ npm-debug.log
 fonts/*
 !fonts/*/
 .DS_Store
+
+docker/timelord.env
+docker/harvester.env
+docker/harvester.sqlite
