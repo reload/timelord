@@ -502,13 +502,17 @@
       if (e.keyCode === 27) {
         // Close the user modal.
         if ($scope.user_modal === true) {
-          return $scope.modalState('user_modal', false);
+          $scope.modalState('user_modal', false);
         // Close the range modal.
         } else if ($scope.range_modal === true) {
-          return $scope.modalState('range_modal', false);
+          $scope.modalState('range_modal', false);
         } else if ($scope.loginOpen === true) {
-          return $scope.modalState('loginOpen', false);
+          $scope.modalState('loginOpen', false);
         }
+        // The nature of using non-Anular based event means that they won't be ingested into the Angular lifecycle.
+        // Therefore we need to manually tell the UI to update. https://jimhoskins.com/2012/12/17/angularjs-and-apply.html
+        // We can probably do this better with an ng-keypress directive.
+        $scope.$apply();
       }
     });
     // Close user-modal
