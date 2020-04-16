@@ -17,5 +17,7 @@ COPY . /var/www/html
 RUN npm install
 RUN node_modules/.bin/bower install
 
-# Build artifacts
+# Build artifacts.
+# Since we ship the compiled/transpiled code this image is only used for actual developement.
+# This build step is therefore just to allow for some code being available and runable at the first build.
 RUN npm run build
