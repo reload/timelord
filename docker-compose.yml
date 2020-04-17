@@ -10,7 +10,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: ./docker/timelord.dockerfile
+      dockerfile: ./Dockerfile
     env_file: ./docker/timelord.env
     ports:
       - 80
