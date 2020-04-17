@@ -68,3 +68,42 @@ make up
 ```
 
 #### 5. Timelord is now accessible: [http://timelord.docker/](http://timelord.docker/)
+
+## Deployment
+
+Timelord is hosted on our rancher alpha server.
+
+- Login: [http://alpha.reload.dk:8080/login](http://alpha.reload.dk:8080/login)
+- Harvester/Timelord stack: [http://alpha.reload.dk:8080/env/1a5/apps/stacks/1st21](http://alpha.reload.dk:8080/env/1a5/apps/stacks/1st21)
+
+### A New Release
+
+1. Whenever we merge to `master` a new image is being build and pushed to docker hub. [https://hub.docker.com/repository/docker/reload/timelord](https://hub.docker.com/repository/docker/reload/timelord)
+
+2. If the build is successfull (we can check that at the link in step 1) we are ready to ask rancher to make us a new release.
+
+3. Navigate to the Timelord/Harvester stack UI and click the small upgrade arrow.
+
+<details>
+  <summary>Readying an upgrade</summary>
+  
+  ![Readying an upgrade](https://i.imgur.com/cHZg8vK.gif)
+</details>
+
+4. Scroll down to the bottom of the page and click the Upgrade button.
+
+<details>
+  <summary>Scrolling down and requesting an upgrade</summary>
+
+  ![Scrolling down and requesting an upgrade](https://i.imgur.com/IJulf7L.gif)
+</details>
+
+5. When it has finished upgrading, we can click the small check mark to finish our upgrade and finalize our release.
+
+<details>
+  <summary>Finishing the upgrade</summary>
+
+  ![Finishing the upgrade](https://i.imgur.com/hD3yijD.gif)
+</details>
+
+6. Wait a few seconds, hard refresh your browser and the new deployment is live at [http://timelord.reload.dk](http://timelord.reload.dk).
