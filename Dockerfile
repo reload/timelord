@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.11
 
 # Need git for cloning.
 RUN apt-get update && \
