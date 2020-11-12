@@ -1,20 +1,27 @@
 {
-  "name": "Sandbox",
-  "version": "0.0.1",
+  "name": "timelord",
+  "version": "0.0.2",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:Snipon/grunt-bootstrap.git"
+    "url": "https://github.com/reload/timelord"
+  },
+  "scripts": {
+    "build": "grunt",
+    "watch": "grunt watch"
   },
   "devDependencies": {
-    "grunt": "latest",
-    "grunt-contrib-jshint": "latest",
-    "jshint-stylish": "latest",
-    "grunt-contrib-coffee": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-contrib-compass": "latest",
-    "grunt-contrib-cssmin": "latest",
-    "grunt-contrib-copy": "latest",
-    "seedrandom": "latest"
+    "bower": "^1.8.8",
+    "grunt": "^1.0.3",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-coffee": "^2.0.0",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "jshint-stylish": "^2.2.1",
+    "seedrandom": "^2.4.4"
   }
 }
