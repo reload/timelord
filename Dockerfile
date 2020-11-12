@@ -2,7 +2,7 @@ FROM phusion/baseimage:0.11
 
 # Need git for cloning.
 RUN apt-get update && \
-    apt-get install -y apache2 php5 && \
+    apt-get install -y apache2 php && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV TIMELORD_SITE_NAME Time Lord
