@@ -52,3 +52,7 @@ To recompile everything, simply run grunt from inside the container:
 ```
 docker-compose run --rm node grunt
 ```
+
+## Known Issues
+
+- Github Action pipeline only works when branch protection is turned off
