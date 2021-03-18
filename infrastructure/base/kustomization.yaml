@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - timelord-deployment.yaml
-  - timelord-ingress.yaml
-  - timelord-service.yaml
+- timelord-deployment.yaml
+- timelord-ingress.yaml
+- timelord-service.yaml
 images:
-  - name: reload/timelord
-    newName: reload/timelord
-    newTag: latest
+- name: reload/timelord
+  newName: reload/timelord
+  newTag: cf6656a7b58e76f2773c70ef06e5810b3dd24db2
