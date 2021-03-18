@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - kustomize
     #Ideally we want to reorganize the files/folders so they don't get copied into the image and we only trigger builds on app code changes
     paths-ignore:
       - infrastructure/**
@@ -32,7 +33,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64 # Remember image in dockerfile should also support these platforms
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/timelord:latest,${{ secrets.DOCKERHUB_USERNAME }}/timelord:${{ github.sha }}
+          tags: reload/timelord:latest,reload/timelord:${{ github.sha }}
   update:
     runs-on: ubuntu-latest
     needs: build
@@ -56,7 +57,7 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
           cd infrastructure/base
-          kustomize edit set image ${{ secrets.DOCKERHUB_USERNAME }}/timelord=${{ secrets.DOCKERHUB_USERNAME }}/timelord:${{ github.sha }}
+          kustomize edit set image reload/timelord=reload/timelord:${{ github.sha }}
           cat kustomization.yaml
       - name: Commit files
         run: |
@@ -65,4 +66,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
+          branch: ${{ github.ref }}
