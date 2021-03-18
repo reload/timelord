@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - kustomize
     #Ideally we want to reorganize the files/folders so they don't get copied into the image and we only trigger builds on app code changes
     paths-ignore:
       - infrastructure/**
