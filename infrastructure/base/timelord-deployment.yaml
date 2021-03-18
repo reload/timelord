@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timelord-deployment
+  labels:
+    app: timelord
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timelord
+  template:
+    metadata:
+      labels:
+        app: timelord
+    spec:
+      containers:
+        - name: timelord
+          image: reload/timelord:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: timelord-config
+          env:
+            - name: TIMELORD_SALT_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: timelord-secret
+                  key: TIMELORD_SALT_STRING
