@@ -16,13 +16,18 @@ spec:
     spec:
       containers:
         - name: timelord
-          image: reload/timelord:latest
+          image: {{ .Values.image }}
           ports:
             - containerPort: 80
-          envFrom:
-            - configMapRef:
-                name: timelord-config
           env:
+            - name: TIMELORD_SITE_NAME
+              value: {{ .Values.env.timelordSiteName }}
+            - name: TIMELORD_BASE
+              value: {{ .Values.env.timelordBase }}
+            - name: TIMELORD_HARVESTER_URL
+              value: {{ .Values.env.timelordHarvestUrl }}
+            - name: TIMELORD_HARVESTER_API_PATH
+              value: {{ .Values.env.timelordHarvestApiPath }}
             - name: TIMELORD_SALT_STRING
               valueFrom:
                 secretKeyRef:

@@ -1,0 +1,11 @@
+ingress:
+  host: example.cluster01.reload.dk
+  secretName: example-cluster01-reload-dk
+
+image: reload/timelord:latest
+
+env:
+  timelordSiteName: "Time Lord"
+  timelordBase: "/"
+  timelordHarvestUrl: "https://harvester.reload.dk"
+  timelordHarvestApiPath: "/api/v1/"

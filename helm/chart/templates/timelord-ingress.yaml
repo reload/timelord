@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - timelord.example.com
-      secretName: timelord-example-com
+        - {{ .Values.ingress.host }}
+      secretName: {{ .Values.ingress.secretName }}
   rules:
-    - host: timelord.example.com
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
           - path: /
