@@ -15,9 +15,7 @@ You should now have a fully functioning TimeLord project up and running.
 
 ## Kubernetes Setup
 
-Warning - Kustomize is not meant to be used as a templater in this way. Check out `infrastructure/prod/kustomization.yaml` and `vars` section
-
-1. Edit the files in `infrastructure/prod/config` to set env variables
+1. Edit the files in `helm/values/**/values,json` to set env variables
 
 ## Local development setup
 

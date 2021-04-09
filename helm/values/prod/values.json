@@ -1,0 +1,15 @@
+{
+  "ingress": {
+    "host": "timelord.cluster01.reload.dk",
+    "secretName": "timelord-cluster01-reload-dk"
+  },
+  "image": "reload/timelord:5fad03f57f0c48143c74682061fc1a972437c5c4",
+  "env": {
+    "timelordSiteName": "Time Lord",
+    "timelordBase": "/",
+    "timelordHarvestUrl": "https://harvester.reload.dk",
+    "timelordHarvestApiPath": "/api/v1/"
+  },
+  "namespace": "timelord",
+  "name": "timelord"
+}
