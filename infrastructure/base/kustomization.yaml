@@ -7,4 +7,4 @@ resources:
 images:
 - name: reload/timelord
   newName: reload/timelord
-  newTag: 6ceee08eedec5c82d170f5997d266258906f48b8
+  newTag: d5d0c20217e2d116dbbf90de952550a88b27934b
