@@ -2,7 +2,7 @@ version: "2"
 services:
 
   harvester:
-    image: reload/harvester:latest
+    image: ghcr.io/reload/harvester:latest
     environment:
       VIRTUAL_HOST: harvester.docker
     ports:
@@ -11,7 +11,7 @@ services:
       - './docker/harvester/data/harvester.sqlite:/data/harvester.sqlite'
 
   timelord:
-    image: reload/timelord:latest
+    image: ghcr.io/reload/timelord:latest
     environment:
       VIRTUAL_HOST: timelord.docker
     ports:
