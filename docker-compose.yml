@@ -8,7 +8,7 @@ services:
     ports:
       - '80'
     volumes:
-      - './docker/harvester/data/harvester.sqlite:/data/harvester.sqlite'
+      - './docker/harvester/data:/data'
 
   timelord:
     image: ghcr.io/reload/timelord:latest
