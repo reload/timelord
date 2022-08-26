@@ -322,6 +322,8 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
       if user.extra.illness != false
         $scope.user.extra.show_illness = true
         $scope.user.extra.illness.hours = user.extra.illness.normal + user.extra.illness.child
+      if user.extra.off_hours != false
+        $scope.user.extra.show_off_hours = true
 
     # Time chart.
     # -----------

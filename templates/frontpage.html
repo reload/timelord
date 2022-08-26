@@ -256,6 +256,10 @@
             <td>Illness <span ng-if="user.extra.illness.child !== 0">(child)</span></td>
             <td>{{user.extra.illness.hours}} <span ng-if="user.extra.illness.child !== 0">({{user.extra.illness.child}})</span> hours</td>
           </tr>
+          <tr ng-show="user.extra.show_off_hours">
+            <td>Off-hours</td>
+            <td>{{user.extra.off_hours}} hours</td>
+          </tr>
         </table>
       </div>
     </div>
