@@ -222,6 +222,7 @@
         if (hashtag() !== '') {
           user_id = hashtag();
         }
+        // Loop though each user.
         angular.forEach(data.users, function(user, i) {
           var avg_hours_difference, gravatar_width, total_hours_difference;
           // Compare a possible user-id in the URL.
@@ -473,7 +474,7 @@
     };
     $scope.employeeOfWeek = function(val) {
       var employee, sortedUsers, users;
-      date = new Date;
+      date = new Date();
       users = $scope.data.users;
       sortedUsers = [];
       users.forEach(function(entry) {

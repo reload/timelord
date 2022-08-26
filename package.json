@@ -7,14 +7,14 @@
   },
   "devDependencies": {
     "grunt": "latest",
-    "grunt-contrib-jshint": "latest",
-    "jshint-stylish": "latest",
     "grunt-contrib-coffee": "latest",
+    "grunt-contrib-compass": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-jshint": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-contrib-compass": "latest",
-    "grunt-contrib-cssmin": "latest",
-    "grunt-contrib-copy": "latest",
+    "jshint-stylish": "latest",
     "seedrandom": "latest"
   }
 }
