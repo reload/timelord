@@ -178,7 +178,7 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
 
           # Get gravatar url.
           gravatar_width = 125
-          data.users[i].gravatar = 'http://www.gravatar.com/avatar/' + md5.createHash(user.email || '') + '?s=' + gravatar_width
+          data.users[i].gravatar = 'https://www.gravatar.com/avatar/' + md5.createHash(user.email || '') + '?s=' + gravatar_width
 
           # Calculate the avarage amount of hours a person is over/under the expected goal.
           # 30min overtime per day = 0.5
