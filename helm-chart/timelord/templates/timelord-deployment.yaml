@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}-{{ .Release.Name }}-timelord
-        image: {{ .Values.image }}:{{ .Values.image.tag }}
+        image: {{ .Values.image }}:{{ .Values.imageTag }}
         ports:
         - containerPort: 80
         env:

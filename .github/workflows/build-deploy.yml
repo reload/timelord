@@ -81,5 +81,5 @@ jobs:
         --namespace timelord \
         --create-namespace \
         --set timelord.secret=${{ secrets.TIMELORD_SECRET }} \
-        --set image.tag=${{ env.RELEASE_TAG }}
+        --set imageTag=${{ env.RELEASE_TAG }}
     needs: build
