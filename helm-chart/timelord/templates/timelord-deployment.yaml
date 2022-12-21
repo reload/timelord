@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-{{ .Release.Name }}-timelord
+  labels:
+    app: {{ .Chart.Name }}-{{ .Release.Name }}-timelord
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-{{ .Release.Name }}-timelord
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-{{ .Release.Name }}-timelord
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}-{{ .Release.Name }}-timelord
+        image: {{ .Values.image }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 80
+        env:
+          - name: TIMELORD_SITE_NAME
+            value: "Time Lord"
+          - name: TIMELORD_BASE
+            value: "/"
+          - name: TIMELORD_HARVESTER_URL
+            value: "https://harvester.reload.dk"
+          - name: TIMELORD_HARVESTER_API_PATH
+            value: "/api/v1/"
+          - name: TIMELORD_SALT_STRING
+            value: {{ .Values.timelord.secret }}

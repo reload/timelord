@@ -1,0 +1,8 @@
+# The image tag is added in the github workflow based on which tag the developer pushes to main
+image: ghcr.io/reload/timelord
+
+ingress:
+  host: timelord.reload.dk
+  # enable prod and disable staging to issue REAL certs
+  #issuer: letsencrypt-staging
+  issuer: letsencrypt-prod

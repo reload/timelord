@@ -44,3 +44,8 @@ To recompile everything, simply run grunt from inside the container:
 ```
 docker-compose run --rm node grunt
 ```
+
+## Hosting
+Timelord is currently hosted with Kubernetes at Google Cloud Platform in the project: `reload-internal-alpha` 
+It is deployed using [helm](https://helm.sh/docs/topics/charts/)  
+For more info, please see our [helm-chart](./helm-chart)
