@@ -29,7 +29,7 @@ We currently don't use the helm builtin versioning in this file, so these can be
 You can and we want to encourage that, but remember to always ask your colleauges when in doubt.  
 Generally speaking, you can 'just' copy the entire helm-chart directory, call it something else and replace any occurences of timelord in Chart.yaml, values.yaml and /templates/*.yaml 
 That's the "anything is possible" answer, but obviously there may be more to it than that.  
-You may want your github pipeline to automatically deploy new releases based on a tag, or perhaps just upgrade by hand? In either case, please see our [workflow](../../.github/workflows/bu>
+You may want your github pipeline to automatically deploy new releases based on a tag, or perhaps just upgrade by hand? In either case, please see our [workflow](../../.github/workflows/build-deploy.yml)
 
 ## Versioning
 At the time of writing, the following helm version was used to spawn timelord on the cluster:
