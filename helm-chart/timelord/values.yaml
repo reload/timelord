@@ -1,7 +1,7 @@
 # The image tag is added in the github workflow based on which tag the developer pushes to main
 image: ghcr.io/reload/timelord
 # The tag should be overriden during 'helm upgrade' operations with --set.
-imageTag: latest
+#imageTag: latest
 
 ingress:
   host: timelord.reload.dk
