@@ -19,3 +19,5 @@ COPY docker/timelord.sh /etc/my_init.d/99-timelord
 
 # Make runit start apache.
 COPY docker/apache2.service /etc/service/apache2/run
+
+EXPOSE 80
