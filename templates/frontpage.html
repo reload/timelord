@@ -225,15 +225,24 @@
           </tr>
           <tr ng-show="user.extra">
             <td>Billable hours</td>
-            <td>{{user.extra.billable_hours}} hours</td>
+            <td>
+              {{user.extra.billable_hours}} hours (raw)<br/>
+              {{user.extra.rounded_billable_hours}} hours (rounded)
+            </td>
           </tr>
           <tr ng-show="user.extra.billability">
             <td>Billable hours per day <span title="Defined as billable_hours / workingdays_in_range" style="cursor: help;">?</span></td>
-            <td>{{user.extra.billability.hours_pr_day}} hours</td>
+            <td>
+              {{user.extra.billability.hours_pr_day}} hours (raw)<br/>
+              {{user.extra.billability.rounded_hours_pr_day}} hours (rounded)
+            </td>
           </tr>
           <tr ng-show="user.extra.billability">
-            <td>Billable hours per day normalized (vacation etc removed) <span title="Defined as billable_hours / working_days - ((hours_registered - working_hours) / user_working_hours_pr_day)" style="cursor: help;">?</span></td>
-            <td>{{user.extra.billability.hours_pr_day_normalized}} hours</td>
+            <td>Billable hours per day normalized (vacation, education, holiday, paternity leave, time off removed) <span title="Defined as billable_hours / working_days - ((hours_registered - working_hours) / user_working_hours_pr_day)" style="cursor: help;">?</span></td>
+            <td>
+              {{user.extra.billability.hours_pr_day_normalized}} hours (raw)<br/>
+              {{user.extra.billability.rounded_hours_pr_day_normalized}} hours (rounded)
+            </td>
           </tr>
           <tr ng-show="user.extra.billability">
             <!-- https://github.com/reload/harvester/blob/c55e86d947701d7656fbbb93ffc46d70c0f09849/src/reloaddk/HarvesterBundle/Entity/EntryRepository.php#L426 -->
