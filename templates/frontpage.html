@@ -235,10 +235,6 @@
             <td>Billable hours per day normalized (vacation etc removed) <span title="Defined as billable_hours / working_days - ((hours_registered - working_hours) / user_working_hours_pr_day)" style="cursor: help;">?</span></td>
             <td>{{user.extra.billability.hours_pr_day_normalized}} hours</td>
           </tr>
-          <tr ng-show="user.admin">
-            <td>Billable performance (goal)</td>
-            <td>{{user.admin.billability.performance}}% ({{user.admin.billability.goal}}%)</td>
-          </tr>
           <tr ng-show="user.extra.billability">
             <!-- https://github.com/reload/harvester/blob/c55e86d947701d7656fbbb93ffc46d70c0f09849/src/reloaddk/HarvesterBundle/Entity/EntryRepository.php#L426 -->
             <td>Billable % of paid time <span title="Defined as billable hours / (hours registered - vacation - holiday - time_off - paternity_leave - education)" style="cursor: help;">?</span></td>
