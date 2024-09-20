@@ -238,10 +238,10 @@
             </td>
           </tr>
           <tr ng-show="user.extra.billability">
-            <td>Billable hours per day normalized (vacation, education, holiday, paternity leave, time off removed) <span title="Defined as billable_hours / working_days - ((hours_registered - working_hours) / user_working_hours_pr_day)" style="cursor: help;">?</span></td>
+            <td>Billable hours per day normalized <span title="An average normal day. Vacation, education, holiday, paternity leave, time off removed." style="cursor: help;">?</span></td>
             <td>
               {{user.extra.billability.hours_pr_day_normalized}} hours (raw)<br/>
-              {{user.extra.billability.rounded_hours_pr_day_normalized}} hours (rounded)
+              <b>{{user.extra.billability.rounded_hours_pr_day_normalized}} hours (rounded)</b>
             </td>
           </tr>
           <tr ng-show="user.extra.billability">
