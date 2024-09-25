@@ -6,9 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // AJAX form submission
     $user = json_decode($_GET["user"]);
 
-    $name = $user->name;
-    $options = ['salt' => md5($config['salt_string'])];
-    $pass = password_hash($user->pass, PASSWORD_DEFAULT, $options);
 
     /**
      * TODO: The API usses post for this service, maybe use guzzle?
@@ -17,8 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      */
 
     $url = $config['harvester_url'] . $config['harvester_api_path'] . 'entries.json?group=user';
-    $token = '&token=' . $pass . '|' . $name;
-    $url = $url . $token;
+    $url = $url . "&email=" . $user->name . "&password=" . $user->pass;
 
     // Get response header.
     $header = get_headers($url);
@@ -28,14 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Check if response gives thumbs up and start session.
     if ($code === 200) {
-      session_start();
-      $_SESSION['harvester_name'] = $name;
-      $_SESSION['harvester_pass'] = $pass;
+        session_start();
+        $_SESSION['harvester_name'] = $user->name;
+        $_SESSION['harvester_pass'] = $user->pass;
     }
 
     // Otherwise return response.
     else {
-      return http_response_code($code);
+        return http_response_code($code);
     }
   }
 

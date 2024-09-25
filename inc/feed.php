@@ -24,9 +24,7 @@
     $name = $_SESSION['harvester_name'];
     $pass = $_SESSION['harvester_pass'];
 
-    // Put together a token for url.
-    $token = '&token=' . $pass . '|' . $name;
-    $url = $url . $token;
+    $url = $url . "&email=" . $name . "&password=" . $pass;
   }
 
   // Wrap response.
