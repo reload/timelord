@@ -8,7 +8,7 @@
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-coffee": "latest",
-    "grunt-contrib-compass": "latest",
+    "grunt-contrib-sass": "latest",
     "grunt-contrib-copy": "latest",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-jshint": "latest",

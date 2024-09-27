@@ -1,4 +1,3 @@
-version: "2"
 services:
 
   harvester:
@@ -26,5 +25,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/node/Dockerfile
+    init: true
+    command: sh -c "npm install && grunt watch"
     volumes:
       - '.:/var/www/html'

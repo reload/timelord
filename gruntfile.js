@@ -95,7 +95,7 @@ module.exports = function (grunt) {
       }
     },
     // Compass and SCSS
-    compass: {
+    sass: {
       options: {
         httpPath: '/profiles/scribo/themes/scribe',
         imagesDir: 'img',
@@ -116,7 +116,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
