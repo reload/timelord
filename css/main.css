@@ -728,6 +728,15 @@ ul#user-ranking li.user.d-slacker .user_avatar .rank {
   float: right;
 }
 
+.user-form .content .help {
+  margin: 15px 0;
+}
+
+.user-form .content .help a {
+  color: #4FB1D7;
+  text-decoration: underline;
+}
+
 .user-modal .header {
   position: relative;
 }
