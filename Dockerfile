@@ -18,6 +18,8 @@ RUN chmod +x /usr/local/bin/timelord-entrypoint
 
 ENTRYPOINT ["timelord-entrypoint"]
 # Plain HTTP on port 80; TLS is handled by whatever sits in front.
-CMD ["frankenphp", "php-server", "--listen", ":80", "--root", "/var/www/html"]
+ENV SERVER_NAME=:80
+ENV SERVER_ROOT=/var/www/html
+CMD ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile"]
 
 EXPOSE 80
