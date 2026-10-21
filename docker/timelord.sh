@@ -9,3 +9,5 @@ cat > /var/www/html/config.inc <<EOF
 \$config['salt_string'] = '$TIMELORD_SALT_STRING';
 
 EOF
+
+exec docker-php-entrypoint "$@"
