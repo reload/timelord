@@ -1,23 +1,23 @@
-FROM phusion/baseimage:18.04-1.0.0
+FROM dunglas/frankenphp:1-php8.5
 
-# Need git for cloning.
-RUN apt-get update && \
-    apt-get install -y apache2 php && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Use the production php.ini defaults (no display_errors etc.).
+RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-ENV TIMELORD_SITE_NAME Time Lord
-ENV TIMELORD_BASE /
-ENV TIMELORD_HARVESTER_URL http://harvester.reload.dk
-ENV TIMELORD_HARVESTER_API_PATH /api/v1/
-ENV TIMELORD_SALT_STRING ChangeMe
+ENV TIMELORD_SITE_NAME="Time Lord"
+ENV TIMELORD_BASE=/
+ENV TIMELORD_HARVESTER_URL=http://harvester.reload.dk
+ENV TIMELORD_HARVESTER_API_PATH=/api/v1/
+ENV TIMELORD_SALT_STRING=ChangeMe
 
-RUN rm -rf /var/www/html
+WORKDIR /var/www/html
 COPY ./ /var/www/html
 
-# Script for setting up harvester.
-COPY docker/timelord.sh /etc/my_init.d/99-timelord
+# Writes config.inc from the environment, then starts FrankenPHP.
+COPY docker/timelord.sh /usr/local/bin/timelord-entrypoint
+RUN chmod +x /usr/local/bin/timelord-entrypoint
 
-# Make runit start apache.
-COPY docker/apache2.service /etc/service/apache2/run
+ENTRYPOINT ["timelord-entrypoint"]
+# Plain HTTP on port 80; TLS is handled by whatever sits in front.
+CMD ["frankenphp", "php-server", "--listen", ":80", "--root", "/var/www/html"]
 
 EXPOSE 80
