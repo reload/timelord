@@ -5,7 +5,7 @@ RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 ENV TIMELORD_SITE_NAME="Time Lord"
 ENV TIMELORD_BASE=/
-ENV TIMELORD_HARVESTER_URL=http://harvester.reload.dk
+ENV TIMELORD_HARVESTER_URL=https://combine.reload.dk
 ENV TIMELORD_HARVESTER_API_PATH=/api/v1/
 ENV TIMELORD_SALT_STRING=ChangeMe
 

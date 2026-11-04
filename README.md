@@ -11,6 +11,35 @@ There is only a few steps you need to follow for Timelord to be functioning with
 
 You should now have a fully functioning TimeLord project up and running.
 
+## Deployment
+
+Timelord is deployed with [Kamal](https://kamal-deploy.org/) to
+[zeta.reload.dk](https://github.com/reload/zeta.reload.dk) at
+https://timelord.reload.dk, fetching data from the Harvester at
+https://combine.reload.dk.
+
+The site is protected by basic auth, handled by Caddy in the container
+(see `docker/timelord.sh`), as kamal-proxy doesn't support it. The
+credentials come from the `Timelord basic auth` item in the Shared vault of the
+Reload 1Password account via [secretspec](https://secretspec.dev/),
+and the tools are provided by [devenv](https://devenv.sh/).
+
+The first deployment also sets up kamal-proxy:
+
+```sh
+devenv shell -- secretspec run -- kamal setup
+```
+
+Later deployments:
+
+```sh
+devenv shell -- secretspec run -- kamal deploy
+```
+
+Alternatively, run `devenv shell` to get a shell with `kamal` and
+`secretspec` available, or use [direnv](https://direnv.net/) to load it
+automatically.
+
 ## Local development setup
 
 The local setup requires Docker and docker-compose.

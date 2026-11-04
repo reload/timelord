@@ -2,3 +2,7 @@
 .sass-cache
 .github
 infrastructure
+.devenv*
+.direnv
+.kamal
+node_modules

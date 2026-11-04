@@ -1,0 +1,33 @@
+service: timelord
+image: reload/timelord
+
+servers:
+  web:
+    - zeta.reload.dk
+
+ssh:
+  user: deploy
+  port: 27821
+
+# Basic auth is handled by Caddy in the container (see
+# docker/timelord.sh), as kamal-proxy doesn't support it. /up is left
+# open for the healthcheck.
+proxy:
+  ssl: true
+  host: timelord.reload.dk
+  app_port: 80
+  healthcheck:
+    path: /up
+
+# Kamal runs a registry locally and pushes the image to the server
+# through an SSH tunnel, so no external registry is needed.
+registry:
+  server: localhost:5555
+
+builder:
+  arch: amd64
+
+env:
+  secret:
+    - TIMELORD_BASIC_AUTH_USER
+    - TIMELORD_BASIC_AUTH_PASSWORD
