@@ -14,11 +14,25 @@ EOF
 # Caddyfile. /up is the healthcheck endpoint for kamal-proxy.
 directives='respond /up 200'
 
-# Protect everything else with basic auth when a password is given.
+# Protect everything else with basic auth when a password is given,
+# except for requests from TIMELORD_BASIC_AUTH_ALLOWED_IPS (space
+# separated IPs or CIDR ranges).
 if [ -n "$TIMELORD_BASIC_AUTH_PASSWORD" ]; then
   hash=$(frankenphp hash-password --plaintext "$TIMELORD_BASIC_AUTH_PASSWORD")
+  exclude_ips=
+  if [ -n "$TIMELORD_BASIC_AUTH_ALLOWED_IPS" ]; then
+    exclude_ips="not client_ip $TIMELORD_BASIC_AUTH_ALLOWED_IPS"
+    # The client IP is in X-Forwarded-For, set by kamal-proxy, which
+    # reaches the container over the private Docker network.
+    export CADDY_GLOBAL_OPTIONS="servers {
+	trusted_proxies static private_ranges
+}"
+  fi
   directives="$directives
-@protected not path /up
+@protected {
+	not path /up
+	$exclude_ips
+}
 basic_auth @protected {
 	${TIMELORD_BASIC_AUTH_USER:-reload} $hash
 }"

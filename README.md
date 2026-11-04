@@ -18,8 +18,9 @@ Timelord is deployed with [Kamal](https://kamal-deploy.org/) to
 https://timelord.reload.dk, fetching data from the Harvester at
 https://combine.reload.dk.
 
-The site is protected by basic auth, handled by Caddy in the container
-(see `docker/timelord.sh`), as kamal-proxy doesn't support it. The
+The site is protected by basic auth, except from the Reload office,
+handled by Caddy in the container (see `docker/timelord.sh`), as
+kamal-proxy doesn't support it. The
 credentials come from the `Timelord basic auth` item in the Shared vault of the
 Reload 1Password account via [secretspec](https://secretspec.dev/),
 and the tools are provided by [devenv](https://devenv.sh/).

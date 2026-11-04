@@ -11,7 +11,8 @@ ssh:
 
 # Basic auth is handled by Caddy in the container (see
 # docker/timelord.sh), as kamal-proxy doesn't support it. /up is left
-# open for the healthcheck.
+# open for the healthcheck, and TIMELORD_BASIC_AUTH_ALLOWED_IPS (the
+# Reload office) doesn't need to log in.
 proxy:
   ssl: true
   host: timelord.reload.dk
@@ -31,3 +32,4 @@ env:
   secret:
     - TIMELORD_BASIC_AUTH_USER
     - TIMELORD_BASIC_AUTH_PASSWORD
+    - TIMELORD_BASIC_AUTH_ALLOWED_IPS
