@@ -7,4 +7,3 @@ $config['site_name'] = 'Time Lord dev';
 $config['timelord_base'] = '/';
 $config['harvester_url'] = 'http://harvester.docker';
 $config['harvester_api_path'] = '/api/v1/';
-$config['salt_string'] = 'ReloadGotTime';

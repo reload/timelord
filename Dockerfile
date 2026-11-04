@@ -7,7 +7,6 @@ ENV TIMELORD_SITE_NAME="Time Lord"
 ENV TIMELORD_BASE=/
 ENV TIMELORD_HARVESTER_URL=https://combine.reload.dk
 ENV TIMELORD_HARVESTER_API_PATH=/api/v1/
-ENV TIMELORD_SALT_STRING=ChangeMe
 
 WORKDIR /var/www/html
 COPY ./ /var/www/html

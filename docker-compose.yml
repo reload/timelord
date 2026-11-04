@@ -15,7 +15,6 @@ services:
       VIRTUAL_HOST: timelord.docker
       # This can be pointed at https://combine.reload.dk to use prod data.
       TIMELORD_HARVESTER_URL: http://harvester
-      TIMELORD_SALT_STRING: ReloadGotTime
     ports:
       - '80'
     volumes:
