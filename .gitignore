@@ -2,7 +2,6 @@ app
 vendor
 node_modules
 .sass-cache
-composer.lock
 config.inc
 npm-debug.log
 .env

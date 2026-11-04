@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 
     // Checkstyle on javascript with jshint.
     jshint: {
-      files: ['Gruntfile.js' ,'js/*.js'],
+      files: ['gruntfile.js', 'js/*.js'],
       options: {
         reporter: require('jshint-stylish'),
         curly: true,
@@ -96,20 +96,12 @@ module.exports = function (grunt) {
     },
     // Compass and SCSS
     sass: {
-      options: {
-        httpPath: '/profiles/scribo/themes/scribe',
-        imagesDir: 'img',
-        javascriptsDir: 'js',
-        fontsDir: 'css/fonts',
-        assetCacheBuster: 'none'
-      },
       dev: {
         options: {
           cssDir: 'css',
           sassDir: 'css/sass',
           environment: 'development',
           outputStyle: 'expanded',
-          relativeAssets: true,
           noLineComments: true
         }
       }
