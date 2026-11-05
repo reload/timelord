@@ -55,16 +55,17 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
         # Return the name.
         return object.name
 
+  # Normalise a date to YYYY-MM-DD, which is the only format the native
+  # date input accepts. Older URLs may use YYYYMMDD.
+  toIsoDate = (value) ->
+    value = String(value or '')
+    if /^\d{8}$/.test(value)
+      value = value.substr(0, 4) + '-' + value.substr(4, 2) + '-' + value.substr(6, 2)
+    value
+
   # Set the default values for the "from" and "to" arguments.
-  if $routeParams.from
-    $scope.from = $routeParams.from
-  else
-    $scope.from = ''
-  # Define default "to" value.
-  if $routeParams.to
-    $scope.to = $routeParams.to
-  else
-    $scope.to = ''
+  $scope.from = toIsoDate $routeParams.from
+  $scope.to = toIsoDate $routeParams.to
 
   # Set the default values for the "month" and "year" arguments.
   date = new Date()
