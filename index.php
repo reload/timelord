@@ -1,6 +1,7 @@
 <?php
   session_start();
   include_once 'config.inc';
+  include_once 'inc/asset-version.php';
 
   // Stylesheets, in cascade order.
   $stylesheets = [
@@ -17,13 +18,11 @@
     'css/user-ranking.css',
     'css/modal.css',
   ];
-  $scripts = glob(__DIR__ . '/js/*.js');
-  $modules = array_filter($scripts, fn ($script) => !str_ends_with($script, '.min.js'));
+  $modules = array_filter(glob(__DIR__ . '/js/*.js'), fn ($script) => !str_ends_with($script, '.min.js'));
 
   // Cache busting: version the asset URLs with a hash of the front-end files,
   // so browsers fetch them again whenever any of them changes.
-  $assets = array_merge($scripts, glob(__DIR__ . '/css/*.css'), glob(__DIR__ . '/templates/*.html'));
-  $version = substr(hash('xxh128', implode('', array_map(fn ($file) => hash_file('xxh128', $file), $assets))), 0, 12);
+  $version = timelord_asset_version();
   $versioned = fn ($path) => $path . '?v=' . $version;
 
   // Native module imports are relative ("./util.js") and don't carry the
