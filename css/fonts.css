@@ -1,0 +1,28 @@
+/* Asap (SIL Open Font License, see fonts/asap/OFL.txt), from Google Fonts.
+   The files are variable fonts, trimmed to weights 400-700, normal width and
+   Latin characters. Each family below pins one weight: a variable font is
+   rendered at the element's font-weight clamped to the face's range. */
+
+@font-face {
+  font-family: AsapRegular;
+  src: url("../fonts/asap/Asap.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: AsapItalic;
+  src: url("../fonts/asap/Asap-Italic.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: AsapBold;
+  src: url("../fonts/asap/Asap.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: AsapBoldItalic;
+  src: url("../fonts/asap/Asap-Italic.woff2") format("woff2");
+  font-weight: 700;
+}

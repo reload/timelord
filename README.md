@@ -29,18 +29,17 @@ Alternately, you can edit `config.inc` and insert a remote URL to a Harvester en
 
 ## Customize
 
-We have setup a few steps that you should follow to get a fully customizable version up and running, if you wish to alter the styling or create further functionality.
+There is no build step. The front end is plain ES modules and native CSS,
+served as-is, so edit the files and reload:
 
-First build the `node` container and install dependencies:
+- `js/main.js` is the entry module; the rest of `js/` are the modules it
+  imports. AngularJS, jQuery, Bootstrap, Chart.js and seedrandom come from
+  the prebuilt `js/vendor.min.js` bundle as globals, re-exported from
+  `js/vendor.js`.
+- `css/` has one stylesheet per concern, with colours and other design
+  tokens in `css/tokens.css`. New stylesheets must be added to the list in
+  `index.php`, which also sets their order.
 
-```
-docker-compose build --force-rm node && \
-docker-compose run --rm node npm install && \
-docker-compose run --rm node bower install
-```
-
-To recompile everything, simply run grunt from inside the container:
-
-```
-docker-compose run --rm node grunt
-```
+`index.php` adds a cache-busting `?v=` to every asset URL, a hash of the
+files in `js/`, `css/` and `templates/`, and an import map so the version
+also applies to modules imported by other modules.

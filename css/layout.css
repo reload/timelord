@@ -1,0 +1,7 @@
+#content {
+  display: flow-root;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 4%;
+  transition: opacity 2000ms ease-in-out;
+}
