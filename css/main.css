@@ -546,6 +546,11 @@ ul#user-ranking li.user .has-hat {
   left: 6px;
   z-index: 2;
 }
+ul#user-ranking li.user .has-hat.has-moustache {
+  top: -30px;
+  left: 21px;
+  width: 70px;
+}
 ul#user-ranking li.user .user_avatar .user_avatar_holder {
   width: 100px;
   height: 100px;
