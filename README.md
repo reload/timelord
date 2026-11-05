@@ -20,26 +20,22 @@ https://combine.reload.dk.
 
 The site is protected by basic auth, except from the Reload office,
 handled by Caddy in the container (see `docker/timelord.sh`), as
-kamal-proxy doesn't support it. The
-credentials come from the `Timelord basic auth` item in the Shared vault of the
-Reload 1Password account via [secretspec](https://secretspec.dev/),
-and the tools are provided by [devenv](https://devenv.sh/).
+kamal-proxy doesn't support it.
 
-The first deployment also sets up kamal-proxy:
+Pushes to `main` are deployed by the Deploy workflow
+(`.github/workflows/deploy.yml`), which can also be run by hand from the
+Actions tab. It pushes the image to `ghcr.io/reload/timelord` and gets
+Kamal from [devenv](https://devenv.sh/). It needs these repository
+settings:
 
-```sh
-devenv shell -- secretspec run -- kamal setup
-```
-
-Later deployments:
-
-```sh
-devenv shell -- secretspec run -- kamal deploy
-```
-
-Alternatively, run `devenv shell` to get a shell with `kamal` and
-`secretspec` available, or use [direnv](https://direnv.net/) to load it
-automatically.
+- `KAMAL_SSH_KEY` secret: the private key whose public key is in
+  `fetch_ssh_keys_static_keys` in the zeta.reload.dk repository.
+- `ZETA_KNOWN_HOSTS` variable: the output of
+  `ssh-keyscan -p 27821 zeta.reload.dk`.
+- `TIMELORD_BASIC_AUTH_USER`, `TIMELORD_BASIC_AUTH_PASSWORD` and
+  `TIMELORD_BASIC_AUTH_ALLOWED_IPS` secrets (the basic auth credentials
+  are in the `Timelord basic auth` item in the Shared vault of the
+  Reload 1Password account).
 
 ## Local development setup
 

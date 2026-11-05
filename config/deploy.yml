@@ -20,10 +20,13 @@ proxy:
   healthcheck:
     path: /up
 
-# Kamal runs a registry locally and pushes the image to the server
-# through an SSH tunnel, so no external registry is needed.
+# The GitHub Actions deploy workflow logs in with its GITHUB_TOKEN.
 registry:
-  server: localhost:5555
+  server: ghcr.io
+  username:
+    - KAMAL_REGISTRY_USERNAME
+  password:
+    - KAMAL_REGISTRY_PASSWORD
 
 builder:
   arch: amd64

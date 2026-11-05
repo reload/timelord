@@ -3,6 +3,5 @@
 {
   packages = [
     pkgs.kamal
-    pkgs.secretspec
   ];
 }
