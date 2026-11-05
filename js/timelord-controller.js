@@ -285,7 +285,8 @@ export function TimeLordController($scope, $http, $routeParams, $location, md5) 
       $scope.label_state[0] = true;
     }
 
-    doughnut('hours-chart', data, { segmentStrokeWidth: 1 });
+    // The stroke colour matches --near-white in css/tokens.css.
+    doughnut('hours-chart', data, { segmentStrokeWidth: 1, segmentStrokeColor: 'oklch(99% 0.006 163)' });
   };
 
   // The last day of the selected period, but never later than today, so the

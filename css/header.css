@@ -107,7 +107,7 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    box-shadow: inset 0 -2px 0 0 oklch(0% 0 0 / .2);
+    box-shadow: inset 0 -2px 0 0 color-mix(in oklch, var(--near-black) 20%, transparent);
     text-align: center;
     text-transform: uppercase;
     position: absolute;
@@ -124,13 +124,13 @@
     .percent {
       font-size: 1.2em;
       font-family: var(--header-font-family);
-      color: var(--white);
+      color: var(--near-white);
     }
 
     /* Percent value. */
     h4 {
       font-size: 3em;
-      color: var(--white);
+      color: var(--near-white);
       margin-bottom: 0;
       line-height: .8;
     }

@@ -10,7 +10,7 @@ body {
 }
 
 body {
-  background: linear-gradient(var(--white) 50%, var(--blue-lightest)) fixed;
+  background: linear-gradient(var(--near-white) 50%, var(--blue-lightest)) fixed;
   color: var(--black);
   padding: 0;
   margin: 0;
