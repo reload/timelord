@@ -53,7 +53,8 @@
         <span class="rank {{user.rank.class}}">
           {{user.rank.icon}}
         </span>
-        <img ng-hide="employeeOfWeek(user.full_name)" src="img/label-sir-hat.png" class="has-hat">
+        <img ng-if="user.full_name == employee_of_week.name && !employee_of_week.moustache" src="img/label-sir-hat.png" class="has-hat" alt="">
+        <img ng-if="user.full_name == employee_of_week.name && employee_of_week.moustache" src="img/label-sir.png" class="has-hat has-moustache" alt="">
         <figure class="user_avatar_holder">
           <img ng-src="{{user.gravatar}}" alt="Image of {{ user.full_name }}"/>
         </figure>

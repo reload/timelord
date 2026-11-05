@@ -71,6 +71,14 @@ ul#user-ranking {
       top: -32px;
       left: 6px;
       z-index: 2;
+
+      // The moustache version has the same canvas, so shrink it to put the
+      // moustache on the upper lip.
+      &.has-moustache {
+        top: -30px;
+        left: 21px;
+        width: 70px;
+      }
     }
 
     // Avatar

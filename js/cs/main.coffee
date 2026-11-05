@@ -217,6 +217,9 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
           # primarily for debugging use. Add the total hour diff to the class.
           #data.users[i].rank.class += ' ' + total_hours_difference.toFixed(2) + ' ' + avg_hours_difference.toFixed(2)
 
+        # Pick the employee of the week for the selected period.
+        $scope.employee_of_week = pickEmployeeOfWeek data.users
+
         # Output to scope.
         $scope.data = data
         $scope.loading = false
@@ -426,23 +429,37 @@ app.controller 'TimeLord', ($scope, $http, $routeParams, $location, md5) ->
     # Execute the chart.
     doughnut('hours-chart', data, options)
 
-  $scope.employeeOfWeek = (val) ->
-    date = new Date
-    users = $scope.data.users
-    sortedUsers = []
-    users.forEach (entry) ->
-      sortedUsers.push entry.full_name
-      return
-    sortedUsers = sortedUsers.sort()
+  # The last day of the selected period, but never later than today, so the
+  # current period still gets a new employee of the week every week.
+  periodEndDate = ->
+    today = new Date
+    end = null
+    if $scope.type == 'range'
+      to = ($scope.to or '').replace(/-/g, '')
+      if /^\d{8}$/.test(to)
+        end = new Date(parseInt(to.substr(0, 4), 10), parseInt(to.substr(4, 2), 10) - 1, parseInt(to.substr(6, 2), 10))
+    else
+      angular.forEach $scope.date_options_month, (object, j) ->
+        if object.value == $scope.month
+          # Day 0 of the next month is the last day of this one.
+          end = new Date($scope.year, j + 1, 0)
+    if end and end < today then end else today
 
-    employee = ->
-      Math.seedrandom date.getWeek() + date.getFullYear()
-      theWinner = Math.floor(Math.random() * sortedUsers.length)
-      sortedUsers[theWinner]
+  # How often the employee of the week also gets a moustache.
+  MOUSTACHE_CHANCE = 0.2
 
-    if val == employee()
-      return false
-    true
+  # Pick the employee of the week for the selected period. The choice is
+  # seeded by the week, so everyone sees the same winner.
+  pickEmployeeOfWeek = (users) ->
+    names = (user.full_name for user in users or []).sort()
+    return null unless names.length
+    endDate = periodEndDate()
+    # Use a local generator rather than replacing Math.random.
+    rng = new Math.seedrandom endDate.getFullYear() + '-W' + endDate.getWeek()
+    {
+      name: names[Math.floor(rng() * names.length)]
+      moustache: rng() < MOUSTACHE_CHANCE
+    }
 
   Date::getWeek = ->
     onejan = new Date(@getFullYear(), 0, 1)

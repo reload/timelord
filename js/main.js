@@ -18,7 +18,7 @@
 
   // TimeLord controller.
   app.controller('TimeLord', function($scope, $http, $routeParams, $location, md5) {
-    var $doc, date, fetchData, getLoginStatus, getSession, toIsoDate;
+    var $doc, MOUSTACHE_CHANCE, date, fetchData, getLoginStatus, getSession, periodEndDate, pickEmployeeOfWeek, toIsoDate;
     // Get the document.
     $doc = angular.element(document);
     $scope.user_modal = false;
@@ -265,6 +265,8 @@
         // primarily for debugging use. Add the total hour diff to the class.
         //data.users[i].rank.class += ' ' + total_hours_difference.toFixed(2) + ' ' + avg_hours_difference.toFixed(2)
 
+        // Pick the employee of the week for the selected period.
+        $scope.employee_of_week = pickEmployeeOfWeek(data.users);
         // Output to scope.
         $scope.data = data;
         $scope.loading = false;
@@ -475,25 +477,57 @@
       // Execute the chart.
       return doughnut('hours-chart', data, options);
     };
-    $scope.employeeOfWeek = function(val) {
-      var employee, sortedUsers, users;
-      date = new Date();
-      users = $scope.data.users;
-      sortedUsers = [];
-      users.forEach(function(entry) {
-        sortedUsers.push(entry.full_name);
-      });
-      sortedUsers = sortedUsers.sort();
-      employee = function() {
-        var theWinner;
-        Math.seedrandom(date.getWeek() + date.getFullYear());
-        theWinner = Math.floor(Math.random() * sortedUsers.length);
-        return sortedUsers[theWinner];
-      };
-      if (val === employee()) {
-        return false;
+    // The last day of the selected period, but never later than today, so the
+    // current period still gets a new employee of the week every week.
+    periodEndDate = function() {
+      var end, to, today;
+      today = new Date();
+      end = null;
+      if ($scope.type === 'range') {
+        to = ($scope.to || '').replace(/-/g, '');
+        if (/^\d{8}$/.test(to)) {
+          end = new Date(parseInt(to.substr(0, 4), 10), parseInt(to.substr(4, 2), 10) - 1, parseInt(to.substr(6, 2), 10));
+        }
+      } else {
+        angular.forEach($scope.date_options_month, function(object, j) {
+          if (object.value === $scope.month) {
+            // Day 0 of the next month is the last day of this one.
+            return end = new Date($scope.year, j + 1, 0);
+          }
+        });
       }
-      return true;
+      if (end && end < today) {
+        return end;
+      } else {
+        return today;
+      }
+    };
+    // How often the employee of the week also gets a moustache.
+    MOUSTACHE_CHANCE = 0.2;
+    // Pick the employee of the week for the selected period. The choice is
+    // seeded by the week, so everyone sees the same winner.
+    pickEmployeeOfWeek = function(users) {
+      var endDate, names, rng, user;
+      names = ((function() {
+        var k, len, ref, results;
+        ref = users || [];
+        results = [];
+        for (k = 0, len = ref.length; k < len; k++) {
+          user = ref[k];
+          results.push(user.full_name);
+        }
+        return results;
+      })()).sort();
+      if (!names.length) {
+        return null;
+      }
+      endDate = periodEndDate();
+      // Use a local generator rather than replacing Math.random.
+      rng = new Math.seedrandom(endDate.getFullYear() + '-W' + endDate.getWeek());
+      return {
+        name: names[Math.floor(rng() * names.length)],
+        moustache: rng() < MOUSTACHE_CHANCE
+      };
     };
     Date.prototype.getWeek = function() {
       var onejan;
