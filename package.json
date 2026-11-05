@@ -1,9 +1,9 @@
 {
-  "name": "Sandbox",
+  "name": "timelord",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Snipon/grunt-bootstrap.git"
+    "url": "https://github.com/reload/timelord.git"
   },
   "devDependencies": {
     "grunt": "latest",
