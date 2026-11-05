@@ -1,0 +1,38 @@
+service: timelord
+image: reload/timelord
+
+servers:
+  web:
+    - zeta.reload.dk
+
+ssh:
+  user: deploy
+  port: 27821
+
+# Basic auth is handled by Caddy in the container (see
+# docker/timelord.sh), as kamal-proxy doesn't support it. /up is left
+# open for the healthcheck, and TIMELORD_BASIC_AUTH_ALLOWED_IPS (the
+# Reload office) doesn't need to log in.
+proxy:
+  ssl: true
+  host: timelord.reload.dk
+  app_port: 80
+  healthcheck:
+    path: /up
+
+# The GitHub Actions deploy workflow logs in with its GITHUB_TOKEN.
+registry:
+  server: ghcr.io
+  username:
+    - KAMAL_REGISTRY_USERNAME
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+env:
+  secret:
+    - TIMELORD_BASIC_AUTH_USER
+    - TIMELORD_BASIC_AUTH_PASSWORD
+    - TIMELORD_BASIC_AUTH_ALLOWED_IPS

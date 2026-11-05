@@ -1,0 +1,44 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+# Queue deploys rather than running them concurrently.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to zeta.reload.dk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
+        with:
+          name: devenv
+      - name: Install devenv
+        run: nix profile add nixpkgs#devenv
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.KAMAL_SSH_KEY }}
+      - name: Trust zeta.reload.dk's host key
+        env:
+          KNOWN_HOSTS: ${{ vars.ZETA_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$KNOWN_HOSTS" >> ~/.ssh/known_hosts
+      - name: Deploy
+        run: devenv shell -- kamal deploy
+        env:
+          KAMAL_REGISTRY_USERNAME: ${{ github.actor }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          TIMELORD_BASIC_AUTH_USER: ${{ secrets.TIMELORD_BASIC_AUTH_USER }}
+          TIMELORD_BASIC_AUTH_PASSWORD: ${{ secrets.TIMELORD_BASIC_AUTH_PASSWORD }}
+          TIMELORD_BASIC_AUTH_ALLOWED_IPS: ${{ secrets.TIMELORD_BASIC_AUTH_ALLOWED_IPS }}
