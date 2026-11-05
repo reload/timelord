@@ -1,0 +1,19 @@
+@font-face {
+  font-family: AsapRegular;
+  src: url("../fonts/asap/Asap-Regular-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: AsapItalic;
+  src: url("../fonts/asap/Asap-Italic-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: AsapBold;
+  src: url("../fonts/asap/Asap-Bold-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: AsapBoldItalic;
+  src: url("../fonts/asap/Asap-BoldItalic-webfont.woff") format("woff");
+}

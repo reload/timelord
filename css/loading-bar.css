@@ -1,10 +1,9 @@
-// Loading bar.
-/* Make clicks pass-through */
+/* Styling for angular-loading-bar. */
+
+/* Make clicks pass through. */
 #loading-bar,
 #loading-bar-spinner {
-  -webkit-pointer-events: none;
   pointer-events: none;
-  @include transition(350mx linear all);
 }
 
 #loading-bar.ng-enter,
@@ -22,19 +21,19 @@
 }
 
 #loading-bar .bar {
-  background: $green;
+  background: var(--green);
   position: fixed;
   z-index: 10002;
   top: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  @include transition(width 350ms);
-  @include border-bottom-right-radius(1px);
-  @include border-top-right-radius(1px);
+  transition: width 350ms;
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
 }
 
-/* Fancy blur effect */
+/* Fancy blur effect. */
 #loading-bar .peg {
   position: absolute;
   width: 70px;
@@ -42,8 +41,8 @@
   top: 0;
   height: 2px;
   opacity: .45;
-  @include border-radius(100%);
-  @include box-shadow($green 1px 0 6px 1px);
+  border-radius: 100%;
+  box-shadow: var(--green) 1px 0 6px 1px;
 }
 
 #loading-bar-spinner {
@@ -57,14 +56,14 @@
 #loading-bar-spinner .spinner-icon {
   width: 14px;
   height: 14px;
-  border:  solid 2px transparent;
-  border-top-color:  $green;
-  border-left-color: $green;
+  border: solid 2px transparent;
+  border-top-color: var(--green);
+  border-left-color: var(--green);
   border-radius: 10px;
-  @include animation(loading-bar-spinner 400ms linear infinite);
+  animation: loading-bar-spinner 400ms linear infinite;
 }
 
-@include keyframes(loading-bar-spinner) {
-  0%   { @include rotate(0deg);   }
-  100% { @include rotate(360deg); }
+@keyframes loading-bar-spinner {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

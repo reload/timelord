@@ -1,0 +1,55 @@
+/* Design tokens.
+   Every colour family shares one OKLCH hue, so its lighter and darker shades
+   only differ in lightness and chroma. Keep the chart colours in
+   js/timelord-controller.js in sync. */
+:root {
+  --green-h: 163;
+  --green: oklch(77.5% 0.100 var(--green-h));
+  --green-light: oklch(83.3% 0.074 var(--green-h));
+  --green-dark: oklch(51.7% 0.091 var(--green-h));
+  --green-darker: oklch(40.3% 0.069 var(--green-h));
+  --green-darkest: oklch(34.1% 0.056 var(--green-h));
+
+  --yellow-h: 80;
+  --yellow: oklch(78.5% 0.163 var(--yellow-h));
+  --yellow-dark: oklch(38% 0.078 var(--yellow-h));
+  --yellow-darker: oklch(22% 0.045 var(--yellow-h));
+
+  --red-h: 26;
+  --red: oklch(66.2% 0.174 var(--red-h));
+  --red-dark: oklch(43.4% 0.159 var(--red-h));
+
+  --blue-h: 227;
+  --blue: oklch(71.7% 0.106 var(--blue-h));
+  --blue-lightest: oklch(95.6% 0.026 var(--blue-h));
+
+  --navy: oklch(25% 0.054 255);
+  --purple: oklch(54% 0.074 304);
+
+  --white: oklch(100% 0 0);
+  --black: oklch(26.4% 0 0);
+  --gray-darker: oklch(31.7% 0 0);
+  --gray-dark: oklch(36.8% 0 0);
+  --gray: oklch(55.2% 0 0);
+  --gray-light: oklch(65.9% 0 0);
+  --border-gray: oklch(83.6% 0 0);
+  --bootstrap-gray: oklch(98.2% 0 0);
+
+  /* Chart colours. */
+  --chart-green: var(--green);
+  --chart-red: oklch(60.6% 0.121 15);
+  --chart-yellow: var(--yellow);
+  --chart-purple: var(--purple);
+
+  --body-font-family: AsapRegular, sans-serif;
+  --header-font-family: AsapBold, sans-serif;
+  --container-width: 1400px;
+}
+
+/* Breakpoints used throughout (custom media queries aren't supported yet):
+   x-large: (min-width: 1201px)
+   large:   (max-width: 1200px)
+   medium:  (max-width: 900px)
+   modal:   (max-width: 850px)
+   small:   (max-width: 700px)
+   x-small: (max-width: 550px) */

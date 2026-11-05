@@ -20,12 +20,3 @@ services:
       - '80'
     volumes:
       - '.:/var/www/html'
-
-  node:
-    build:
-      context: .
-      dockerfile: ./docker/node/Dockerfile
-    init: true
-    command: sh -c "npm install && grunt watch"
-    volumes:
-      - '.:/var/www/html'

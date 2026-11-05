@@ -1,5 +1,5 @@
 #header {
-  border-bottom: 4px solid lighten($green, 10%);
+  border-bottom: 4px solid var(--green-light);
   margin-bottom: 70px;
   position: relative;
   height: 112px;
@@ -12,15 +12,16 @@
     margin-right: 18px;
     background: url(../img/reload-logo.png) -1px -1px no-repeat;
     font-size: 0;
-    @include x-small {
+
+    @media (max-width: 550px) {
       display: none;
     }
   }
 
   .logged_hours {
     font-size: 5em;
-    font-family: $headerFontFamily;
-    color: $blue-darkest;
+    font-family: var(--header-font-family);
+    color: var(--navy);
     float: left;
     margin-top: -2px;
     margin-right: .15em;
@@ -28,12 +29,13 @@
   }
 
   .logged_hours_desc {
-    color: $blue-darkest;
+    color: var(--navy);
     text-transform: uppercase;
     float: left;
     margin-top: 23px;
     margin-right: 2em;
-    @include medium {
+
+    @media (max-width: 900px) {
       margin-right: 1em;
     }
 
@@ -45,47 +47,54 @@
       .date,
       &.date {
         display: inline;
-        color: $blue;
+        color: var(--blue);
       }
     }
   }
 
   .scope_desc {
-    font-family: $bodyFontFamily;
+    font-family: var(--body-font-family);
     position: relative;
     font-size: 1.4em;
     top: 40px;
-    @include medium {
+
+    @media (max-width: 900px) {
       font-size: 1.2em;
       padding-top: 28px;
     }
-    @include small {
+
+    @media (max-width: 700px) {
       position: absolute;
       top: 85px;
     }
+
     p {
       display: inline;
       cursor: pointer;
-      color: $blue;
-      border-bottom: 1px solid $blue;
+      color: var(--blue);
+      border-bottom: 1px solid var(--blue);
+
       &:hover {
-        color: $green;
-        border-color: $green;
+        color: var(--green);
+        border-color: var(--green);
       }
+
       span {
-        @include medium {
+        @media (max-width: 900px) {
           display: block;
         }
-        @include small {
+
+        @media (max-width: 700px) {
           display: inline;
         }
 
-        // "To" seperator.
+        /* The "to" separator. */
         &.to {
-          @include medium {
+          @media (max-width: 900px) {
             display: none;
           }
-          @include small {
+
+          @media (max-width: 700px) {
             display: inline;
           }
         }
@@ -94,11 +103,11 @@
   }
 
   #hours_productive {
-    background: $green;
+    background: var(--green);
     width: 150px;
     height: 150px;
-    @include border-radius(150px, 150px);
-    @include box-shadow(inset 0 -2px 0 0 rgba(0, 0, 0, .2));
+    border-radius: 50%;
+    box-shadow: inset 0 -2px 0 0 oklch(0% 0 0 / .2);
     text-align: center;
     text-transform: uppercase;
     position: absolute;
@@ -106,22 +115,22 @@
     right: 0;
     padding-top: 36px;
 
-    // Label
+    /* Label. */
     p {
       font-size: .75em;
-      color: $green-darkest;
+      color: var(--green-darkest);
     }
 
     .percent {
       font-size: 1.2em;
-      font-family: $headerFontFamily;
-      color: #fff;
+      font-family: var(--header-font-family);
+      color: var(--white);
     }
 
-    // Percent value
+    /* Percent value. */
     h4 {
       font-size: 3em;
-      color: #fff;
+      color: var(--white);
       margin-bottom: 0;
       line-height: .8;
     }
@@ -132,6 +141,6 @@
     font-family: AsapItalic;
     font-size: 1.5em;
     line-height: 1.2;
-    color: darken($gray-light, 5%);
+    color: oklch(61.6% 0 0);
   }
 }

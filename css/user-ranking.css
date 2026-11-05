@@ -1,0 +1,175 @@
+ul#user-ranking {
+  display: flow-root;
+
+  li.user {
+    /* The colour of the rank, and darker shades of it. Set per rank below. */
+    --rank: var(--yellow);
+    --rank-dark: var(--yellow-dark);
+    --rank-darker: var(--yellow-darker);
+
+    list-style: none none;
+    margin-bottom: 2.5%;
+    position: relative;
+    width: 22.8%;
+    margin-right: 2.8%;
+    float: left;
+    height: 110px;
+
+    &.hide {
+      display: none;
+    }
+
+    @media (min-width: 1201px) {
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      width: 31%;
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      width: 48.6%;
+      margin-right: 0;
+
+      &:nth-child(2n+1) {
+        margin-right: 2.8%;
+      }
+    }
+
+    @media (max-width: 550px) {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    /* Rank icon. */
+    .rank {
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      background: var(--rank);
+      color: var(--rank-darker);
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      line-height: 30px;
+      font-size: 1.25em;
+      border-radius: 50%;
+      text-shadow: 0 1px 0 oklch(100% 0 0 / .4);
+    }
+
+    .user_info {
+      padding-top: .3em;
+      padding-left: 112px;
+
+      .desc {
+        font-size: .75em;
+      }
+
+      .diff {
+        font-size: .75em;
+        font-style: italic;
+        color: var(--gray-light);
+        margin-top: 3px;
+      }
+    }
+
+    .has-hat {
+      position: absolute;
+      top: -32px;
+      left: 6px;
+      z-index: 2;
+
+      /* The moustache version has the same canvas, so shrink it to put the
+         moustache on the upper lip. */
+      &.has-moustache {
+        top: -30px;
+        left: 21px;
+        width: 70px;
+      }
+    }
+
+    .user_avatar_holder {
+      width: 100px;
+      height: 100px;
+      background-color: var(--rank-dark);
+      border-radius: 50%;
+      box-shadow: -2px 0 0 oklch(0% 0 0 / .1);
+      border: 6px solid var(--rank);
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    /* The rank tag. */
+    &::after {
+      content: var(--rank-label);
+      position: absolute;
+      bottom: 10px;
+      left: -3px;
+      width: 106px;
+      padding: .05em 0 .1em;
+      background: var(--rank);
+      text-align: center;
+      color: var(--white);
+      font-family: AsapBoldItalic, sans-serif;
+      box-shadow: 0 -1px 1px 0 oklch(0% 0 0 / .2), inset 0 -1px 0 0 oklch(0% 0 0 / .1);
+      text-shadow: 0 1px 0 oklch(0% 0 0 / .3);
+    }
+
+    /* The tag's wrap effect. */
+    .user_avatar::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 34px;
+      left: -3px;
+      z-index: 0;
+      border-left: 53px solid transparent;
+      border-right: 53px solid transparent;
+      border-bottom: 53px solid var(--rank-dark);
+    }
+
+    &.a-karmahunter {
+      --rank-label: "Champ";
+    }
+
+    &.b-goalie {
+      --rank: var(--green);
+      --rank-dark: var(--green-dark);
+      --rank-darker: var(--green-darker);
+      --rank-label: "Like a boss";
+    }
+
+    &.c-karmauser {
+      --rank: var(--gray);
+      --rank-dark: var(--gray-darker);
+      --rank-darker: var(--gray-darker);
+      --rank-label: "Just chillin'";
+
+      .user_avatar_holder {
+        background-color: var(--gray-dark);
+      }
+    }
+
+    &.d-slacker {
+      --rank: var(--red);
+      --rank-dark: var(--red-dark);
+      --rank-label: "Y U NO WORK";
+
+      .user_avatar_holder {
+        background-color: var(--rank);
+      }
+
+      .rank {
+        color: var(--black);
+      }
+    }
+  }
+}

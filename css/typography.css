@@ -1,6 +1,6 @@
-@include headlines {
-  font-family: $headerFontFamily;
-  color: $headerFontColor;
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--header-font-family);
+  color: var(--green-darkest);
   margin-bottom: .2em;
   margin-top: 0;
   line-height: 1.1;
@@ -11,7 +11,9 @@ h2 {
   font-size: 1.5em;
 }
 
-h3 { font-size: 1.25em; }
+h3 {
+  font-size: 1.25em;
+}
 
 p {
   margin: 0;
@@ -19,7 +21,7 @@ p {
 
 a,
 a:hover,
-a:visited { 
-  color: black;
+a:visited {
+  color: oklch(0% 0 0);
   text-decoration: none;
 }
